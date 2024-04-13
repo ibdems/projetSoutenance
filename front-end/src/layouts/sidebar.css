@@ -1,0 +1,89 @@
+.sidebar {
+    background-color: #000121; /* Couleur de fond du menu latéral */
+    color: #ADADAD; /* Couleur du texte */
+    padding: 20px;
+    width: 250px; /* Largeur du menu latéral */
+    position: fixed; /* Fixe le menu latéral à gauche */
+    height: 100vh; /* Hauteur du menu latéral (100% de la hauteur de la fenêtre) */
+    overflow: auto; /* Permet le défilement si le contenu dépasse la hauteur */
+  }
+  
+  .sidebar-header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #918A3A; /* Couleur intermédiaire pour la séparation */
+  }
+  
+  .sidebar-header img {
+    height: 50px;
+  }
+  
+  .sidebar-header span {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar-nav li {
+    margin-bottom: 15px;
+  }
+  
+  .sidebar-nav a {
+    color: #ADADAD;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    padding: 20px;
+  }
+
+  /* Style pour les liens actifs */
+.sidebar-nav a.active {
+    color: #fff; /* Couleur du texte pour les liens actifs */
+    background-color: #918A3A; /* Couleur de fond pour les liens actifs */
+  }
+  
+  /* Style pour le bouton de déconnexion */
+  .sidebar-nav button {
+    background-color: #918A3A;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  /* Style pour le menu déroulant (si applicable) */
+  .sidebar-nav .dropdown {
+    position: relative;
+  }
+  
+  .sidebar-nav .dropdown-toggle {
+    padding-right: 20px;
+  }
+  
+  .sidebar-nav .dropdown-menu {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    top: 100%;
+    left: 0;
+    display: none;
+    padding: 10px;
+  }
+  
+  .sidebar-nav .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+    
+  .sidebar-icon {
+    margin-right: 10px; /* Espace entre l'icône et le texte */
+    font-size: 18px;
+    color: #ADADAD; /* Couleur de l'icône */
+  }
+
+  
