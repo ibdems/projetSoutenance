@@ -1,0 +1,38 @@
+.stylenavbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000121;
+  color: #ADADAD;
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 350px; /* Adjust based on your sidebar width */
+  height: 70px;
+  border-bottom: 1px solid #918A31;
+}
+
+  
+  .navbar-menu-toggle .menu-toggle-button {
+    background: none;
+    border: none;
+    color: #ADADAD;
+    cursor: pointer;
+    font-size: 45px;
+  }
+  
+  .navbar-icons button {
+    background: none;
+    border: none;
+    color: #ADADAD;
+    cursor: pointer;
+    font-size: 24px;
+    margin-left: 20px;
+  }
+  
+  .user-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  

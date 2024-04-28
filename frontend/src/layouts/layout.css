@@ -1,0 +1,31 @@
+.layout {
+    display: flex;
+  }
+  
+  .sidebar {
+    width: 250px;
+    background-color: #000121;
+    color: #ADADAD;
+    height: 100vh;
+    border: 1px solid white;
+    position: absolute;
+  }
+  
+  .content {
+    flex: 1; /* Permet au contenu de remplir l'espace restant */
+  }
+  
+  .main-content {
+    padding: 20px; /* Ajoute un espace autour du contenu principal */
+  }
+  
+  .navbar {
+    background-color: #000121;
+    color: #ADADAD;
+    padding: 10px 20px;
+    position: relative; /* Permet de positionner le Navbar par rapport à son conteneur parent */
+    top: 0; /* Position initiale */
+    right: 0; /* Positionné à la bordure droite */
+    border: 1px solid white;
+  }
+  
