@@ -3,11 +3,11 @@ import './navbar.scss'
 import { Link } from 'react-router-dom'
 import { Button } from 'reactstrap'
 
-export default function Navbar({ proposition, apropos, contacteznous }) {
+export default function Navbar({contacteznous }) {
     return (
-        <nav className="navbar navbar-expand-lg fixed-top" aria-label="Offcanvas navbar large" style={{ backgroundColor: '#03031efc', padding: '15px 0 15px 0', marginTop: '-10px' }} >
+        <nav className="navbar navbar-expand-lg fixed-top" aria-label="Offcanvas navbar large" style={{ backgroundColor: '#03031efc', padding: '15px 0 15px 0', marginTop: '-10px' }}>
             <div className="container-fluid">
-                <Link className="navbar-brand text-white" > {/* Ajout de la classe text-white */}
+                <Link className="navbar-brand text-white" href="#">
                     MacthSavoir
                 </Link>
                 <button
@@ -27,40 +27,32 @@ export default function Navbar({ proposition, apropos, contacteznous }) {
                     aria-labelledby="offcanvasNavbar2Label"
                 >
                     <div className="offcanvas-header" style={{ backgroundColor: '#03031efc' }}>
-
                         <button
-                            type="button fs-1"
-                            className="btn-close btn-close-white"
+                            type="button"
+                            className="btn-close btn-close-white fs-3 bg-white"
                             data-bs-dismiss="offcanvas"
                             aria-label="Close"
+                            style={{ border: '1px solid white', }}
                         />
                     </div>
                     <div className="offcanvas-body text-center" style={{ backgroundColor: '#03031efc' }}>
                         <ul className="navbar-nav justify-content-center flex-grow-1 pe-3 mx-auto">
-                            <li className="nav-item ">
-                                <a className="nav-link active text-white fs-4" to={'/'} aria-current="page" >
+                            <li className="nav-item">
+                                <Link className="nav-link active text-white fs-4" aria-current="page" to='/'>
                                     Accueil
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link text-white fs-4" href={`#${contacteznous}`}>
+                                    Contactez-nous
                                 </a>
                             </li>
-                            <a className="nav-link text-white fs-4" href={`#${proposition}`}>
-                                Propositions
-                            </a>
-                            <a className="nav-link text-white fs-4" href={`#${apropos}`}>
-                                A Propos
-                            </a>
-                            <a className="nav-link text-white fs-4" href={`#${contacteznous}`}>
-                                Contactez-nous
-                            </a>
-
                         </ul>
-                        <ul className="ml-auto navbar-nav">
+                        <ul className="ml-auto navbar-nav mt-3">
                             <li className="nav-item me-2 mb-2">
-                                <Link to={'/inscription'}>
-                                    <button className='form-control fw-bold bg-warning fs-5 border-none' style={{ color: '#03031efc' }}>
-                                        <i className="bi bi-person-fill-add fs-5 me-2" aria-hidden="true" /> S'inscrire
-                                    </button>
-                                </Link>
-                                
+                                <button className='form-control fw-bold bg-warning fs-5 border-none' style={{ color: '#03031efc' }}>
+                                    <i className="bi bi-person-fill-add fs-5 me-2" aria-hidden="true" /> S'inscrire
+                                </button>
                             </li>
                             <li className="nav-item me-2">
                                 <button className='form-control fw-bold bg-warning fs-5 border-none' style={{ color: '#03031efc' }}>

@@ -10,6 +10,7 @@ export let formations = [
         niveau: 'Débutant',
         langue: 'Francais',
         tags: 'Developpement web, angular, frontend, site web',
+        
         prerequis: [{
             id: 1,
             libelle: 'Connaître le langage JavaScript'

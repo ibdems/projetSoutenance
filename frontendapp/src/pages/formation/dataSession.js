@@ -7,10 +7,20 @@ export let sessions = [
         heureFin: "18h30",
         lieu: "Lieu 1",
         nombrePlace: 10,
-        joursSemaine: {
-            id: 1,
-            nom: "Lundi"
-        },
+        joursSemaine: [
+            {
+                id:1,
+                libelle: 'Lundi'
+            },
+            {
+                id:2,
+                libelle: 'Mercredi'
+            },
+            {
+                id:3,
+                libelle: 'Vendredi'
+            },
+        ],
         statut: true,
         formation: {
             id: 1,
@@ -22,21 +32,46 @@ export let sessions = [
             format: 'A distance',
             langue: "Français",
             domaine: "Développement web",
-            prerequis: [
-                {
-                    id: 1,
-                    nom: "Prerequis 1"
-                }
-            ],
+           
             objectifs: [
                 {
                     id: 1,
                     nom: "Objectif 1"
+                },
+                {
+                    id: 2,
+                    nom: "Objectif 1"
+                },
+                {
+                    id: 3,
+                    nom: "Objectif 1"
+                }
+            ],
+            prerequis: [
+                {
+                    id: 1,
+                    nom: "Prerequis 1"
+                },
+                {
+                    id: 2,
+                    nom: "Prerequis 1"
+                },
+                {
+                    id: 3,
+                    nom: "Prerequis 1"
                 }
             ],
             criteres: [
                 {
                     id: 1,
+                    nom: "Critere 1"
+                },
+                {
+                    id: 2,
+                    nom: "Critere 1"
+                },
+                {
+                    id: 3,
                     nom: "Critere 1"
                 }
             ],
@@ -97,7 +132,7 @@ export let sessions = [
         }
     },
     {
-        id: 2,
+        id: 3,
         dateDebut: "2024-02-12",
         dateFin: "2024-02-20",
         heureDebut: "12h30",
@@ -146,7 +181,7 @@ export let sessions = [
         }
     },
     {
-        id: 2,
+        id: 4,
         dateDebut: "2024-02-12",
         dateFin: "2024-02-20",
         heureDebut: "12h30",
@@ -194,7 +229,7 @@ export let sessions = [
         }
     },
     {
-        id: 2,
+        id: 5,
         dateDebut: "2024-02-12",
         dateFin: "2024-02-20",
         heureDebut: "12h30",
@@ -243,7 +278,7 @@ export let sessions = [
         }
     },
     {
-        id: 2,
+        id: 6,
         dateDebut: "2024-02-12",
         dateFin: "2024-02-20",
         heureDebut: "12h30",
@@ -292,7 +327,7 @@ export let sessions = [
         }
     },
     {
-        id: 2,
+        id: 7,
         dateDebut: "2024-02-12",
         dateFin: "2024-02-20",
         heureDebut: "12h30",
@@ -341,7 +376,7 @@ export let sessions = [
         }
     },
     {
-        id: 2,
+        id: 8,
         dateDebut: "2024-02-12",
         dateFin: "2024-02-20",
         heureDebut: "12h30",
@@ -390,7 +425,7 @@ export let sessions = [
         }
     },
     {
-        id: 2,
+        id: 9,
         dateDebut: "2024-02-12",
         dateFin: "2024-02-20",
         heureDebut: "12h30",
@@ -439,7 +474,7 @@ export let sessions = [
         }
     },
     {
-        id: 2,
+        id: 10,
         dateDebut: "2024-02-12",
         dateFin: "2024-02-20",
         heureDebut: "12h30",
@@ -488,7 +523,7 @@ export let sessions = [
         }
     },
     {
-        id: 2,
+        id: 11,
         dateDebut: "2024-02-12",
         dateFin: "2024-02-20",
         heureDebut: "12h30",
@@ -537,7 +572,7 @@ export let sessions = [
         }
     },
     {
-        id: 2,
+        id: 12,
         dateDebut: "2024-02-12",
         dateFin: "2024-02-20",
         heureDebut: "12h30",
@@ -586,7 +621,7 @@ export let sessions = [
         }
     },
     {
-        id: 2,
+        id: 13,
         dateDebut: "2024-02-12",
         dateFin: "2024-02-20",
         heureDebut: "12h30",
@@ -635,7 +670,7 @@ export let sessions = [
         }
     },
     {
-        id: 2,
+        id: 14,
         dateDebut: "2024-02-12",
         dateFin: "2024-02-20",
         heureDebut: "12h30",
@@ -654,7 +689,6 @@ export let sessions = [
             prix: 1000,
             duree: 10,
             niveau: "Débutant",
-            format: 'A distance',
             format: 'A distance',
             langue: "Français",
             domaine: "Développement web",
@@ -685,7 +719,7 @@ export let sessions = [
         }
     },
     {
-        id: 2,
+        id: 16,
         dateDebut: "2024-02-12",
         dateFin: "2024-02-20",
         heureDebut: "12h30",

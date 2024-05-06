@@ -90,7 +90,7 @@ export default function Recherche() {
                   className="btn-close btn-close-white fs-3 bg-white"
                   data-bs-dismiss="offcanvas"
                   aria-label="Close"
-                  style={{border: '1px solid white', }}
+                  style={{ border: '1px solid white', }}
                 />
               </div>
               <div className="offcanvas-body text-center" style={{ backgroundColor: '#03031efc' }}>
@@ -108,7 +108,7 @@ export default function Recherche() {
                   </li>
                   {showTextRecherche && (
                     <li className="nav-item px-3">
-                      <MyInput type={'text'} placeholder={'Saisissez un mot clé, un prix .....'}  className={'inputNav'} name={'textRecherche'} value={elements.textRecherche} onChange={(value) => handleInputChange('textRecherche', value)}></MyInput>
+                      <MyInput type={'text'} placeholder={'Saisissez un mot clé, un prix .....'} className={'inputNav'} name={'textRecherche'} value={elements.textRecherche} onChange={(value) => handleInputChange('textRecherche', value)}></MyInput>
 
                     </li>
                   )}
@@ -158,7 +158,7 @@ export default function Recherche() {
                   </Col>
                 </Row>
                 <Row className='m-3'>
-                  <Col  xs={12}>
+                  <Col xs={12}>
                     <FormGroup>
                       <Row>
                         <MyLabel forMyLabel='format' text={'Trier par format'} className='text-white'></MyLabel>
@@ -170,7 +170,7 @@ export default function Recherche() {
                       ]} />
                     </FormGroup>
                   </Col>
-                  <Col  xs={12}>
+                  <Col xs={12}>
                     <FormGroup>
                       <Row>
                         <MyLabel forMyLabel='niveau' text={'Trier par niveau'} className='text-white'></MyLabel>
@@ -194,7 +194,7 @@ export default function Recherche() {
                     <MyInput type={'text'} placeholder={'Ex: 25000'} name={'prixMin'} value={elements.prixMin} onChange={(value) => handleInputChange('prixMin', value)} ></MyInput>
 
                   </Col>
-                  <Col md={4}  xs={12}>
+                  <Col md={4} xs={12}>
                     <Row>
                       <MyLabel forMyLabel='prixMax' text={'Prix maximal'} className='text-white'></MyLabel>
                     </Row>
