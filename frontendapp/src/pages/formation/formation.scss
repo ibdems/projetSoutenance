@@ -1,0 +1,157 @@
+@import '../../styles/responsive.scss';
+
+
+.btnplus {
+    border: 1px solid black;
+    border-radius: 35%;
+    margin-right: 20px;
+    margin-top: -20px;
+    height: 30px;
+}
+
+.champPlusieurs {
+    border-top: none;
+
+    :active {
+        border-top: none;
+    }
+
+    :focus {
+        border-top: none;
+    }
+}
+
+.contenueCard {
+    background: linear-gradient(to right, rgba(1, 1, 32, 0.85), rgba(22, 22, 91, 0.801));
+    height: auto;
+    border: 1px solid black;
+    box-shadow: 10px;
+    border-radius: 5px;
+    color: white;
+    @include xs {
+        span {
+            font-size: 18px
+        };
+
+        div {
+            font-size: 14px;
+        }
+    }
+    @include sm {
+        span {
+            font-size: 19px
+        };
+
+        div {
+            font-size: 15px;
+        }
+    }
+
+    @include md {
+        span {
+            font-size: 21px
+        };
+
+        div {
+            font-size: 16px;
+        }
+    }
+
+    @include lg {
+        span {
+            font-size: 21px
+        };
+
+        div {
+            font-size: 16px;
+        }
+    }
+
+    @include xl {
+        span {
+            font-size: 22px
+        };
+
+        div {
+            font-size: 18px;
+        }
+    }
+}
+
+.contenueCard .titre,
+div {
+    text-align: left;
+}
+
+.iconeButton {
+    margin-top: -2em;
+    align-items: center;
+    font-size: 1.5em;
+}
+
+.iconeButton:hover {
+    // margin-left: -0.5em;
+    /* Styles au survol */
+    border: 1px solid #918A31;
+    /* Ajoute une bordure */
+    border-radius: 15px;
+    /* Ajoute des coins arrondis */
+    padding: 3% 10%;
+    transition: all 0.3s ease;
+    background-color: #918A31;
+    box-shadow: 20px 20px transparent transparent;
+    
+}
+.btnGestionFormations {
+    background: linear-gradient(to right, rgba(1, 1, 32, 0.85), rgba(22, 22, 91, 0.801));
+}
+.contenueFormation {
+    @include xs {
+        span {
+            font-size: 18px
+        };
+
+        div {
+            font-size: 14px;
+        }
+    }
+    @include sm {
+        span {
+            font-size: 19px
+        };
+
+        div {
+            font-size: 15px;
+        }
+    }
+
+    @include md {
+        span {
+            font-size: 21px
+        };
+
+        div {
+            font-size: 16px;
+        }
+    }
+
+    @include lg {
+        span {
+            font-size: 21px
+        };
+
+        div {
+            font-size: 16px;
+        }
+    }
+
+    @include xl {
+        span {
+            font-size: 22px
+        };
+
+        div {
+            font-size: 18px;
+        }
+    }
+}
