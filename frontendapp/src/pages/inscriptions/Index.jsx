@@ -10,6 +10,7 @@ import DetailProfessionnel from './formateur/detailProfessionnal';
 import CreationCompte from './CreationCompte';
 import InfoCabinet from './Cabinet/InfoCabinet';
 import Navbar from '../../layoutsPublic/navbar/Navbar';
+import InfoDesirant from './Desirant/InfoDesirant';
 
 export default function IndexInscription() {
     const [role, setRole] = useState('');
@@ -49,8 +50,8 @@ export default function IndexInscription() {
                                         <MyLabel text={'Êtes-vous un formateur ou un cabinet de formation ?'} className={'text-center'} />
                                     </Row>
                                     <Row className='align-items-center justify-content-center text-center'>
-                                        <Col></Col>
-                                        <Col>
+                                        
+                                        <Col xs={4}>
                                             <FormGroup check>
                                                 <Label check>
                                                     <Input type="radio" className='form-control mt-2 border-black p-2' name="role" value="formateur" checked={role === 'formateur'} onChange={handleRoleChange} />
@@ -58,15 +59,23 @@ export default function IndexInscription() {
                                                 </Label>
                                             </FormGroup>
                                         </Col>
-                                        <Col>
-                                            <FormGroup check>
+                                        <Col xs={4}>
+                                            <FormGroup check >
                                                 <Label check>
                                                     <Input type="radio" name="role" className='mt-2 form-control border-black p-2' value="cabinet" checked={role === 'cabinet'} onChange={handleRoleChange} />
                                                     <span className='fw-bold fs-4'>Cabinet</span>
                                                 </Label>
                                             </FormGroup>
                                         </Col>
-                                        <Col></Col>
+                                        <Col  xs={4}>
+                                            <FormGroup check>
+                                                <Label check>
+                                                    <Input type="radio" name="role" className='mt-2 form-control border-black p-2' value="desirant" checked={role === 'desirant'} onChange={handleRoleChange} />
+                                                    <span className='fw-bold fs-4'>Désirant</span>
+                                                </Label>
+                                            </FormGroup>
+                                        </Col>
+                                        
                                     </Row>
                                     <div className='contenueformInscription'>
 
@@ -120,6 +129,30 @@ export default function IndexInscription() {
                                                     </Col>
                                                 </Row>
                                             </div>
+                                        }
+                                        {
+                                            role === 'desirant' && 
+                                            <div className="mt-2">
+                                                <h3 className='text-center text-black mb-4'>Etape {etape}/2:
+                                                    {etape === 1 && " Vos Informations"}
+                                                    {etape === 2 && " Création de votre compte"}
+                                                </h3>
+                                                {etape === 1 && <InfoDesirant />}
+                                                {etape === 2 && <CreationCompte />}
+                                                <Row className='mt-3'>
+                                                    <Col></Col>
+                                                    <Col xs={5} md={4} lg={3} xl={2}>
+
+                                                        {etape === 2  && <Link><button type='button' className='form-control text-white fs-4' style={{ backgroundColor: '#03031efc' }} onClick={handlePrecedant}>Précedant</button></Link> }
+                                                    </Col>
+
+                                                    <Col xs={5} md={4} lg={3} xl={2}>
+                                                        {etape === 2 && <button type='button' className='form-control text-black bg-warning fs-4'>Valider</button>}
+                                                        {etape === 1 && <button type='button' className='form-control text-white fs-4' style={{ backgroundColor: '#03031efc' }} onClick={handleSuivant}>Suivant</button>}
+                                                    </Col>
+                                                </Row>
+                                            </div>
+                                            
                                         }
 
                                     </div>

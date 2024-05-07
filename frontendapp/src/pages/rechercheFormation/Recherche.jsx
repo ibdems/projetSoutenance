@@ -243,8 +243,8 @@ export default function Recherche() {
                       <div><span className='fw-bold'><i className="bi bi-alarm fs-3"></i>{'  De ' + sessions.heureDebut + ' à   ' + sessions.heureFin}</span></div>
                       <div className='text-center fw-bold fs-1'>  {' ' + sessions.formation.prix + ' Fg'}</div>
                     </div>
-                    <div>
-                      <Link to={`/rechercheformation/detail/${sessions.id}`} className='lien-gestion'>
+                    <div className='lien-gestion'>
+                      <Link to={`/rechercheformation/detail/${sessions.id}`} >
                         <button type='button' className='btn mt-3 form-control btnVoirplus'> <span className='fs-3 fw-bold text-end' style={{ color: 'whitesmoke' }}>Voir plus</span>   </button>
                       </Link>
                     </div>

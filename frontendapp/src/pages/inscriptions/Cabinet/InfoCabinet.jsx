@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Card, CardBody, Col, FormGroup, Input, Label, Row } from 'reactstrap'
 import { MyButton, MyInput, MyLabel } from '../../../components/Forms/Forms'
 
@@ -12,6 +12,18 @@ export default function InfoCabinet() {
         description: '',
         domaineExpertise: [''],
     })
+    const inputRef = useRef(null);
+    const [image, setImage] = useState('')
+    const handleImageClick = () => {
+        inputRef.current.click();
+    }
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0]
+        setImage(file);
+    }
+
+
 
     const handleInputChange = (name, value) => {
         setElement(prevState => ({
@@ -51,16 +63,21 @@ export default function InfoCabinet() {
     return (
         <div>
             <Row>
-            <Col xs={12} lg={4} className="d-flex flex-column justify-content-center align-items-center">
-                        <div>
-                            <img src="" alt="" height={200} width={200} style={{ border: '1px solid black', borderRadius: '20%' }} />
-                        </div>
-                        
-                        <div>
-                            <button type='submit' className={' mt-3 form-control bg-warning text-black fs-3 py-2 px-4 fw-bold'}> Photo</button>
-                        </div>
+                <Col xs={12} lg={4} className="d-flex flex-column justify-content-center align-items-center">
+                    <div>
+                        {image ? (
+                            <img src={URL.createObjectURL(image)} alt="" height={200} width={200} style={{ border: '1px solid black', borderRadius: '20%' }} />
+                        ) : (
+                            <img src='' alt="" height={200} width={200} style={{ border: '1px solid black', borderRadius: '20%' }} />
+                        )}
+                    </div>
 
-                    </Col>
+                    <div>
+                        <input type="file" ref={inputRef} className='d-none' onChange={handleImageChange} name="" id="" />
+                        <button type='button' onClick={handleImageClick} className={' mt-3 form-control bg-warning text-black fs-3 py-2 px-4 fw-bold'}> Photo</button>
+                    </div>
+
+                </Col>
                 <Col>
                     <Row>
                         <Col xs={12}>
@@ -132,7 +149,7 @@ export default function InfoCabinet() {
                                     </Col>
                                     <Col xs={9}>
                                         <FormGroup>
-                                            <MyInput id={`domaineExpertise-${index}`} name={`domaineExpertise-${index}`} placeholder="Entrer un domaine d'expertise" type="text"  value={domaineExpertise} onChange={(value) => handleInput('domaineExpertise', value, index)} />
+                                            <MyInput id={`domaineExpertise-${index}`} name={`domaineExpertise-${index}`} placeholder="Entrer un domaine d'expertise" type="text" value={domaineExpertise} onChange={(value) => handleInput('domaineExpertise', value, index)} />
                                         </FormGroup>
                                     </Col>
                                     <Col xs={1}>

@@ -3,7 +3,7 @@ import { Col, FormGroup, Input, Label, Row } from 'reactstrap'
 import { MyButton, MyInput, MyLabel } from '../../../components/Forms/Forms'
 import '../inscription.scss'
 
-export default function InfoPersonnel() {
+export default function InfoDesirant() {
     const [element, setElement] = useState({
         nomComplet: '',
         telephone: '',
@@ -29,12 +29,6 @@ export default function InfoPersonnel() {
         }));
     }
 
-    const [reponse, setReponse] = useState('');
-
-    // Fonction pour mettre à jour le rôle sélectionné
-    const handleReponseChange = (event) => {
-        setReponse(event.target.value);
-    };
 
     return (
         <div>            
@@ -93,33 +87,15 @@ export default function InfoPersonnel() {
                             <Col lg={6}>
                                 <FormGroup>
                                     <Row>
-                                        <MyLabel text={'Linkdine'} forLabel={'linkdin'} />
+                                        <MyLabel text={'LinkedIn'} forLabel={'linkdin'} />
                                     </Row>
-                                    <MyInput type={'text'} placeholder={'Ex: ibrahimaDiallo'} value={element.linkedin} onChange={(value) => handleInputChange(handleInputChange('linkdin', value))} />
+                                    <MyInput type={'text'} placeholder={'Ex: DialloIbrahima'} value={element.linkedin} onChange={(value) => handleInputChange(handleInputChange('linkedin', value))} />
                                 </FormGroup>
                             </Col>
                         </Row>
                     </Col>
                 </Row>
-                <Row>
-                    <Col lg={6} xl={7}><h3 className='text-center text-black'>Desirez-vous de donner des cours personnel à l'apprenant ?</h3></Col>
-                    <Col className='ms-5 ms-md-5'>
-                        <FormGroup check className='ms-md-5'>
-                            <Label check>
-                                <Input type="radio" className='form-control mt-2 border-black p-2 ms-md-5' name="reponse" value="oui" checked={reponse === 'oui'} onChange={handleReponseChange} />
-                                <span className='fw-bold fs-4'> Oui</span>
-                            </Label>
-                        </FormGroup>
-                    </Col>
-                    <Col>
-                        <FormGroup check>
-                            <Label check>
-                                <Input type="radio" name="reponse" className='mt-2 form-control border-black p-2' value="non" checked={reponse === 'non'} onChange={handleReponseChange} />
-                                <span className='fw-bold fs-4'>Non</span>
-                            </Label>
-                        </FormGroup>
-                    </Col>
-                </Row>
+            
                 
             
         </div>

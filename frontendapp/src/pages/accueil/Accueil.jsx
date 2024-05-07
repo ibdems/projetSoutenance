@@ -84,9 +84,12 @@ export default function Accueil() {
 
                                             </li>
                                             <li className="nav-item me-2">
-                                                <button className='form-control fw-bold bg-warning fs-5 border-none' style={{ color: '#03031efc' }}>
-                                                    <i className="bi bi-box-arrow-in-right fs-5 me-2" aria-hidden="true" />Se Connecter
-                                                </button>
+                                                <Link to={'/connexion'}>
+                                                    <button className='form-control fw-bold bg-warning fs-5 border-none' style={{ color: '#03031efc' }}>
+                                                        <i className="bi bi-box-arrow-in-right fs-5 me-2" aria-hidden="true" />Se Connecter
+                                                    </button>
+                                                </Link>
+                                                
                                             </li>
                                         </ul>
                                     </div>

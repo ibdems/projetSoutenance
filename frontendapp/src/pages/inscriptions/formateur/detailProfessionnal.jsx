@@ -39,34 +39,6 @@ export default function DetailProfessionnel() {
         <div>
             <Row>
                 <Col md='12' lg='12' xl='6'>
-                    {/* certifications */}
-                    <Row>
-                        <MyLabel forMyLabel="certifications" text='Certifications' />
-                    </Row>
-                    <Card className='border-secondary'>
-                        <CardBody>
-                            {elements.certifications && elements.certifications.map((objectif, index) => (
-                                <Row key={index} className='p-2'>
-                                    <Col xs={1}>
-                                        <h5>{index + 1}</h5>
-                                    </Col>
-                                    <Col xs={9}>
-                                        <FormGroup>
-                                            <MyInput id={`objectif-${index}`} name={`objectif-${index}`} placeholder="Entrez un objectif à atteindre" type="file" accepted={'pdf'} value={objectif} onChange={(value) => handleInput('certifications', value, index)} />
-                                        </FormGroup>
-                                    </Col>
-                                    <Col xs={1}>
-                                        <i className='bi bi-plus fs-5  btnplus' onClick={() => clickPlus('certifications')}></i>
-                                        {index > 0 && (
-                                            <i className='bi bi-dash fs-5  btnplus' onClick={() => removeElement('certifications', index)}></i>
-                                        )}
-                                    </Col>
-                                </Row>
-                            ))}
-                        </CardBody>
-                    </Card>
-                </Col>
-                <Col md='12' lg='12' xl='6'>
                     {/* Prérequis */}
                     <Row>
                         <MyLabel forMyLabel="competances" text='Competances' />
@@ -95,7 +67,7 @@ export default function DetailProfessionnel() {
                     </Card>
                 </Col>
                 {/* Colonne pour les domaineExpertises */}
-                <Col md='12' lg='12' xl='6' className='mt-3'>
+                <Col md='12' lg='12' xl='6'>
                     {/* Critères */}
                     <Row>
                         <MyLabel forMyLabel="domaineExpertises" text="Domaine d'expertises" />
@@ -123,6 +95,46 @@ export default function DetailProfessionnel() {
                         </CardBody>
                     </Card>
                 </Col>
+                <Col md='12' lg='12' xl='12' className='mt-2'>
+                    {/* certifications */}
+                    <Row>
+                        <MyLabel forMyLabel="certifications" text='Certifications' />
+                    </Row>
+                    <Card className='border-secondary'>
+                        <CardBody>
+                            {elements.certifications && elements.certifications.map((certifications, index) => (
+                                <Row key={index} className='p-2'>
+                                    <Col xs={1}>
+                                        <h5>{index + 1}</h5>
+                                    </Col>
+                                    <Col xs={12} md={6}>
+                                        <FormGroup>
+                                            <Row>
+                                                <MyLabel forMyLabel="" text='Libelle' />
+                                            </Row>
+                                            <MyInput id={`certifications-${index}`} name={`certifications-${index}`} placeholder="Ex: Diplome en Ingenierie Logiciel" type="text" value={certifications} onChange={(value) => handleInput('certifications', value, index)} />
+                                        </FormGroup>
+                                    </Col>
+                                    <Col xs={12} md={4}>
+                                        <FormGroup>
+                                            <Row>
+                                                <MyLabel forMyLabel="" text='Fichier' />
+                                            </Row>
+                                            <MyInput id={`certifications-${index}`} name={`certifications-${index}`} placeholder="Entrez" type="file"  value={certifications} onChange={(value) => handleInput('certifications', value, index)} />
+                                        </FormGroup>
+                                    </Col>
+                                    <Col xs={1}>
+                                        <i className='bi bi-plus fs-5  btnplus' onClick={() => clickPlus('certifications')}></i>
+                                        {index > 0 && (
+                                            <i className='bi bi-dash fs-5  btnplus' onClick={() => removeElement('certifications', index)}></i>
+                                        )}
+                                    </Col>
+                                </Row>
+                            ))}
+                        </CardBody>
+                    </Card>
+                </Col>
+
 
 
             </Row>
