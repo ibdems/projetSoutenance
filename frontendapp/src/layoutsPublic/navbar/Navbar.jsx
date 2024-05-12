@@ -8,7 +8,7 @@ export default function Navbar({contacteznous }) {
         <nav className="navbar navbar-expand-lg fixed-top" aria-label="Offcanvas navbar large" style={{ backgroundColor: '#03031efc', padding: '15px 0 15px 0', marginTop: '-10px' }}>
             <div className="container-fluid">
                 <Link className="navbar-brand text-white" href="#">
-                    MacthSavoir
+                    MatchSavoir
                 </Link>
                 <button
                     className="navbar-toggler text-white"

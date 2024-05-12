@@ -2,15 +2,14 @@ import React, { useState, useEffect } from 'react'
 import hero from '../accueil/images/hero-bg.png'
 import '../accueil/css/style.css'
 import { Col, Row, FormGroup, Label } from 'reactstrap'
-import imgCarousel1 from '../accueil/images/slider-img.png'
 import { MyLabel, MyInput, MySelect } from '../../components/Forms/Forms'
-import { formations } from '../formation/dataFormation'
-import { sessions } from '../formation/dataSession'
+import Select from 'react-select';
 import { Link } from 'react-router-dom'
-import './recherche.scss'
+import '../rechercheFormation/recherche.scss'
 import ContactezNous from '../accueil/ContactezNous'
 import Footer from '../accueil/Footer'
 import InfoSection from '../accueil/InfoSection'
+import { domaine } from '../../data/domaine'
 
 
 
@@ -35,13 +34,14 @@ export default function Recherche() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+
+
   const [elements, setElements] = useState({
     textRecherche: '',
     textLieu: '',
-    format: '',
+    domaine: '',
     niveau: '',
-    prixMin: '',
-    prixMax: '',
+
   })
 
   const handleInputChange = (name, value) => {
@@ -108,7 +108,7 @@ export default function Recherche() {
                   </li>
                   {showTextRecherche && (
                     <li className="nav-item px-3">
-                      <MyInput type={'text'} placeholder={'Saisissez un mot clé, un prix .....'} className={'inputNav'} name={'textRecherche'} value={elements.textRecherche} onChange={(value) => handleInputChange('textRecherche', value)}></MyInput>
+                      <MyInput type={'text'} placeholder={'Saisissez un nom, un domaine, une profession .....'} className={'inputNav'} name={'textRecherche'} value={elements.textRecherche} onChange={(value) => handleInputChange('textRecherche', value)}></MyInput>
 
                     </li>
                   )}
@@ -140,11 +140,11 @@ export default function Recherche() {
             <Row style={{ marginTop: '1em' }}>
               <Col lg={8} md={12}>
                 <Row className='m-3 ms-xs-2'>
-                  <div className='text-warning fs-3 fw-bold'>Trouvez la formation qui vous convient le mieux</div>
+                  <div className='text-warning fs-3 fw-bold'>Trouvez le formateur pour vos cours paticulier</div>
                   <Col md={7}>
                     <FormGroup>
                       <MyLabel></MyLabel>
-                      <MyInput type={'text'} placeholder={'Saisissez un mot clé, un domaine,une langue .....'} name={'textRecherche'} value={elements.textRecherche} onChange={(value) => handleInputChange('textRecherche', value)}></MyInput>
+                      <MyInput type={'text'} placeholder={'Saisissez un nom, un domaine, une profession .....'} name={'textRecherche'} value={elements.textRecherche} onChange={(value) => handleInputChange('textRecherche', value)}></MyInput>
                     </FormGroup>
                   </Col>
                   <Col md={3}>
@@ -158,19 +158,21 @@ export default function Recherche() {
                   </Col>
                 </Row>
                 <Row className='m-3'>
-                  <Col xs={12} lg={4}>
+                  <Col xs={12}>
                     <FormGroup>
                       <Row>
                         <MyLabel forMyLabel='format' text={'Trier par format'} className='text-white'></MyLabel>
                       </Row>
-                      <MySelect id={'format'} name={'format'} value={elements.format} onChange={(value) => handleInputChange('format', value)} options={[
-                        { label: 'Présentielle', value: 'presentielle' },
-                        { label: 'En ligne', value: 'ligne' },
-                        { label: 'À domicile', value: 'domicile' }
-                      ]} />
+                      <Select
+                        options={domaine.map(domaine => {
+                            [
+                                {value:}
+                            ]
+                        })}
+                      ></Select>
                     </FormGroup>
                   </Col>
-                  <Col xs={12} lg={4}>
+                  <Col xs={12}>
                     <FormGroup>
                       <Row>
                         <MyLabel forMyLabel='niveau' text={'Trier par niveau'} className='text-white'></MyLabel>
@@ -185,23 +187,7 @@ export default function Recherche() {
                   <Col></Col>
 
                 </Row>
-                <Row className='ms-3 me-5 mb-lg-5'>
-
-                  <Col md={4} xs={12}>
-                    <Row>
-                      <MyLabel forMyLabel='prixMin' text={'Prix minimal'} className='text-white'></MyLabel>
-                    </Row>
-                    <MyInput type={'text'} placeholder={'Ex: 25000'} name={'prixMin'} value={elements.prixMin} onChange={(value) => handleInputChange('prixMin', value)} ></MyInput>
-
-                  </Col>
-                  <Col md={4} xs={12}>
-                    <Row>
-                      <MyLabel forMyLabel='prixMax' text={'Prix maximal'} className='text-white'></MyLabel>
-                    </Row>
-                    <MyInput type={'text'} placeholder={'Ex: 75000'} name={'prixMax'} value={elements.prixMax} onChange={(value) => handleInputChange('prixMax', value)}></MyInput>
-                  </Col>
-                  <Col></Col>
-                </Row>
+               
               </Col>
               <Col className="d-lg-block d-none">
                 <div className="img-box p-5" style={{ marginTop: '' }}>
@@ -221,36 +207,7 @@ export default function Recherche() {
       <section className="service_section layout_padding">
         <div className="ms-3 me-3">
           <Row className='gx-5 gy-4 align-items-stretch'>
-            {sessions.filter((session) => session.formation.nom.toLowerCase().includes(elements.textRecherche.toLowerCase()))
-              .map(sessions => (
-                <Col key={sessions.id} xs={12} sm={6} xl={3} lg={4} md={6} className='d-flex flex-column justify-content-between'>
-                  <Col className='p-4 d-flex flex-column justify-content-between colForm'>
-                    <Row className='m-2'>
-                      <Col>
-                        <i className='bi bi-person-fill fs-1'></i>
-                      </Col>
-                      <Col>
-                        <h8>Nom Cabinet/Formateur</h8>
-                      </Col>
-                    </Row>
-                    <div>
-                      <h3 className='fw-bold text-justify'>{' ' + sessions.formation.nom}</h3>
-                      <div className='fw-bold fs-4'><span>{' Pour ' + sessions.formation.duree + ' jours'}</span></div>
-                      <div><span className='fw-bold'> {' ' + sessions.lieu}</span></div>
-                      <div><span className='fw-bold'> <span className='fs-4'>Niveau :  </span> {' ' + sessions.formation.niveau}</span></div>
-                      <div><span className='fw-bold'> <i className="bi bi-geo-alt fs-3"></i> {'  ' + sessions.formation.format} </span></div>
-                      <div><span className='fw-bold'><i className="bi bi-calendar-range fs-3"></i>{'  Du ' + sessions.dateDebut + ' au ' + sessions.dateFin}</span></div>
-                      <div><span className='fw-bold'><i className="bi bi-alarm fs-3"></i>{'  De ' + sessions.heureDebut + ' à   ' + sessions.heureFin}</span></div>
-                      <div className='text-center fw-bold fs-1'>  {' ' + sessions.formation.prix + ' Fg'}</div>
-                    </div>
-                    <div className='lien-gestion'>
-                      <Link to={`/rechercheformation/detail/${sessions.id}`} >
-                        <button type='button' className='btn mt-3 form-control btnVoirplus'> <span className='fs-3 fw-bold text-end' style={{ color: 'whitesmoke' }}>Voir plus</span>   </button>
-                      </Link>
-                    </div>
-                  </Col>
-                </Col>
-              ))}
+
           </Row>
         </div>
       </section>

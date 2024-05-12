@@ -89,7 +89,7 @@ export default function Accueil() {
                                                         <i className="bi bi-box-arrow-in-right fs-5 me-2" aria-hidden="true" />Se Connecter
                                                     </button>
                                                 </Link>
-                                                
+
                                             </li>
                                         </ul>
                                     </div>
@@ -177,9 +177,12 @@ export default function Accueil() {
                                         <Row>
                                             <Col></Col>
                                             <Col md={8}>
-                                                <button className='form-control fw-bold bg-warning fs-5 border-none' style={{ color: '#03031efc' }}>
-                                                    <i className="bi bi-search" aria-hidden="true" /> Rechercher
-                                                </button>
+                                                <Link to={'/rechercheformateur'}>
+                                                    <button className='form-control fw-bold bg-warning fs-5 border-none' style={{ color: '#03031efc' }}>
+                                                        <i className="bi bi-search" aria-hidden="true" /> Rechercher
+                                                    </button>
+                                                </Link>
+
                                             </Col>
                                             <Col></Col>
                                         </Row>
@@ -261,7 +264,7 @@ export default function Accueil() {
                                             Vous êtes à la recherche d'un formateur pour vos votre formation ou celle de vos enfants selon votre
                                             disponibilité, vous êtes au bon endroit
                                         </p>
-                                        <Link to="">
+                                        <Link to="/rechercheformateur">
                                             <button className='form-control fw-bold bg-warning fs-5 border-none' style={{ color: '#03031efc' }}>
                                                 <i className="bi bi-search" aria-hidden="true" /> Rechercher
                                             </button>

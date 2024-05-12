@@ -25,7 +25,7 @@ export function MyInput({id, name, placeholder, type, value, rows, onChange, cla
     onChange(e.target.value); 
   };
   return (
-    <Input className={'border-black p-3 text-black fs-5 fw-5 ' + className}
+    <Input className={'border-black p-3 fs-5 fw-5 ' + className}
       id={id}
       name={name}
       placeholder={placeholder}
@@ -43,7 +43,7 @@ export function MySelect({ id, name, options, value, onChange}) {
     onChange(e.target.value); 
   };
   return (
-    <Input type="select" className='border-secondary p-3 fs-5 fw-5' id={id} name={name} value={value} onChange={handleChange}>
+    <Input type="select" className='border-black text-black p-3 fs-5 fw-5' id={id} name={name} value={value} onChange={handleChange}>
       {options.map((option, index) => (
         <option key={index} value={option.value}>{option.label}</option>
       ))}
