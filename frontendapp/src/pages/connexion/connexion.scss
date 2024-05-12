@@ -1,10 +1,25 @@
 .contenuConnexion {
     background: linear-gradient(1000deg, #020212e1, #020212df);
-    min-height: 100vh; 
-    width: 100%; 
-    margin: 0; 
-    padding: 0; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden; /* Pour empêcher le débordement des éléments enfants */
+}
+
+/* Pour le bloc de ligne de deux colonnes éloignées */
+.container-special {
+
+    border-radius: 10px; 
+    box-shadow: 20px 20px 100px #020212e1;
+    min-height: 80vh;
+    border-radius: 20px;
+}
+
+/* Pour les colonnes à l'intérieur du bloc spécial */
+.container-special .col {
+    padding: 0; /* Supprimer le remplissage par défaut des colonnes */
+}
+
+
+.special-col-login {
+    background-image: url('../../../public/asset/image/image.webp');
 }

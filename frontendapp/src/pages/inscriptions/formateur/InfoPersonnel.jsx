@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { Col, FormGroup, Input, Label, Row } from 'reactstrap'
-import { MyButton, MyInput, MyLabel } from '../../../components/Forms/Forms'
+import {  MyInput, MyLabel } from '../../../components/Forms/Forms'
 import '../inscription.scss'
 
-export default function InfoPersonnel() {
+export default function InfoPersonnel({updateReponse}) {
     const [element, setElement] = useState({
         nomComplet: '',
         telephone: '',
@@ -29,11 +29,13 @@ export default function InfoPersonnel() {
         }));
     }
 
-    const [reponse, setReponse] = useState('');
+    const [reponse, setReponse] = useState('non');
+    console.log(reponse);
 
     // Fonction pour mettre à jour le rôle sélectionné
     const handleReponseChange = (event) => {
         setReponse(event.target.value);
+        updateReponse(event.target.value);
     };
 
     return (

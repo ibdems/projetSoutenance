@@ -144,7 +144,7 @@ export default function Recherche() {
                   <Col md={7}>
                     <FormGroup>
                       <MyLabel></MyLabel>
-                      <MyInput type={'text'} placeholder={'Saisissez un mot clé, un prix .....'} name={'textRecherche'} value={elements.textRecherche} onChange={(value) => handleInputChange('textRecherche', value)}></MyInput>
+                      <MyInput type={'text'} placeholder={'Saisissez un mot clé, un domaine,une langue .....'} name={'textRecherche'} value={elements.textRecherche} onChange={(value) => handleInputChange('textRecherche', value)}></MyInput>
                     </FormGroup>
                   </Col>
                   <Col md={3}>
@@ -158,7 +158,7 @@ export default function Recherche() {
                   </Col>
                 </Row>
                 <Row className='m-3'>
-                  <Col xs={12}>
+                  <Col xs={12} lg={4}>
                     <FormGroup>
                       <Row>
                         <MyLabel forMyLabel='format' text={'Trier par format'} className='text-white'></MyLabel>
@@ -170,7 +170,7 @@ export default function Recherche() {
                       ]} />
                     </FormGroup>
                   </Col>
-                  <Col xs={12}>
+                  <Col xs={12} lg={4}>
                     <FormGroup>
                       <Row>
                         <MyLabel forMyLabel='niveau' text={'Trier par niveau'} className='text-white'></MyLabel>
@@ -185,7 +185,7 @@ export default function Recherche() {
                   <Col></Col>
 
                 </Row>
-                <Row className=' ms-5 me-5 mb-lg-5'>
+                <Row className='ms-3 me-5 mb-lg-5'>
 
                   <Col md={4} xs={12}>
                     <Row>
