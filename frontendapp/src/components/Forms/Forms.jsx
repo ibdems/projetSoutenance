@@ -1,11 +1,12 @@
 import React from 'react';
 import { Button, Label, Input } from 'reactstrap';
 import './forms.scss';
+import Select from 'react-select';
 // import ReactFileUploader from 'react-file-uploader';
 
-export function MyButton({ text, onClick,bgColor, className, type}) {
+export function MyButton({ text, onClick, bgColor, className, type }) {
   return (
-    <Button type={type} className={' p-1 fw-bold fs-4 form-control' + className } style={{backgroundColor: bgColor}} onClick={onClick}>
+    <Button type={type} className={' p-1 fw-bold fs-4 form-control' + className} style={{ backgroundColor: bgColor }} onClick={onClick}>
       {text}
     </Button>
   );
@@ -19,10 +20,10 @@ export function MyLabel({ forLabel, text, className }) {
   )
 }
 
-export function MyInput({id, name, placeholder, type, value, rows, onChange, className, style}) {
-  
+export function MyInput({ id, name, placeholder, type, value, rows, onChange, className, style }) {
+
   const handleChange = (e) => {
-    onChange(e.target.value); 
+    onChange(e.target.value);
   };
   return (
     <Input className={'border-black p-3 fs-5 fw-5 ' + className}
@@ -31,23 +32,30 @@ export function MyInput({id, name, placeholder, type, value, rows, onChange, cla
       placeholder={placeholder}
       type={type}
       value={value}
-      rows = {rows}
+      rows={rows}
       onChange={handleChange}
       style={style}
     />
   )
 }
 
-export function MySelect({ id, name, options, value, onChange}) {
-  const handleChange = (e) => {
-    onChange(e.target.value); 
-  };
+export function MySelect({ id, name, options, value, onChange, className }) {
   return (
-    <Input type="select" className='border-black text-black p-3 fs-5 fw-5' id={id} name={name} value={value} onChange={handleChange}>
-      {options.map((option, index) => (
-        <option key={index} value={option.value}>{option.label}</option>
-      ))}
-    </Input>
+    <Select
+      id={id}
+      name={name}
+      options={options}
+      value={value}
+      onChange={onChange}
+      className={`border-black text-black fs-5 fw-5 ${className}`}
+      styles={{
+        control: (provided) => ({
+          ...provided,
+          height: 'auto',
+          minHeight: '60px',
+        }),
+      }}
+    />
   );
 }
 

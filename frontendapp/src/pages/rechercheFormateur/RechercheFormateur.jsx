@@ -3,13 +3,14 @@ import hero from '../accueil/images/hero-bg.png'
 import '../accueil/css/style.css'
 import { Col, Row, FormGroup, Label } from 'reactstrap'
 import { MyLabel, MyInput, MySelect } from '../../components/Forms/Forms'
-import Select from 'react-select';
+import image from '../../image/team-1.jpg'
 import { Link } from 'react-router-dom'
 import '../rechercheFormation/recherche.scss'
 import ContactezNous from '../accueil/ContactezNous'
 import Footer from '../accueil/Footer'
 import InfoSection from '../accueil/InfoSection'
 import { domaine } from '../../data/domaine'
+import { formateurDomicile } from '../../data/formateurDomicile'
 
 
 
@@ -118,6 +119,12 @@ export default function Recherche() {
 
                                         </li>
                                     )}
+                                    {showTextLieu && (
+                                        <li className="nav-item ms-2 mt-2">
+                                            <i className="bi bi-search iconeButton " onClick={rechercher}></i>
+                                        </li>
+                                    )
+                                    }
                                 </ul>
                                 <ul className="ml-auto navbar-nav">
                                     <li className="nav-item me-2 mb-2">
@@ -130,6 +137,7 @@ export default function Recherche() {
                                             <i className="bi bi-box-arrow-in-right fs-5 me-2" aria-hidden="true" />Se Connecter
                                         </button>
                                     </li>
+
                                 </ul>
                             </div>
                         </div>
@@ -140,7 +148,7 @@ export default function Recherche() {
                         <Row style={{ marginTop: '1em' }}>
                             <Col lg={8} md={12}>
                                 <Row className='m-3 ms-xs-2'>
-                                    <div className='text-warning fs-3 fw-bold'>Trouvez le formateur pour vos cours paticulier</div>
+                                    <div className='text-warning fs-3 fw-bold'>Trouvez le formateur pour vos cours paticuliers</div>
                                     <Col md={7}>
                                         <FormGroup>
                                             <MyLabel></MyLabel>
@@ -158,24 +166,26 @@ export default function Recherche() {
                                     </Col>
                                 </Row>
                                 <Row className='m-3'>
-                                    <Col xs={12}>
+                                    <Col xs={12} md={4}>
                                         <FormGroup>
                                             <Row>
-                                                <MyLabel forMyLabel='format' text={'Trier par format'} className='text-white'></MyLabel>
+                                                <MyLabel forMyLabel='format' text={'Trier par domaine'} className='text-white'></MyLabel>
                                             </Row>
-                                            <Select
-                                                options={domaine.map(item => ({ value: item.id, label: item.nom }))} // Assurez-vous d'avoir les propriétés id et nom dans vos données
-                                                onChange={(selectedOption) => handleInputChange('domaine', selectedOption.value)}
+                                            <MySelect
+                                                options={domaine.map(item => ({ value: item.id, label: item.libelle }))}
+                                                value={elements.domaine}
+                                                onChange={(selectedOption) => handleInputChange('domaine', selectedOption)}
+                                                placeholder={'Saisissez ou/et clicker pour selectionner le domaine'}
                                             />
                                         </FormGroup>
                                     </Col>
-                                    <Col xs={12}>
+                                    <Col xs={12} md={4}>
                                         <FormGroup>
                                             <Row>
                                                 <MyLabel forMyLabel='niveau' text={'Trier par niveau'} className='text-white'></MyLabel>
                                             </Row>
                                             <MySelect id={'niveau'} name={'niveau'} value={elements.niveau} onChange={(value) => handleInputChange('niveau', value)} options={[
-                                                { label: 'Débutant', value: 'debutant' },
+                                                { label: 'Primaire', value: 'primaire' },
                                                 { label: 'Intermédiaire', value: 'intermediaire' },
                                                 { label: 'Supérieur', value: 'superieur' }
                                             ]} />
@@ -202,8 +212,38 @@ export default function Recherche() {
 
             {/* Section des sessions */}
             <section className="service_section layout_padding">
-                <div className="ms-3 me-3">
-                    <Row className='gx-5 gy-4 align-items-stretch'>
+                <div className=" container">
+                    <Row className='gx-3 gy-4 align-items-stretch'>
+                        {
+                            formateurDomicile.map(formateur => (
+                                <Col key={formateur.id} xs={12} sm={6} xl={3} lg={6} md={6} className='d-flex flex-column justify-content-between'>
+                                    <Col className='p-2 d-flex flex-column justify-content-between '>
+                                        <Row>
+
+                                            <Col>
+                                                <img src={image} alt="photo" style={{ borderRadius: '10px' }} />
+                                            </Col>
+
+                                        </Row>
+                                        <Col>
+                                            <div className='text-justify fs-4 fw-bold'>{formateur.nomComplet}</div>
+                                            <div className='fs-5'> <i className="bi bi-geo-alt fs-5"></i><span>{formateur.adresse}</span></div>
+                                            <div className='fs-5'> <i class="bi bi-person-badge"></i>{formateur.profession}</div>
+                                            <div className='fw-3'><span className='fs-5'>Domaines dispensés :</span>{formateur.domaines.map(domaine => (<li key={domaine.id} className='ms-4'>{domaine.libelle}</li>))}</div>
+                                            <div className='fw-3'><span className='fs-5'>Niveau concernés :</span>{formateur.niveau.map(niveau => (<li key={niveau.id} className='ms-4'>{niveau.libelle}</li>))}</div>  
+                                        </Col>
+                                        <Row className='mt-1'>
+                                            <Col><h5 className='mt-2'>Notes</h5></Col>
+                                            <Col></Col>
+                                            <Col>
+                                                <div className='bg-warning me-5 text-center px-4 py-2 fw-bold' style={{borderRadius: '50%'}}>5</div>
+                                            </Col>
+                                        </Row>
+
+                                    </Col>
+                                </Col>
+                            ))
+                        }
 
                     </Row>
                 </div>
