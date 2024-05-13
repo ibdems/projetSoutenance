@@ -11,12 +11,23 @@ import Footer from '../accueil/Footer'
 import InfoSection from '../accueil/InfoSection'
 import { domaine } from '../../data/domaine'
 import { formateurDomicile } from '../../data/formateurDomicile'
+import { Button, Modal, ModalBody, ModalFooter } from 'reactstrap';
+
 
 
 
 export default function Recherche() {
     const [showTextRecherche, setShowTextRecherche] = useState(false);
     const [showTextLieu, setShowTextLieu] = useState(false);
+    const [modal, setModal] = useState(false);
+    const [selectedFormateur, setSelectedFormateur] = useState(null);
+
+    const toggle = () => setModal(!modal);
+
+    const openModal = (formateur) => {
+        setSelectedFormateur(formateur);
+        toggle();
+    }
 
     useEffect(() => {
         const handleScroll = () => {
@@ -88,7 +99,7 @@ export default function Recherche() {
 
                                 <button
                                     type="button"
-                                    className="btn-close btn-close-white fs-3 bg-white"
+                                    className="btn-close btn-close-white fs-3"
                                     data-bs-dismiss="offcanvas"
                                     aria-label="Close"
                                     style={{ border: '1px solid white', }}
@@ -108,7 +119,7 @@ export default function Recherche() {
                                         </a>
                                     </li>
                                     {showTextRecherche && (
-                                        <li className="nav-item px-3">
+                                        <li className="nav-item">
                                             <MyInput type={'text'} placeholder={'Saisissez un nom, un domaine, une profession .....'} className={'inputNav'} name={'textRecherche'} value={elements.textRecherche} onChange={(value) => handleInputChange('textRecherche', value)}></MyInput>
 
                                         </li>
@@ -155,18 +166,18 @@ export default function Recherche() {
                                             <MyInput type={'text'} placeholder={'Saisissez un nom, un domaine, une profession .....'} name={'textRecherche'} value={elements.textRecherche} onChange={(value) => handleInputChange('textRecherche', value)}></MyInput>
                                         </FormGroup>
                                     </Col>
-                                    <Col md={3}>
+                                    <Col md={3} xs={10}>
                                         <FormGroup>
                                             <MyLabel></MyLabel>
                                             <MyInput type={'text'} placeholder={'lieu'} name={'textLieu'} value={elements.textLieu} onChange={(value) => handleInputChange('textlieu', value)}></MyInput>
                                         </FormGroup>
                                     </Col>
-                                    <Col md={2} xs={6} className='mt-2'>
+                                    <Col md={2} xs={2} className='mt-2'>
                                         <i className="bi bi-search iconeButton " onClick={rechercher}></i>
                                     </Col>
                                 </Row>
                                 <Row className='m-3'>
-                                    <Col xs={12} md={4}>
+                                    <Col xs={12} md={5}>
                                         <FormGroup>
                                             <Row>
                                                 <MyLabel forMyLabel='format' text={'Trier par domaine'} className='text-white'></MyLabel>
@@ -179,18 +190,20 @@ export default function Recherche() {
                                             />
                                         </FormGroup>
                                     </Col>
-                                    <Col xs={12} md={4}>
+                                    <Col xs={12} md={5}>
                                         <FormGroup>
                                             <Row>
                                                 <MyLabel forMyLabel='niveau' text={'Trier par niveau'} className='text-white'></MyLabel>
                                             </Row>
                                             <MySelect id={'niveau'} name={'niveau'} value={elements.niveau} onChange={(value) => handleInputChange('niveau', value)} options={[
                                                 { label: 'Primaire', value: 'primaire' },
-                                                { label: 'Intermédiaire', value: 'intermediaire' },
-                                                { label: 'Supérieur', value: 'superieur' }
+                                                { label: 'Collège', value: 'college' },
+                                                { label: 'Lycée', value: 'lycee' },
+                                                { label: 'Universitaire', value: 'universitaire' },
+                                                { label: 'Professionnel', value: 'professionnel' },
                                             ]} />
                                         </FormGroup>
-                                    </Col>
+                                       </Col>
                                     <Col></Col>
 
                                 </Row>
@@ -212,48 +225,132 @@ export default function Recherche() {
 
             {/* Section des sessions */}
             <section className="service_section layout_padding">
-                <div className=" container">
-                    <Row className='gx-3 gy-4 align-items-stretch'>
-                        {
-                            formateurDomicile.map(formateur => (
-                                <Col key={formateur.id} xs={12} sm={6} xl={3} lg={6} md={6} className='d-flex flex-column justify-content-between'>
-                                    <Col className='p-2 d-flex flex-column justify-content-between '>
-                                        <Row>
-
-                                            <Col>
-                                                <img src={image} alt="photo" style={{ borderRadius: '10px' }} />
-                                            </Col>
-
-                                        </Row>
+                <div className="ms-md-5 me-md-5">
+                    <Row className='gx-3 gy-4 justify-content-center'>
+                        {formateurDomicile.map(formateur => (
+                            <Col key={formateur.id} xs={12} sm={6} xl={3} lg={6} md={6} className='d-flex  flex-column justify-content-between colForm'>
+                                <Col className='p-5 d-flex flex-column justify-content-between'>
+                                    <Row>
                                         <Col>
-                                            <div className='text-justify fs-4 fw-bold'>{formateur.nomComplet}</div>
-                                            <div className='fs-5'> <i className="bi bi-geo-alt fs-5"></i><span>{formateur.adresse}</span></div>
-                                            <div className='fs-5'> <i class="bi bi-person-badge"></i>{formateur.profession}</div>
-                                            <div className='fw-3'><span className='fs-5'>Domaines dispensés :</span>{formateur.domaines.map(domaine => (<li key={domaine.id} className='ms-4'>{domaine.libelle}</li>))}</div>
-                                            <div className='fw-3'><span className='fs-5'>Niveau concernés :</span>{formateur.niveau.map(niveau => (<li key={niveau.id} className='ms-4'>{niveau.libelle}</li>))}</div>  
+                                            <img src={image} alt="photo" style={{ borderRadius: '10px' }} />
                                         </Col>
-                                        <Row className='mt-1'>
-                                            <Col><h5 className='mt-2'>Notes</h5></Col>
+                                    </Row>
+                                    <Col>
+                                        <div className='text-justify fs-4 fw-bold'>{formateur.nomComplet}</div>
+                                        <div className='fs-5'> <i className="bi bi-geo-alt fs-5"></i><span>{formateur.adresse}</span></div>
+                                        <div className='fs-5'> <i className="bi bi-person-badge"></i>{formateur.profession}</div>
+                                        <div className='fw-3'><span className='fs-5'>Domaines dispensés :</span>{formateur.domaineExpertise.map(domaine => (<li key={domaine.id} className='ms-4'>{domaine.libelle}</li>))}</div>
+                                        <div className='fw-3'><span className='fs-5'>Niveau concernés :</span>{formateur.niveau.map(niveau => (<li key={niveau.id} className='ms-4'>{niveau.libelle}</li>))}</div>
+                                    </Col>
+                                    <Row className='mt-1'>
+                                        <Col><h5 className='mt-2'>Notes</h5></Col>
+                                        <Col></Col>
+                                        <Col>
+                                            <div className='bg-warning text-center px-4 py-2 fw-bold' style={{ borderRadius: '100px' }}>5</div>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col></Col>
+                                        <Col xs={8}>
+                                            <button type='button' onClick={() => openModal(formateur)} className='btn mt-3 form-control btnVoirplus'> <span className='fs-5 fw-bold text-end' style={{ color: 'whitesmoke' }}>+Détail</span>   </button>
+                                        </Col>
+                                        <Col></Col>
+                                    </Row>
+                                </Col>
+                            </Col>
+                        ))}
+                        <Modal isOpen={modal} toggle={toggle} centered={true} scrollable={true} className='fs-5' style={{ height: '200px' }}>
+
+                            <ModalBody>
+                                {selectedFormateur && (
+                                    <div>
+                                        <Row>
                                             <Col></Col>
+                                            <Col><img src={image} alt="photo" height={200} style={{ borderRadius: '50%' }} /></Col>
+                                            <Col></Col>
+
+                                        </Row>
+                                        <h2 className='text-center fs-1 fw-bold mt-2'>{selectedFormateur && selectedFormateur.nomComplet}</h2>
+                                        <Row>
                                             <Col>
-                                                <div className='bg-warning me-5 text-center px-4 py-2 fw-bold' style={{borderRadius: '50%'}}>5</div>
+                                                <Row className=' p-1 styleCol'>
+                                                    <Col><div className='fs-5 text-center fw-bold'><i className="bi bi-geo-alt fs-5 fw-bold"></i> Adresse: </div></Col>
+                                                    <Col>{selectedFormateur.adresse}</Col>
+                                                </Row>
+                                                <Row className='p-1'>
+                                                    <Col><div className='fs-5 text-center fw-bold'><i className="bi bi-person-badge"></i> Profession: </div></Col>
+                                                    <Col>{selectedFormateur.profession}</Col>
+                                                </Row>
+                                                <Row className=' p-1 styleCol'>
+                                                    <Col><div className='fs-5 text-center fw-bold'> Niveau d'étude: </div></Col>
+                                                    <Col>{selectedFormateur.niveauEtude}</Col>
+                                                </Row>
+                                                <Row className=' p-1 '>
+                                                    <Col><div className='fs-5 text-center fw-bold'> Linkdein :</div></Col>
+                                                    <Col>{selectedFormateur.linkedin}</Col>
+                                                </Row>
+                                                <Row className=' p-1 styleCol'>
+                                                    <Col><div className='fs-5 text-center fw-bold'> Domaines dispensés : </div></Col>
+                                                    <Col>{selectedFormateur.domaineExpertise.map(domaine => (<li key={domaine.id} className='ms-4'>{domaine.libelle}</li>))}</Col>
+                                                </Row>
+                                                <Row className=' p-1 '>
+                                                    <Col><div className='fs-5 text-center fw-bold'> Niveau concernés : </div></Col>
+                                                    <Col>{selectedFormateur.niveau.map(niveau => (<li key={niveau.id} className='ms-4'>{niveau.libelle}</li>))}</Col>
+                                                </Row>
+                                                <Row className=' p-1 styleCol'>
+                                                    <Col><div className='fs-5 text-center fw-bold'> Competances </div></Col>
+                                                    <Col>{selectedFormateur.competances.map(competances => (<li key={competances.id} className='ms-4'>{competances.libelle}</li>))}</Col>
+                                                </Row>
+                                                <Row className=' p-1 '>
+                                                    <Col><div className='fs-5 text-center fw-bold'> Domaine d'expertises </div></Col>
+                                                    <Col>{selectedFormateur.domaineExpertise.map(domaineExpertise => (<li key={domaineExpertise.id} className='ms-4'>{domaineExpertise.libelle}</li>))}</Col>
+                                                </Row>
+                                                <Row className=' p-1 styleCol'>
+                                                    <Col><div className='fs-5 text-center fw-bold'>Temps de disponibilité </div></Col>
+                                                    <Col>
+                                                        <ul>
+                                                            <li>Jeudi de 8h20 a 18h00</li>
+                                                            <li>Samedi de 17h a 20h00</li>
+                                                        </ul>
+                                                    </Col>
+                                                </Row>
+
                                             </Col>
                                         </Row>
-
+                                    </div>
+                                )}
+                            </ModalBody>
+                            <ModalFooter>
+                                <Row>
+                                    <Col></Col>
+                                    <Col>
+                                    <button type='button' onClick={() => {}} className='btn  form-control btnVoirplus'> <span className='fs-5 fw-bold text-end' style={{ color: 'whitesmoke' }}>Contacter</span>   </button>
                                     </Col>
-                                </Col>
-                            ))
-                        }
+                                    <Col>
+                                    <Button type='button' onClick={toggle} className='p-2 fw-bold form-control bg-warning text-black'>
+                                    Fermer
+                                </Button>
+                                    </Col>
+                                </Row>
+
+                                
+                                
+                            </ModalFooter>
+                        </Modal>
 
                     </Row>
                 </div>
             </section>
+
+
             <div style={{ marginTop: '-100px' }}>
                 <ContactezNous />
             </div>
 
             <InfoSection></InfoSection>
             <Footer />
+
+
         </>
     )
 }

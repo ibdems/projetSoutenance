@@ -52,7 +52,8 @@ export function MySelect({ id, name, options, value, onChange, className }) {
         control: (provided) => ({
           ...provided,
           height: 'auto',
-          minHeight: '60px',
+          minHeight: '65px',
+          border: '1px solid black'
         }),
       }}
     />

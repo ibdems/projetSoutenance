@@ -96,18 +96,18 @@ export default function Recherche() {
               <div className="offcanvas-body text-center" style={{ backgroundColor: '#03031efc' }}>
                 <ul className="navbar-nav justify-content-center flex-grow-1 pe-3 mx-auto">
                   <li className="nav-item ">
-                    <Link className="nav-link active text-white fs-4" aria-current="page" to='/' >
+                    <Link className="nav-link active text-white fs-5" aria-current="page" to='/' >
                       Accueil
                     </Link>
                   </li>
 
                   <li className="nav-item">
-                    <a className="nav-link text-white fs-4" href='#contacteznous'>
+                    <a className="nav-link text-white fs-5" href='#contacteznous'>
                       Contactez-nous
                     </a>
                   </li>
                   {showTextRecherche && (
-                    <li className="nav-item px-3">
+                    <li className="nav-item">
                       <MyInput type={'text'} placeholder={'Saisissez un mot clé, un prix .....'} className={'inputNav'} name={'textRecherche'} value={elements.textRecherche} onChange={(value) => handleInputChange('textRecherche', value)}></MyInput>
 
                     </li>
@@ -118,17 +118,28 @@ export default function Recherche() {
 
                     </li>
                   )}
+                  {showTextLieu && (
+                    <li className="nav-item mt-2 ms-2">
+                      <i className="bi bi-search iconeButton" onClick={rechercher}></i>
+                    </li>
+                  )}
                 </ul>
-                <ul className="ml-auto navbar-nav">
-                  <li className="nav-item me-2 mb-2">
+                <ul className="ml-auto navbar-nav mt-2">
+                  <li className="nav-item me-3  mb-2">
+                    <Link to={'/inscription'}>
                     <button className='form-control fw-bold bg-warning fs-5 border-none' style={{ color: '#03031efc' }}>
                       <i className="bi bi-person-fill-add fs-5 me-2" aria-hidden="true" /> S'inscrire
                     </button>
+                    </Link>
+                    
                   </li>
-                  <li className="nav-item me-2">
+                  <li className="nav-item me-3">
+                    <Link to={'/connexion'}>
                     <button className='form-control fw-bold bg-warning fs-5 border-none' style={{ color: '#03031efc' }}>
                       <i className="bi bi-box-arrow-in-right fs-5 me-2" aria-hidden="true" />Se Connecter
                     </button>
+                    </Link>
+                    
                   </li>
                 </ul>
               </div>
@@ -147,18 +158,18 @@ export default function Recherche() {
                       <MyInput type={'text'} placeholder={'Saisissez un mot clé, un domaine,une langue .....'} name={'textRecherche'} value={elements.textRecherche} onChange={(value) => handleInputChange('textRecherche', value)}></MyInput>
                     </FormGroup>
                   </Col>
-                  <Col md={3}>
+                  <Col md={3} xs={9}>
                     <FormGroup>
                       <MyLabel></MyLabel>
                       <MyInput type={'text'} placeholder={'lieu'} name={'textLieu'} value={elements.textLieu} onChange={(value) => handleInputChange('textlieu', value)}></MyInput>
                     </FormGroup>
                   </Col>
-                  <Col md={2} xs={6} className='mt-2'>
+                  <Col md={2} sm={3} xs={3} className='mt-2'>
                     <i className="bi bi-search iconeButton " onClick={rechercher}></i>
                   </Col>
                 </Row>
                 <Row className='m-3'>
-                  <Col xs={12} lg={4}>
+                  <Col xs={12} md={5} sm={6} lg={4}>
                     <FormGroup>
                       <Row>
                         <MyLabel forMyLabel='format' text={'Trier par format'} className='text-white'></MyLabel>
@@ -170,7 +181,7 @@ export default function Recherche() {
                       ]} />
                     </FormGroup>
                   </Col>
-                  <Col xs={12} lg={4}>
+                  <Col xs={12} md={5} sm={6} lg={4}>
                     <FormGroup>
                       <Row>
                         <MyLabel forMyLabel='niveau' text={'Trier par niveau'} className='text-white'></MyLabel>
@@ -187,14 +198,14 @@ export default function Recherche() {
                 </Row>
                 <Row className='ms-3 me-5 mb-lg-5'>
 
-                  <Col md={4} xs={12}>
+                  <Col md={4} sm={6} xs={12}>
                     <Row>
                       <MyLabel forMyLabel='prixMin' text={'Prix minimal'} className='text-white'></MyLabel>
                     </Row>
                     <MyInput type={'text'} placeholder={'Ex: 25000'} name={'prixMin'} value={elements.prixMin} onChange={(value) => handleInputChange('prixMin', value)} ></MyInput>
 
                   </Col>
-                  <Col md={4} xs={12}>
+                  <Col md={4} sm={6} xs={12}>
                     <Row>
                       <MyLabel forMyLabel='prixMax' text={'Prix maximal'} className='text-white'></MyLabel>
                     </Row>
@@ -219,8 +230,8 @@ export default function Recherche() {
 
       {/* Section des sessions */}
       <section className="service_section layout_padding">
-        <div className="ms-3 me-3">
-          <Row className='gx-5 gy-4 align-items-stretch'>
+        <div className="ms-md-5 me-md-5">
+          <Row className='gx-3 gy-4 align-items-stretch'>
             {sessions.filter((session) => session.formation.nom.toLowerCase().includes(elements.textRecherche.toLowerCase()))
               .map(sessions => (
                 <Col key={sessions.id} xs={12} sm={6} xl={3} lg={4} md={6} className='d-flex flex-column justify-content-between'>
@@ -260,6 +271,8 @@ export default function Recherche() {
 
       <InfoSection></InfoSection>
       <Footer />
+
+      
     </>
   )
 }
