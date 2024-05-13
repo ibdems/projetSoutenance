@@ -100,7 +100,7 @@ function Connexion() {
               </Carousel>
             </div>
           </Col>
-          <Col className='special-col-login'><FormLogin /></Col> {/* Deuxième colonne pour le formulaire de connexion */}
+          <Col className='special-col-login'><FormLogin lienConnexion={'/admin'}/></Col> {/* Deuxième colonne pour le formulaire de connexion */}
 
         </Row>
       </div>

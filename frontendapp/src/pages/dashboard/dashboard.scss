@@ -1,19 +1,26 @@
 @import '../../styles/responsive.scss';
- .box {
+
+.box {
     border: 1px solid #03031efc;
     border-radius: 10px;
     box-shadow: 10px;
+    h3 {
+        font-size: 12px;
+    }
 }
+
 .box1 {
     height: 30em;
 }
 
-.box2 {   
+.box2 {
     height: 13em;
 }
+
 .box3 {
     height: 9em;
 }
+
 .box4 {
     height: 9em;
 }
@@ -21,51 +28,35 @@
 .box5 {
     height: 24em;
 }
- 
-// .home {
-//     display: grid;
-//     gap: 20px;
-//     grid-template-columns: repeat(4, 1fr) ;
-//     grid-auto-rows: minmax(175px, auto);
 
-//     @include sm {
-//         grid-template-columns: repeat(1, 1fr);
-//     }
 
-//     @include md {
-//         grid-template-columns: repeat(1, 1fr);
-//     }
 
-//     @include lg {
-//         grid-template-columns: repeat(3, 1fr);
-//     }
+@include sm {
+    .box {
+        h3{
+            font-size: 16px;
+        }
+    }
+}
 
-//     @include xl {
-//         grid-template-columns: repeat(4, 1fr);
-//     }
+@include md {
+    .box {
+        h3{
+            font-size: 17px;
+        }
+    }
+}
+
+@include lg {
+    .box {
+        h3{
+            font-size: 22px;
+        }
+    }
 
     
+}
 
+@include xl {
     
-
-//     .box {
-//         padding: 20px;
-//         border-radius: 10px;
-//         border: 1px solid #03031efc;
-//     }
-    
-//     .box1 {
-//        grid-column: span 1;
-//         grid-row: span 3;
-//     }
-//     .box4 {
-//         grid-column: span 1;
-//         grid-row: span 3;
-//      }
-    
-//      .box7 {
-//         grid-column: span 2;
-//         grid-row: span 2;
-//      } 
-// }
-
+}

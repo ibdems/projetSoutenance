@@ -48,6 +48,7 @@ export default function Reservation() {
       <Navbar contacteznous={'contacteznous'} />
       <section className="service_section layout_padding">
         <div className="container mt-5">
+          <h3 className='text-center mb-3'>Insription à la formation Developpement Web</h3>
           <Row>
             <Col></Col>
             <Col>
@@ -61,7 +62,7 @@ export default function Reservation() {
                 </div>
 
                 <div>
-                  <input type="file" ref={inputRef} className='d-none' onChange={handleImageChange} name="" id="" />
+                  <input type="file" ref={inputRef} accept="image/*" className='d-none' onChange={handleImageChange} name="" id="" />
                   <button type='button' onClick={handleImageClick} className={' mt-3 form-control bg-warning text-black fs-3 py-2 px-4 fw-bold'}> Photo</button>
                 </div>
 
@@ -176,14 +177,14 @@ export default function Reservation() {
                 <Row>
                   <MyLabel text={'Motivation (Vos motivation pour la formation)'} forLabel={'prenom'} />
                 </Row>
-                <MyInput type={'textarea'} rows={2} placeholder={'Ex: Simbaya'} value={element.adresse} onChange={(value) => handleInputChange(handleInputChange('adresse', value))} />
+                <MyInput type={'textarea'} rows={2} placeholder={'Ex: Simbaya'} value={element.motivation} onChange={(value) => handleInputChange(handleInputChange('motivation', value))} />
               </FormGroup>
             </Col>
 
           </Row>
           <Row>
             <Col></Col>
-            <Col xs={8} md={6}><Link><button type='button' className='form-control text-white fs-4' style={{ backgroundColor: '#03031efc' }} onClick={()=> {}}>Valider</button></Link></Col>
+            <Col xs={8} md={4}><Link><button type='button' className='form-control text-white fs-4' style={{ backgroundColor: '#03031efc' }} onClick={()=> {}}>Valider</button></Link></Col>
             <Col></Col>
           </Row>
           

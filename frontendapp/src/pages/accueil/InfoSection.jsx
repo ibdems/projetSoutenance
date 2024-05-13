@@ -49,28 +49,7 @@ export default function InfoSection() {
                             </p>
                         </div>
                     </div>
-                    <div className="col-md-6 col-lg-2 mx-auto info_col">
-                        <div className="info_link_box">
-                            <h4>Links</h4>
-                            <div className="info_links">
-                                <Link className="active" to="index.html">
-                                    Home
-                                </Link>
-                                <Link className="" to="about.html">
-                                    About
-                                </Link>
-                                <Link className="" to="service.html">
-                                    Services
-                                </Link>
-                                <Link className="" to="why.html">
-                                    Why Us
-                                </Link>
-                                <Link className="" to="team.html">
-                                    Team
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div className="col-md-6 col-lg-3 info_col ">
                         <h4>Souscrivez-vous pour recevoir les dernières infos </h4>
                         <form action="#">
