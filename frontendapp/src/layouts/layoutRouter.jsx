@@ -43,8 +43,7 @@ function LayoutRouter() {
                 </Route>
                 {/* La route du profil */}
                 <Route path='/profil' element={<Profil />} />
-                {/* La route pour la déconnexion */}
-                <Route path='/deconnexion' element={<Connexion />} />
+                
             </Route>
         </Routes>
     )

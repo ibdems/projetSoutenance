@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Col, Row } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Col, Row } from 'reactstrap';
 import './formation.scss';
 import { formations } from './dataFormation.js';
 import PropTypes from 'prop-types';
 import { MyInput, MyButton } from '../../components/Forms/Forms.jsx';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 
 function ListFormation(props) {
@@ -16,15 +16,14 @@ function ListFormation(props) {
 
   return (
     <div>
-      <Row>
-          <Col></Col>
-          <Col></Col>
-          <Col xs={11} md={6} className='mt-3'>
-              <NavLink to={`/admin/formation/ajoutformation`}>
-                  <MyButton text={'Ajouter une formation'} bgColor={'#03031efc'}/>
-              </NavLink>
-          </Col>
-      </Row>
+      <Breadcrumb listTag="div">
+        <BreadcrumbItem >
+          <Link to='/' style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Accueil</Link>
+        </BreadcrumbItem>
+        <BreadcrumbItem >
+          <Link to='/admin/formation/list' style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Liste</Link>
+        </BreadcrumbItem> 
+      </Breadcrumb>
       <h3 className='text-center fw-bold mt-3 fs-1 mb-2'>Liste des formations</h3>
       <Row>
         <Col></Col>

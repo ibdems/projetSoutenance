@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Card, CardBody, CardHeader, CardTitle, CardFooter } from 'reactstrap';
+import { Row, Col, Card, CardBody, CardHeader, CardTitle, CardFooter, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { getFormationById } from './dataFormation'; // Utilisez la fonction pour récupérer la formation par ID
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ListSession from './ListSession'
 import { AjoutSession } from './AjoutSession'
 
@@ -40,14 +40,25 @@ export default function GestionFormation() {
   // Si la formation est trouvée, affichez les détails de la formation
   return (
     <div>
-      <h3>Gestion de la formation</h3>
+      <Breadcrumb listTag="div">
+        <BreadcrumbItem >
+          <Link to='/' style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Accueil</Link>
+        </BreadcrumbItem>
+        <BreadcrumbItem >
+          <Link to='/admin/formation/list' style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Liste</Link>
+        </BreadcrumbItem> 
+        <BreadcrumbItem >
+          <span className='fs-5 fw-bold text-black'>Gestion</span>
+        </BreadcrumbItem>
+      </Breadcrumb>
+      <h3 className='text-center fs-bold'>Gestion de la formation</h3>
       <Row className='m-lg-2 m-sm-0 mt-5 bg-white'>
         <Col md={11} lg={6}>
-          <Card>
+          <Card >
             <CardHeader>
-              <CardTitle className='text-center fs-4 fw-bold'>Information de la formation</CardTitle>
+              <CardTitle className='text-center fs-4 fw-bold'>Information sur la formation</CardTitle>
             </CardHeader>
-            <CardBody className='contenueFormation'>
+            <CardBody className='contenueFormation' style={{overflowY: 'auto', maxHeight: '500px'}}>
               {/* Affichez les détails de la formation */}
               <h3 className='titre'>{formation.titre}</h3>
               <div className=' mt-3'> {formation.description}</div>
@@ -98,7 +109,7 @@ export default function GestionFormation() {
           </Card>
         </Col>
         <Col md={11} lg={6}>
-          <Card className='p-2'>
+          <Card className='p-2' style={{overflowY: 'auto', maxHeight: '680px'}}>
             {col2}
           </Card>
           

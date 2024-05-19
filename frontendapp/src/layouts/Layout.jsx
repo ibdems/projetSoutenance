@@ -4,14 +4,14 @@ import Navbar from './navbar/Navbar';
 import { Outlet } from 'react-router-dom';
 
 function Layout() {
-  const [sizeSide, setSizeSide] = useState(window.innerWidth > 1200 ? '300px' : '50px');
-  const [sizeNav, setSizeNav] = useState(window.innerWidth > 1200 ? 'calc(100% - 300px)' : 'calc(100% - 50px)');
+  const [sizeSide, setSizeSide] = useState(window.innerWidth > 1200 ? '300px' : '60px');
+  const [sizeNav, setSizeNav] = useState(window.innerWidth > 1200 ? 'calc(100% - 300px)' : 'calc(100% - 60px)');
 
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;
-      setSizeSide(windowWidth > 1200 ? '300px' : '50px');
-      setSizeNav(windowWidth > 1200 ? 'calc(100% - 300px)' : 'calc(100% - 50px)');
+      setSizeSide(windowWidth > 1200 ? '300px' : '60px');
+      setSizeNav(windowWidth > 1200 ? 'calc(100% - 300px)' : 'calc(100% - 60px)');
     };
 
     window.addEventListener('resize', handleResize);
@@ -22,8 +22,8 @@ function Layout() {
   }, []);
 
   const toggleSidebar = () => {
-    setSizeSide(sizeSide === '300px' ? '50px' : '300px');
-    setSizeNav(sizeNav === 'calc(100% - 300px)' ? 'calc(100% - 50px)' : 'calc(100% - 300px)');
+    setSizeSide(sizeSide === '300px' ? '60px' : '300px');
+    setSizeNav(sizeNav === 'calc(100% - 300px)' ? 'calc(100% - 60px)' : 'calc(100% - 300px)');
   };
 
   return (

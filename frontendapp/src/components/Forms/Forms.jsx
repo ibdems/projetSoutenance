@@ -4,10 +4,10 @@ import './forms.scss';
 import Select from 'react-select';
 // import ReactFileUploader from 'react-file-uploader';
 
-export function MyButton({ text, onClick, bgColor, className, type }) {
+export function MyButton({ text, onClick, bgColor, className, type,icone }) {
   return (
     <Button type={type} className={' p-1 fw-bold fs-4 form-control' + className} style={{ backgroundColor: bgColor }} onClick={onClick}>
-      {text}
+      <i className={`${icone} fs-2 fw-bold`}></i> {text} 
     </Button>
   );
 }
@@ -26,7 +26,7 @@ export function MyInput({ id, name, placeholder, type, value, rows, onChange, cl
     onChange(e.target.value);
   };
   return (
-    <Input className={'border-black p-3 fs-5 fw-5 ' + className}
+    <Input className={'border-black p-2 fs-5 fw-5 ' + className}
       id={id}
       name={name}
       placeholder={placeholder}
@@ -35,7 +35,8 @@ export function MyInput({ id, name, placeholder, type, value, rows, onChange, cl
       rows={rows}
       onChange={handleChange}
       style={style}
-    />
+      
+    >  </Input>
   )
 }
 
@@ -52,7 +53,7 @@ export function MySelect({ id, name, options, value, onChange, className }) {
         control: (provided) => ({
           ...provided,
           height: 'auto',
-          minHeight: '65px',
+          minHeight: '50px',
           border: '1px solid black'
         }),
       }}

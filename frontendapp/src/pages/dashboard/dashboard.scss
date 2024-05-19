@@ -1,4 +1,4 @@
-@import '../../styles/responsive.scss';
+@import '../../styles/responsive';
 
 .box {
     border: 1px solid #03031efc;
@@ -16,6 +16,13 @@
 .box2 {
     height: 13em;
 }
+.box6 {
+    height: 30em;
+}
+
+.box7 {
+    height: 13em;
+}
 
 .box3 {
     height: 9em;
@@ -26,37 +33,71 @@
 }
 
 .box5 {
-    height: 24em;
+    height: 20em;
 }
-
-
 
 @include sm {
     .box {
-        h3{
+        h3 {
             font-size: 16px;
         }
+    }
+    .box5 {
+        height: auto;
+    }
+
+    .box7 {
+        height: 25em;
     }
 }
 
 @include md {
     .box {
-        h3{
+        h3 {
             font-size: 17px;
         }
     }
+    .box5 {
+        height: auto;
+    }
+
+    .box7 {
+        height: 25em;
+    }
+    
 }
 
 @include lg {
     .box {
-        h3{
+        h3 {
             font-size: 22px;
         }
     }
+    .box5 {
+        height: 22em;
+    }
+    .box7 {
+        height: 13em;
+    }
 
-    
+    .box3{
+        .link{
+            font-size:15px;
+        }
+    }
+
+    .box4{
+        .link{
+            font-size:15px;
+        }
+    }
+
 }
 
 @include xl {
-    
+    .box {
+        h3 {
+            font-size: 24px;
+        }
+    }
 }

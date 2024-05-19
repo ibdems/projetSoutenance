@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Row, Col } from "reactstrap";
 import { sessions } from "./dataSession.js";
+import { MyTable } from "../../components/table/Table.jsx";
 
 const ListSession = () => {
   const [search, setSearch] = useState("");
@@ -33,7 +34,7 @@ const ListSession = () => {
       
 
       <div style={{ overflowX: "auto" }}>
-      <table className="mt-4 table table-bordered table-striped border-secondary table-hover table-responsive fs-5" >
+      <MyTable >
         <thead>
           <tr>
             <th>Date debut</th>
@@ -62,7 +63,7 @@ const ListSession = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </MyTable>
       </div>
       
     </div>

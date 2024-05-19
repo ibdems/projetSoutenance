@@ -20,6 +20,8 @@ export default function PublicRouter() {
         <Route path='/inscription' element={<IndexInscription />} />
         <Route path='/connexion' element={<Connexion />} />
         <Route path='/reservation' element={<Reservation />} />
+        {/* La route pour la déconnexion */}
+        <Route path='/deconnexion' element={<Connexion />} />
       </Route>
 
     </Routes>

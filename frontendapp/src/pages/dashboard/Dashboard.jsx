@@ -1,68 +1,104 @@
-import React from 'react'
-import './dashboard.scss'
-import TopFormateur from './admin/TopFormateur'
-import { Col, Row } from 'reactstrap'
+import React from 'react';
+import './dashboard.scss';
+import TopFormateur from './admin/TopFormateur';
+import { Col, Row } from 'reactstrap';
+import ChartBox from './admin/ChartBox';
+import ChartBar from './admin/ChartBar';
+import PieChartBox from './admin/PieChartBox';
+import ChatVisit from './admin/ChatVisit';
+
 function Dashboard() {
   return (
-    <div className=' mt-1'>
-        {/* L'ensemble de la page */}
-        <div className="row">
-            {/* La premiere col-lgonne */}
-            <div className="col-lg-3 col-md-5 col-xm-3 gx-5">
-                  <div className="row">
-                    <div className="col-lg-12 box mt-3 box1"> 
-                      <h3 className='text-center fs-5 fw-bold mt-3'>Meuilleurs Formateurs</h3>
-                     <TopFormateur /> 
-                     </div>
-                  </div>
-                  <div className="row gy">
-                    <div className="col-lg-12 box mt-3 box2" > Box 2</div>
-                  </div>
-            </div>
-            {/* La deuxieme col-lgonne */}
-            <div className="col-lg-6 col-md-7">
-                <div className="row ">
-                    <div className="col">
-                      <div className="col-lg-6 w-100 col-md-5 mt-3 box3  box " >
-                        
-                        <h3 className='fw-bold mt-1'><i className='bi bi-person fs-1'></i> Utilisateurs total</h3>
-                        <Row>
-                          <Col>
-                            <div className='ms-3 fs-3 fw-bold'>578</div>
-                            
-                          </Col>
-                          <Col></Col>
-                        </Row>
-                      </div>
-                    </div>
-                    <div className="col">
-                    <div className="col-lg-6 col-md-5 w-100 mt-3 box4   box ">Box4</div>
-                    </div>
-                </div>
-                <div className="row ">
-                    <div className="col">
-                      <div className="col-lg-6 w-100 col-md-5 mt-3 box3  box " >Box3</div>
-                    </div>
-                    <div className="col">
-                    <div className="col-lg-6 col-md-5 w-100 mt-3 box4   box ">Box4</div>
-                    </div>
-                </div>
-                <div className="row mt-3 m-1">
-                    <div className="col-lg-12 box5 box">Box5</div>
-                </div>
-            </div>
-            {/* La troisieme col-lgonne */}
-            <div className="col-lg-3 col-md-12 gx-5">
-                  <div className="row">
-                    <div className="col-lg-12 box mt-3 box1"> Box 1</div>
-                  </div>
-                  <div className="row mt-3">
-                    <div className="col-lg-12 box  box2" > Box 2</div>
-                  </div>
-            </div>
-        </div>
+    <div className='mt-1'>
+      <Row>
+        <Col lg={3} md={5} sm={6} className="gx-5">
+          <Row>
+            <Col lg={12} className="box mt-3 box1">
+              <h3 className='text-center fs-5 fw-bold mt-md-3'>Meilleurs Formateurs</h3>
+              <TopFormateur />
+            </Col>
+          </Row>
+          <Row>
+            <Col lg={12} className="box mt-3  box2">
+              <ChartBar title={'Notations'} />
+            </Col>
+          </Row>
+        </Col>
+        <Col lg={6} md={7} sm={6}>
+          <Row>
+            <Col xs={12} lg={6}  className='mt-3'>
+              <Col md={12}  className="box  box3">
+                <ChartBox
+                  icone={'bi bi-person'}
+                  title={'Utilisateurs total'}
+                  total={6487}
+                  lien={'/admin/utilisateurs'}
+                />
+              </Col>
+            </Col>
+            <Col xs={12} lg={6}  className='mt-3 mt-sm-4 mt-lg-3'>
+              <Col md={12}  className="box box4">
+                <ChartBox
+                  icone={'bi bi-coin'}
+                  title={'Payements Total'}
+                  total={`${640}`}
+                  lien={'/admin/payement'}
+                />
+              </Col>
+            </Col>
+
+
+          </Row>
+          <Row>
+            <Col xs={12} lg={6} className='mt-3 mt-sm-4'>
+              <Col md={12} className="box  box3">
+                <ChartBox
+                  icone={'bi bi-mortarboard-fill'}
+                  title={'Formations Total'}
+                  total={`${640}`}
+                  lien={'/admin/formation/list'}
+                />
+              </Col>
+            </Col>
+
+            <Col xs={12} lg={6} className='mt-3 mt-sm-4'>
+              <Col md={12}  className="box box4">
+                <ChartBox
+                  icone={'bi bi-charts'}
+                  title={'Ratio Formation/Formateur'}
+                  total={`${640}`}
+                  lien={'/admin/formation/list'}
+                />
+              </Col>
+            </Col>
+
+          </Row>
+          <Row className="mt-3 d-lg-block d-block d-sm-none d-md-none p-lg-3">
+            <Col lg={12} className="box box5">
+              <ChatVisit icone={'bi bi-eye'} title={'Visites'} />
+            </Col>
+          </Row>
+        </Col>
+        <Col lg={3} md={12} sm={12} className="gx-5">
+          <Row>
+            <Col lg={12} sm={6} className="box mt-3 box6">
+              <PieChartBox title={'Utilisateurs'} />
+            </Col>
+
+
+            <Col lg={12} sm={5} className="box mt-3 box7 ms-md-5 ms-sm-5 pt-md-5 pt-sm-5 pt-lg-0 ms-lg-0 mt-md-3">
+              <ChartBar title={'Inscriptions'} icone={'bi bi-pen fs-5'} />
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+      <Row className="d-lg-none d-none d-sm-block d-md-block mt-3 m-2">
+        <Col sm={12} className="box box5">
+          <ChatVisit icone={'bi bi-eye'} title={'Visites'} />
+        </Col>
+      </Row>
     </div>
-  )
+  );
 }
 
-export default Dashboard
+export default Dashboard;

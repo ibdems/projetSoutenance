@@ -2,7 +2,6 @@ import React from 'react'
 import { topformateur } from '../../../data/formateur'
 import { Col, Row } from 'reactstrap';
 import image from '../../../image/afficherPhotoUtilisateur.jpeg'
-import '../dashboard.scss'
 
 
 function TopFormateur() {

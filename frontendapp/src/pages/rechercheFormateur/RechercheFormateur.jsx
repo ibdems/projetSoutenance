@@ -203,7 +203,7 @@ export default function Recherche() {
                                                 { label: 'Professionnel', value: 'professionnel' },
                                             ]} />
                                         </FormGroup>
-                                       </Col>
+                                    </Col>
                                     <Col></Col>
 
                                 </Row>
@@ -259,7 +259,7 @@ export default function Recherche() {
                                 </Col>
                             </Col>
                         ))}
-                        <Modal isOpen={modal} toggle={toggle} centered={true} scrollable={true} className='fs-5' style={{ height: '200px' }}>
+                        <Modal isOpen={modal} toggle={toggle}  scrollable={true} className='fs-5'  style={{ maxHeight: '80vh', width: '200vw' , marginTop: '10vh'}}>
 
                             <ModalBody>
                                 {selectedFormateur && (
@@ -324,17 +324,17 @@ export default function Recherche() {
                                 <Row>
                                     <Col></Col>
                                     <Col>
-                                    <button type='button' onClick={() => {}} className='btn  form-control btnVoirplus'> <span className='fs-5 fw-bold text-end' style={{ color: 'whitesmoke' }}>Contacter</span>   </button>
+                                        <button type='button' onClick={() => { }} className='btn  form-control btnVoirplus'> <span className='fs-5 fw-bold text-end' style={{ color: 'whitesmoke' }}>Contacter</span>   </button>
                                     </Col>
                                     <Col>
-                                    <Button type='button' onClick={toggle} className='p-2 fw-bold form-control bg-warning text-black'>
-                                    Fermer
-                                </Button>
+                                        <Button type='button' onClick={toggle} className='p-2 fw-bold form-control bg-warning text-black'>
+                                            Fermer
+                                        </Button>
                                     </Col>
                                 </Row>
 
-                                
-                                
+
+
                             </ModalFooter>
                         </Modal>
 

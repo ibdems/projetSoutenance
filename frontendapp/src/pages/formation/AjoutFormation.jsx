@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Form, Row, Col, FormGroup, Card, CardBody, CardHeader } from 'reactstrap';
+import { Form, Row, Col, FormGroup, Card, CardBody, CardHeader, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { MyButton, MyLabel, MyInput, MySelect } from '../../components/Forms/Forms.jsx';
 import { ajouterFormation, formations } from './dataFormation.js';
 import './formation.scss';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 export default function AjoutFormation() {
   const [elements, setElements] = useState({
@@ -83,19 +83,18 @@ export default function AjoutFormation() {
   return (
 
     <div>
-      <Row>
-          <Col></Col>
-          <Col></Col>
-          <Col xs={11} md={6} className='mt-3'>
-              <NavLink to={`/admin/formation/list`}>
-                  <MyButton text={'Voir les formations'} bgColor={'#03031efc'}/>
-              </NavLink>
-          </Col>
-      </Row>
+      <Breadcrumb listTag="div">
+        <BreadcrumbItem >
+          <Link to='/' style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Accueil</Link>
+        </BreadcrumbItem>
+        <BreadcrumbItem >
+          <Link to='/admin/formation/ajoutformation' style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Ajout</Link>
+        </BreadcrumbItem> 
+      </Breadcrumb>
       <h2 className='text-center mt-2'>Ajout d'une formation</h2>
 
 
-      <Form className={` bg-white ${window.innerWidth <= 576 ? ' p-1' : 'ms-4 p-5'}`} onSubmit={handleSubmit}>
+      <Form className={` bg-white ${window.innerWidth <= 576 ? ' p-1' : 'ms-4 '}`} onSubmit={handleSubmit}>
 
         <Row>
           <Col xl={7}>
@@ -121,7 +120,7 @@ export default function AjoutFormation() {
           <Col xl={5}>
             <FormGroup>
               <MyLabel forMyLabel="description" text='Description' />
-              <MyInput id="description" name="description" type="textarea" rows={5} value={elements.description} onChange={(value) => handleInputChange('description', value)} />
+              <MyInput id="description" name="description" type="textarea" rows={4} value={elements.description} onChange={(value) => handleInputChange('description', value)} />
             </FormGroup>
           </Col>
         </Row>
@@ -273,14 +272,14 @@ export default function AjoutFormation() {
             </Card>
           </Col>
           <Row className='mt-3'>
-          <Col></Col>
-          <Col xs={6} md={4}><button onClick={() => { }} className=' form-control text-white ' style={{ background: 'linear-gradient(to right, rgba(1, 1, 32, 0.85), rgba(22, 22, 91, 0.801))' }}> Enregistrer</button></Col>
-          <Col xs={2} md={4}><button onClick={() => { }} className='form-control text-black ' style={{outline: '1px solid blue'}}> Annuler</button></Col>
-          <Col></Col>
-        </Row>
+            <Col></Col>
+            <Col xs={6} md={4}><button onClick={() => { }} className=' form-control text-white ' style={{ background: 'linear-gradient(to right, rgba(1, 1, 32, 0.85), rgba(22, 22, 91, 0.801))' }}> Enregistrer</button></Col>
+            <Col xs={2} md={4}><button onClick={() => { }} className='form-control text-black ' style={{ outline: '1px solid blue' }}> Annuler</button></Col>
+            <Col></Col>
+          </Row>
         </Row>
 
-        
+
       </Form>
 
 
