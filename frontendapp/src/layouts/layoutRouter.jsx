@@ -10,6 +10,7 @@ import Dashboard from '../pages/dashboard/Dashboard'
 import ListFormation from '../pages/formation/ListFormation'
 import GestionFormation from '../pages/formation/GestionFormation'
 import AjoutFormation from '../pages/formation/AjoutFormation'
+import AjoutFormateurCabinet from '../pages/formateur/AjoutFormateurCabinet'
 
 function LayoutRouter() {
     return (
@@ -28,10 +29,12 @@ function LayoutRouter() {
                 {/* Les routes pour la gestion d'inscription */}
                 <Route path='/gestionInscription'>
                     <Route index element={<ListDemande />} />
+                    
                 </Route>
                 {/* Les routes pour la gestion des formateurs */}
                 <Route path='/formateur'>
                     <Route index element={<ListFormateur />} />
+                    <Route path='ajoutformateurcabinet' element={<AjoutFormateurCabinet/>}></Route>
                 </Route>
                 {/* Les routes pour la gestion des utilisateurs */}
                 <Route path='/utilisateurs'>
