@@ -104,7 +104,7 @@ function ListDemande() {
   };
 
   return (
-    <div className='mb-5'>
+    <div className='mb-5 mt-4'>
       <Breadcrumb listTag="div">
         <BreadcrumbItem>
           <Link to='/' style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Accueil</Link>
@@ -114,10 +114,10 @@ function ListDemande() {
         </BreadcrumbItem>
       </Breadcrumb>
       <Row>
-        <Col lg={6}>
+        <Col lg={6} md={12}>
           <Card className='p-1'>
             <Row>
-              <Col>
+              <Col xs={12} md={6}>
                 <Row><MyLabel text={'Option de recherche'} /></Row>
                 <MySelect
                   value={elements.option}
@@ -146,17 +146,17 @@ function ListDemande() {
             </Row>
           </Card>
         </Col>
-        <Col lg={5}>
+        <Col lg={6} md={12}>
           <Card className='p-1'>
             <Row>
-              <Col>
+              <Col xs={12} md={6}>
                 <FormGroup>
                   <Row>
                     <MyLabel text={'Trie par statut'} />
 
                   </Row>
                   <Row>
-                    <Col xs={10}>
+                    <Col xs={10} lg={9}>
                       <MySelect
                         value={elements.profession}
                         onChange={(selectedOption) => handleInputChange('profession', selectedOption)}
@@ -179,7 +179,7 @@ function ListDemande() {
 
                   </Row>
                   <Row>
-                    <Col xs={10}>
+                    <Col xs={10} lg={9}>
                       <MySelect
                         value={elements.genre}
                         onChange={(selectedOption) => handleInputChange('genre', selectedOption)}
@@ -199,7 +199,7 @@ function ListDemande() {
           </Card>
         </Col>
       </Row>
-
+      <div style={{ overflowX: 'auto', maxWidth: '100%' }}>
       <MyTable>
         <thead>
           <tr>
@@ -233,14 +233,15 @@ function ListDemande() {
           ))}
         </tbody>
       </MyTable>
+      </div>
+      
       <Row>
         <Col></Col>
-        <Col md={3}>
-          {/* Pagination */}
+        <Col xs={12} md={5} lg={4} xl={3}>
           <div className="ms-5">
-            <button onClick={goToPreviousPage} disabled={page === 1} className='btn text-white fw-bold' style={{ backgroundColor: '#03031efc' }}>Précédent</button>
+            <button onClick={goToPreviousPage} disabled={page === 1} className='btn text-white fw-bold' style={{ backgroundColor: '#03031efc' }}><i className="bi fs-5 bi-arrow-left"></i></button>
             <span className='mx-2 fs-4 fw-bold'>Page {page}</span>
-            <button onClick={goToNextPage} disabled={endIndex >= filteredDemandes.length} className='btn text-white fw-bold' style={{ backgroundColor: '#03031efc' }}>Suivant</button>
+            <button onClick={goToNextPage} disabled={endIndex >= filteredDemandes.length} className='btn text-white fw-bold' style={{ backgroundColor: '#03031efc' }}> <i className="bi fs-5 bi-arrow-right"></i></button>
           </div>
         </Col>
       </Row>

@@ -5,17 +5,22 @@ import { MyInput, MyLabel } from '../../../components/Forms/Forms'
 export default function DetailProfessionnel() {
     const [elements, setElements] = useState({
         competances: [''],
-        certifications: [''],
-        domaineExpertises: [''],
+        certifications: [
+            {
+                libelle: '',
+                file: ''
+            }
+        ],
+        domaineExpertises: ['']
     });
 
     const clickPlus = (type) => {
+        const newElement = type === 'certifications' ? { libelle: '', file: '' } : '';
         setElements(prevState => ({
             ...prevState,
-            [type]: [...prevState[type], '']
+            [type]: [...prevState[type], newElement]
         }));
-    }
-
+    };
 
     const removeElement = (type, index) => {
         setElements(prevState => ({
@@ -24,35 +29,36 @@ export default function DetailProfessionnel() {
         }));
     };
 
-    const handleInput = (type, value, index) => {
-        // Copiez les éléments actuels du tableau correspondant de l'état
+    const handleInput = (type, value, index, field = null) => {
         const updatedElements = [...elements[type]];
-        // Mettez à jour l'élément spécifié par l'index avec la nouvelle valeur
-        updatedElements[index] = value;
-        // Mettez à jour l'état avec les nouveaux éléments du tableau correspondant
+        if (field) {
+            updatedElements[index][field] = value;
+        } else {
+            updatedElements[index] = value;
+        }
         setElements(prevState => ({
             ...prevState,
             [type]: updatedElements
         }));
     };
+
     return (
         <div>
             <Row>
                 <Col md='12' lg='12' xl='6'>
-                    {/* Prérequis */}
                     <Row>
                         <MyLabel forMyLabel="competances" text='Competances' />
                     </Row>
                     <Card className='border-secondary'>
                         <CardBody>
-                            {elements.competances && elements.competances.map((competances, index) => (
+                            {elements.competances && elements.competances.map((competance, index) => (
                                 <Row key={index} className='p-2'>
                                     <Col xs={1}>
                                         <h5>{index + 1}</h5>
                                     </Col>
                                     <Col xs={9}>
                                         <FormGroup>
-                                            <MyInput id={`competances-${index}`} name={`competances-${index}`} placeholder="Ex: Maitrise de la langue Anglaise" type="text" value={competances} onChange={(value) => handleInput('competances', value, index)} />
+                                            <MyInput id={`competance-${index}`} name={`competance-${index}`} placeholder="Ex: Maitrise de la langue Anglaise" type="text" value={competance} onChange={(e) => handleInput('competances', e.target.value, index)} />
                                         </FormGroup>
                                     </Col>
                                     <Col xs={1}>
@@ -66,22 +72,20 @@ export default function DetailProfessionnel() {
                         </CardBody>
                     </Card>
                 </Col>
-                {/* Colonne pour les domaineExpertises */}
                 <Col md='12' lg='12' xl='6'>
-                    {/* Critères */}
                     <Row>
                         <MyLabel forMyLabel="domaineExpertises" text="Domaine d'expertises" />
                     </Row>
                     <Card className='border-secondary'>
                         <CardBody>
-                            {elements.domaineExpertises && elements.domaineExpertises.map((critere, index) => (
+                            {elements.domaineExpertises && elements.domaineExpertises.map((domaineExpertise, index) => (
                                 <Row key={index} className='p-2'>
                                     <Col xs={1}>
                                         <h5>{index + 1}</h5>
                                     </Col>
                                     <Col xs={9}>
                                         <FormGroup>
-                                            <MyInput id={`critere-${index}`} name={`critere-${index}`} placeholder="Ex: Developpement mobile" type="text" value={critere} onChange={(value) => handleInput('domaineExpertises', value, index)} />
+                                            <MyInput id={`domaineExpertise-${index}`} name={`domaineExpertise-${index}`} placeholder="Ex: Developpement mobile" type="text" value={domaineExpertise} onChange={(e) => handleInput('domaineExpertises', e.target.value, index)} />
                                         </FormGroup>
                                     </Col>
                                     <Col xs={1}>
@@ -96,13 +100,12 @@ export default function DetailProfessionnel() {
                     </Card>
                 </Col>
                 <Col md='12' lg='12' xl='12' className='mt-2'>
-                    {/* certifications */}
                     <Row>
                         <MyLabel forMyLabel="certifications" text='Certifications' />
                     </Row>
                     <Card className='border-secondary'>
                         <CardBody>
-                            {elements.certifications && elements.certifications.map((certifications, index) => (
+                            {elements.certifications && elements.certifications.map((certification, index) => (
                                 <Row key={index} className='p-2'>
                                     <Col xs={1}>
                                         <h5>{index + 1}</h5>
@@ -110,23 +113,23 @@ export default function DetailProfessionnel() {
                                     <Col xs={12} md={6}>
                                         <FormGroup>
                                             <Row>
-                                                <MyLabel forMyLabel="" text='Libelle' />
+                                                <MyLabel forMyLabel={`certification-libelle-${index}`} text='Libelle' />
                                             </Row>
-                                            <MyInput id={`certifications-${index}`} name={`certifications-${index}`} placeholder="Ex: Diplome en Ingenierie Logiciel" type="text" value={certifications} onChange={(value) => handleInput('certifications', value, index)} />
+                                            <MyInput id={`certification-libelle-${index}`} name={`certification-libelle-${index}`} placeholder="Ex: Diplome en Ingenierie Logiciel" type="text" value={certification.libelle} onChange={(e) => handleInput('certifications', e, index, 'libelle')} />
                                         </FormGroup>
                                     </Col>
                                     <Col xs={12} md={4}>
                                         <FormGroup>
                                             <Row>
-                                                <MyLabel forMyLabel="" text='Fichier' />
+                                                <MyLabel forMyLabel={`certification-file-${index}`} text='Fichier' />
                                             </Row>
-                                            <MyInput id={`certifications-${index}`} name={`certifications-${index}`} placeholder="Entrez" type="file"  value={certifications} onChange={(value) => handleInput('certifications', value, index)} />
+                                            <MyInput id={`certification-file-${index}`} name={`certification-file-${index}`} type="file" onChange={(e) => handleInput('certifications', e, index, 'file')} />
                                         </FormGroup>
                                     </Col>
                                     <Col xs={1}>
-                                        <i className='bi bi-plus fs-5  btnplus' onClick={() => clickPlus('certifications')}></i>
+                                        <i className='bi bi-plus fs-5 btnplus' onClick={() => clickPlus('certifications')}></i>
                                         {index > 0 && (
-                                            <i className='bi bi-dash fs-5  btnplus' onClick={() => removeElement('certifications', index)}></i>
+                                            <i className='bi bi-dash fs-5 btnplus' onClick={() => removeElement('certifications', index)}></i>
                                         )}
                                     </Col>
                                 </Row>
@@ -134,9 +137,6 @@ export default function DetailProfessionnel() {
                         </CardBody>
                     </Card>
                 </Col>
-
-
-
             </Row>
         </div>
     )

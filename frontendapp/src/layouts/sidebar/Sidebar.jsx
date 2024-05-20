@@ -59,12 +59,29 @@ function Sidebar({ size }) {
               {change && <span>Inscriptions</span>}
             </Link>
           </li>
-          <li>
-            <Link to="/admin/formateur">
-              <i className="bi bi-person-lines-fill" style={styleIcone} title={change ? '' : 'Nos Formateurs'}></i>
-              {change && <span>Nos Formateurs</span>}
-            </Link>
-          </li>
+          <div class="accordion custom-accordion" id="nosFormateurs">
+            <div class="accordion-item">
+              <h2 class="accordion-header ">
+                <button class="accordion-button fs-5 fw-bold"  type="button" data-bs-toggle="collapse" data-bs-target="#collapseOneNosFormateurs" aria-expanded="true" aria-controls="collapseOne">
+                  <i className="bi bi-person-lines-fill" style={styleIconeHeader} title={change ? '' : 'Nos Formateurs'}></i>{change && <span>Nos Formateurs</span>}
+                </button>
+              </h2>
+              <div id="collapseOneNosFormateurs" class="accordion-collapse collapse" data-bs-parent="#nosFormateurs">
+                <div class="accordion-body">
+                  <ul>
+                    <li>
+                      <Link to="/admin/formateur"> <i className='bi bi-eye'style={styleIconeBody} title={change ? '' : 'Liste'}></i>{change && <span>Liste</span>}</Link>
+                    </li>
+                    <li>
+                      <Link to="/admin/formateur/ajoutformateurcabinet"> <i className='bi bi-plus'style={styleIconeBody} title={change ? '' : 'Ajouter'}></i>{change && <span>Ajout</span>}</Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          
           <li>
             <Link to="/admin/utilisateurs">
               <i className="bi bi-people-fill" style={styleIcone} title={change ? '' : 'Utilisateurs'}></i>

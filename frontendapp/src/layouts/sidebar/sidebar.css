@@ -57,7 +57,7 @@
   font-size: 24px;
 }
 .accordion-button {
-  --bs-accordion-btn-bg: #03031efc;
+  --bs-accordion-btn-bg: none;
   --bs-accordion-btn-color:  #adadad;
   font-weight: bold;
   display: flex;
@@ -73,11 +73,11 @@
 
 .accordion-item {
   font-weight: bold;
-  --bs-accordion-bg: #03031efc;
-  --bs-accordion-active-bg: #03031efc;
+  --bs-accordion-bg: transparent;
+  --bs-accordion-active-bg: transparent;
   --bs-accordion-active-color:#adadad;
   align-items: center;
-  --bg-accordion-border-color: #03031efc;
+  --bg-accordion-border-color: transparent;
   transition: background-color 0.3s ease;
   border-radius: 5px;
   
@@ -93,4 +93,5 @@
   font-size: 20px;
   margin-top : -25px;
   margin-bottom: -10px;
+  border: 1px solid transparent;
 }
