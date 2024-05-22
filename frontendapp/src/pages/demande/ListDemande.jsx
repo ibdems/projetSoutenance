@@ -110,7 +110,7 @@ function ListDemande() {
           <Link to='/' style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Accueil</Link>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <Link to='/admin/demande/list' style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Liste</Link>
+          <Link to='/admin/demande/list' style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Liste des demandes d'inscription</Link>
         </BreadcrumbItem>
       </Breadcrumb>
       <Row>
@@ -234,7 +234,6 @@ function ListDemande() {
         </tbody>
       </MyTable>
       </div>
-      
       <Row>
         <Col></Col>
         <Col xs={12} md={5} lg={4} xl={3}>

@@ -2,6 +2,7 @@ import image from '../image/team-1.jpg'
 export let formateurDomicile = [
     {
         id: 1,
+        code: 'FHG748',
         nomComplet: 'Diallo Ibrahima',
         email: 'ibrahima882001@gmail.com',
         telephone: '436738237',

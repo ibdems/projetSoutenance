@@ -11,6 +11,7 @@ import ListFormation from '../pages/formation/ListFormation'
 import GestionFormation from '../pages/formation/GestionFormation'
 import AjoutFormation from '../pages/formation/AjoutFormation'
 import AjoutFormateurCabinet from '../pages/formateur/AjoutFormateurCabinet'
+import ListUtilisateur from '../pages/utilisateurs/ListUtilisateur'
 
 function LayoutRouter() {
     return (
@@ -38,7 +39,7 @@ function LayoutRouter() {
                 </Route>
                 {/* Les routes pour la gestion des utilisateurs */}
                 <Route path='/utilisateurs'>
-                    <Route index element={<ListFormateur />} />
+                    <Route index element={<ListUtilisateur />} />
                 </Route>
                 {/* Les routes pour la gestion des payements */}
                 <Route path='/payement'>

@@ -29,7 +29,7 @@ function Layout() {
   return (
     <div className="wrapper">
       <Sidebar size={sizeSide} />
-      <div className="main"  style={{ marginLeft: sizeSide , marginTop: '-90vh', position: 'relative '}}>
+      <div className="main"  style={{ marginLeft: sizeSide , marginTop: '-90vh'}}>
         <Navbar onNavToggle={toggleSidebar} sizeNav={sizeNav} sizeNavWidth={sizeSide}/>
         <div className="container" style={{overflowY:"auto",maxHeight:'calc(100vh - 90px)'}}>
           <Outlet />

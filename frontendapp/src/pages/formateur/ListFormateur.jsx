@@ -165,7 +165,7 @@ function ListFormateur() {
       </div>
       <Row>
         <Col></Col>
-        <Col xs={12} md={5} lg={3} xl={3}>
+        <Col xs={12} md={5} lg={4} xl={4}>
           <div className="ms-5">
             <button onClick={goToPreviousPage} disabled={page === 1} className='btn text-white fw-bold' style={{ backgroundColor: '#03031efc' }}><i className="bi fs-5 bi-arrow-left"></i></button>
             <span className='mx-2 fs-4 fw-bold'>Page {page}</span>
