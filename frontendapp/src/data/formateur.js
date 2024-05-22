@@ -47,6 +47,7 @@ export let formateurCabinet = [
         profession: 'Etudiant',
         linkedin: 'demsIbrahima',
         niveauEtude: 'Bac+4',
+        
         competances: [{
             id: 1,
             libelle: 'Developpeur Web'
