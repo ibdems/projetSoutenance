@@ -90,8 +90,8 @@ const normalizedData = normalizeData(data);
 export default function ChatVisit({ icone, title }) {
     return (
         <div>
-            <div className='fw-bold fs-2 mb-2'><i className={`${icone} fs-4`}></i>{title}</div>
-            <div style={{ height: '280px', width: '99%' }}>
+            <div className='fw-bold fs-4 mb-2'><i className={`${icone} fs-5`}></i>{title}</div>
+            <div style={{ height: '240px', width: '100%' }}>
                 <ResponsiveContainer width="100%" height="100%">
                     <AreaChart
                         width={500}

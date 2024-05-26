@@ -10,30 +10,30 @@
 }
 
 .box1 {
-    height: 30em;
+    height: 21em;
 }
 
 .box2 {
-    height: 13em;
+    height: 11em;
 }
 .box6 {
-    height: 30em;
+    height: 21em;
 }
 
 .box7 {
-    height: 13em;
+    height: 11em;
 }
 
 .box3 {
-    height: 9em;
+    height:7em;
 }
 
 .box4 {
-    height: 9em;
+    height:7em;
 }
 
 .box5 {
-    height: 20em;
+    height: 0em;
 }
 
 @include sm {
@@ -47,7 +47,7 @@
     }
 
     .box7 {
-        height: 25em;
+        height: 21em;
     }
 }
 
@@ -62,7 +62,7 @@
     }
 
     .box7 {
-        height: 25em;
+        height: 21em;
     }
     
 }
@@ -74,10 +74,10 @@
         }
     }
     .box5 {
-        height: 22em;
+        height: 17em;
     }
     .box7 {
-        height: 13em;
+        height: 11em;
     }
 
     .box3{

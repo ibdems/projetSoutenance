@@ -9,12 +9,12 @@ import ChatVisit from './admin/ChatVisit';
 
 function Dashboard() {
   return (
-    <div className='mt-1'>
+    <div >
       <Row>
         <Col lg={3} md={5} sm={6} className="gx-5">
           <Row>
             <Col lg={12} className="box mt-3 box1">
-              <h3 className='text-center fs-5 fw-bold mt-md-3'>Meilleurs Formateurs</h3>
+              <h4 className='text-justify fw-bold mt-md-3' style={{fontSize: '15px'}}>Meilleurs Formateurs</h4>
               <TopFormateur />
             </Col>
           </Row>
@@ -50,7 +50,7 @@ function Dashboard() {
 
           </Row>
           <Row>
-            <Col xs={12} lg={6} className='mt-3 mt-sm-4'>
+            <Col xs={12} lg={6} className='mt-3 mt-sm-3'>
               <Col md={12} className="box  box3">
                 <ChartBox
                   icone={'bi bi-mortarboard-fill'}
@@ -61,7 +61,7 @@ function Dashboard() {
               </Col>
             </Col>
 
-            <Col xs={12} lg={6} className='mt-3 mt-sm-4'>
+            <Col xs={12} lg={6} className='mt-3 mt-sm-3'>
               <Col md={12}  className="box box4">
                 <ChartBox
                   icone={'bi bi-charts'}
@@ -73,13 +73,13 @@ function Dashboard() {
             </Col>
 
           </Row>
-          <Row className="mt-3 d-lg-block d-block d-sm-none d-md-none p-lg-3">
+          <Row className="mt-0 d-lg-block d-none d-sm-none d-md-none p-lg-3">
             <Col lg={12} className="box box5">
               <ChatVisit icone={'bi bi-eye'} title={'Visites'} />
             </Col>
           </Row>
         </Col>
-        <Col lg={3} md={12} sm={12} className="gx-5">
+        <Col lg={3} md={12} sm={12} xs={12} className="gx-5">
           <Row>
             <Col lg={12} sm={6} className="box mt-3 box6">
               <PieChartBox title={'Utilisateurs'} />
@@ -92,7 +92,7 @@ function Dashboard() {
           </Row>
         </Col>
       </Row>
-      <Row className="d-lg-none d-none d-sm-block d-md-block mt-3 m-2">
+      <Row className="d-lg-none d-block d-sm-block d-md-block mt-3 m-2">
         <Col sm={12} className="box box5">
           <ChatVisit icone={'bi bi-eye'} title={'Visites'} />
         </Col>

@@ -1,20 +1,35 @@
 /* Styles généraux pour le sidebar */
 .styleSidebar {
-  background-color: #03031efc;  
+  background-color: #03031efc;
   color: #adadad;
   height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 20px;
+  padding: 10px 20px;
   border-right: 1px solid #918A31;
+  min-height: 100vh;
+}
+
+.styleSidebar.collapsed .sidebar-menu ul li {
+  flex-direction: column;
+  align-items: center;
+}
+
+.styleSidebar.collapsed .sidebar-link i {
+  margin: 0 auto; /* Centre l'icône horizontalement */
+  margin-bottom: 1px; /* Ajoute de l'espace entre l'icône et le texte */
+}
+
+.styleSidebar.collapsed .sidebar-link span {
+  text-align: center;
 }
 
 .sidebar-header {
   text-align: center;
 }
 
-.sidebar-title h1 {
+.sidebar-title h3 {
   margin: 0;
 }
 
@@ -27,62 +42,72 @@
 .sidebar-menu ul li {
   display: flex;
   align-items: center;
-  padding: 15px 25px;
-  transition: background-color 0.3s ease;
+  padding: 7px 5px;
   border-radius: 5px;
 }
 
-.sidebar-menu ul li:hover {
+.sidebar-link:hover, .accordion-item:hover {
   background: linear-gradient(1000deg, #918A31, #000121);
+  border: 3px solid #010332;
+  width: 100%;
 }
 
 .sidebar-menu ul li.active {
   background-color: linear-gradient(to right, #918A31, #000121);
 }
 
-.sidebar-menu ul li a {
+.sidebar-link {
   color: inherit;
   text-decoration: none;
   display: flex;
   align-items: center;
+  padding-top: 1px;
+  width: 100%;
+  margin-top: 5px;
 }
 
-.sidebar-menu ul li a span {
-  margin-left: 20px;
-  font-size: 20px;
+.sidebar-link i {
+  margin-right: 15px; /* Espace entre l'icône et le texte */
+}
+
+.sidebar-link span {
+  margin-left: 1px; /* Espace entre l'icône et le texte */
   font-weight: 700;
+  color: #adadad; /* Couleur du texte */
 }
 
 .sidebar-menu i {
-  font-size: 24px;
+  font-size: 20px; /* Taille de l'icône */
+  color: #adadad; /* Couleur de l'icône */
 }
+
+/* Styles pour les accordions */
 .accordion-button {
   --bs-accordion-btn-bg: none;
-  --bs-accordion-btn-color:  #adadad;
+  --bs-accordion-btn-color: #adadad;
   font-weight: bold;
   display: flex;
   align-items: center;
-  padding: 15px 25px;
-  transition: background-color 0.3s ease;
+  padding: 7px 15px;
   border-radius: 5px;
-  margin-left: 5px;
-  span {
-    margin-left: 20px;
-  }
+  margin-left: -0.9em;
+}
+
+.accordion-button span {
+  margin-left: 15px;
 }
 
 .accordion-item {
   font-weight: bold;
   --bs-accordion-bg: transparent;
   --bs-accordion-active-bg: transparent;
-  --bs-accordion-active-color:#adadad;
+  --bs-accordion-active-color: #adadad;
   align-items: center;
-  --bg-accordion-border-color: transparent;
-  transition: background-color 0.3s ease;
+  --bs-accordion-border-color: transparent;
   border-radius: 5px;
-  
 }
 
+/* Supprimer les bordures des accordions */
 .custom-accordion .accordion-item {
   border: none; /* Supprimer la bordure */
 }
@@ -90,8 +115,15 @@
 .accordion-body {
   color: #adadad;
   font-weight: bold;
-  font-size: 20px;
-  margin-top : -25px;
-  margin-bottom: -10px;
+  font-size: 0.9em;
+  margin-top: -40px;
+  margin-bottom: -20px;
   border: 1px solid transparent;
+}
+
+.sidebar-link-collapsed {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
 }

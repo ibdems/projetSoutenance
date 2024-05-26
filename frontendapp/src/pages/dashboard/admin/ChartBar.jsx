@@ -54,7 +54,7 @@ export default function ChartBar({ icone, title }) {
             <div className='fw-bold'>
                 <i className={`${icone} fs-4`}></i>{title}
             </div>
-            <div style={{ height: '160px', width: '100%' }}>
+            <div style={{ height: '140px', width: '100%' }}>
                 <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={data}>
                         Tool

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Col, Row } from 'reactstrap'
 import { Link } from 'react-router-dom'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line,  Tooltip, ResponsiveContainer } from 'recharts';
 
 export default function ChartBox({icone, title, total, lien}) {
   const data = [
@@ -51,12 +51,12 @@ export default function ChartBox({icone, title, total, lien}) {
   return (
     <div>
       <Row className='m-1'>
-        <div className='fw-bold'><i className={`${icone} title`}></i>{title}</div>
-        <Col xs={5}>
-          <div className='mt-3 fs-3 fw-bold'>{total}</div>
-          <div className='mt-2 fw-bold link' ><Link to={lien} style={{ color: '#03031efc', textDecoration: 'none' }}>Voir tout</Link></div>
+        <div className='fw-bold'><i className={`${icone} `}></i><span style={{fontSize: '10px'}}>{title}</span></div>
+        <Col xs={6}>
+          <div className='mt-1 fw-bold'>{total}</div>
+          <div className='mt-2 fw-bold link' ><Link to={lien} style={{ color: '#03031efc', textDecoration: 'none', fontSize: '15px' }}>Voir tout</Link></div>
         </Col>
-        <Col xs={7} >
+        <Col xs={6} >
           <div style={{ height: '100px', width: '100%' }}>
             <ResponsiveContainer width="100%" height="100%">
               <LineChart width={300} height={100} data={data}>

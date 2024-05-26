@@ -245,7 +245,7 @@ function ListDemande() {
         </Col>
       </Row>
 
-      <Modal isOpen={modal} toggle={toggle}  scrollable={true} className='fs-5'   style={{ maxHeight: '80vh', width: '200vw' , marginTop: '10vh'}}>
+      <Modal isOpen={modal} toggle={toggle}  centered={true} scrollable={true} className='fs-5' style={{ maxHeight: '80vh' }}>
 
         <ModalBody>
           {selectedDemande && (

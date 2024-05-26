@@ -150,28 +150,12 @@ function AjoutFormateurCabinet() {
                 {
                     etape === 2 &&
                     <div>
-                        <h3 className="text-center mb-2">Etape 2/2: Informations professionnelle</h3>
+                        <h3 className="text-center mb-2">Etape 2/2: Informations professionnelle    </h3>
                         <DetailProfessionnel />
                     </div>
                     
                 }
-                <Row className={etape === 1 ? 'mt-1' : 'mt-4'}>
-                    <Col></Col>
-                    <Col lg={2}>
-                        {
-                            etape === 2 && <MyButton text={'Précedent'} className={''} bgColor={'#03031efc'} onClick={etapePrecedent} />
-                        }
-                    </Col>
-                    <Col lg={2}>
-                        {
-                            etape === 1 && <MyButton text={'Suivant'} className={''} bgColor={'#03031efc'} onClick={etapeSuivante} />
-                        }
-                        {
-                            etape === 2 && <MyButton text={'Valider'} bgColor={'#03031efc'} className={''} onClick={() => { }} />
-                        }
-
-                    </Col>
-                </Row>
+                
 
 
             </Card>

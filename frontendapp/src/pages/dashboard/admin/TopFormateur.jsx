@@ -10,12 +10,12 @@ function TopFormateur() {
       <div className=''>
        {
         topformateur.map(formateur => (
-          <Row key={formateur.id} className='mt-3'>
+          <Row key={formateur.id} className='mt-2'>
             <Col xs={3}>
-              <img src={image} alt="image" height={50} width={50} style={{borderRadius: '50%'}}/>
+              <img src={image} alt="image" height={45} width={45} style={{borderRadius: '50%'}}/>
             </Col>
             <Col className='' xs={6}>
-              <div style={{fontSize: '13px', marginLeft: '-9px'}} className='fw-bold mt-2'>{formateur.nomComplet}</div>
+              <div style={{fontSize: '10px', marginLeft: '-9px'}} className='fw-bold mt-1'>{formateur.nomComplet}</div>
               <div style={{fontSize: '10px', marginLeft: '-13px'}}>{formateur.email}</div>
             </Col>
             

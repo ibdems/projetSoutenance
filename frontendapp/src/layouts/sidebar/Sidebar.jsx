@@ -10,108 +10,89 @@ function Sidebar({ size }) {
     setOpen(open === id ? '' : id);
   };
 
-  const change = size === '300px';
-  const styleIcone = change ? { marginLeft: '0' } : { marginLeft: '-25px' };
-  const styleIconeHeader = change ? { marginLeft: '0' } : { marginLeft: '-40px' };
-  const styleIconeBody = change ? { marginLeft: '0' } : { marginLeft: '-50px' };
+  const change = size === '250px';
+  const sidebarClass = change ? 'expanded' : 'collapsed';
+
+  const styleIconeBody = change ? { marginLeft: '0' } : { marginLeft: '-20px' };
 
   return (
-    <div className={`styleSidebar ${size <= 1200 ? 'd-md-none' : ''}`} style={{ width: size }}>
+    <div className={`styleSidebar ${sidebarClass} ${size <= 1200 ? 'd-md-none' : ''}`} style={{ width: size }}>
       <div className="sidebar-header">
         <div className="sidebar-title">
-          {change && <h1>MacthSavoir</h1>}
+          {change && <h3>MatchSavoir</h3>}
         </div>
       </div>
       <div className="sidebar-menu">
         <ul>
-          <li className="active">
-            <Link to="/admin">
-              <i className="bi bi-speedometer2" style={styleIcone} title={change ? '' : 'Tableau de bord'}></i>
-              {change && <span>Tableau de bord</span>}
-            </Link>
-          </li>
-          <div class="accordion custom-accordion" id="accordionExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header ">
-                <button class="accordion-button fs-5 fw-bold"  type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  <i className="bi bi-mortarboard-fill" style={styleIconeHeader} title={change ? '' : 'Formations'}></i>{change && <span>Formations</span>}
-                </button>
-              </h2>
-              <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                    <li>
-                      <Link to="/admin/formation/list"> <i className='bi bi-eye'style={styleIconeBody} title={change ? '' : 'Liste'}></i>{change && <span>Liste</span>}</Link>
-                    </li>
-                    <li>
-                      <Link to="/admin/formation/ajoutformation"> <i className='bi bi-plus'style={styleIconeBody} title={change ? '' : 'Ajouter'}></i>{change && <span>Ajout</span>}</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+          <SidebarLink to="/admin" icon="bi bi-speedometer2" title="Tableau de bord" change={change} />
 
-          </div>
-          
-          <li>
-            <Link to="/admin/gestionInscription">
-              <i className="bi bi-clipboard-check" style={styleIcone} title={change ? '' : 'Inscriptions'}></i>
-              {change && <span>Inscriptions</span>}
-            </Link>
-          </li>
-          <div class="accordion custom-accordion" id="nosFormateurs">
-            <div class="accordion-item">
-              <h2 class="accordion-header ">
-                <button class="accordion-button fs-5 fw-bold"  type="button" data-bs-toggle="collapse" data-bs-target="#collapseOneNosFormateurs" aria-expanded="true" aria-controls="collapseOne">
-                  <i className="bi bi-person-lines-fill" style={styleIconeHeader} title={change ? '' : 'Nos Formateurs'}></i>{change && <span>Nos Formateurs</span>}
-                </button>
-              </h2>
-              <div id="collapseOneNosFormateurs" class="accordion-collapse collapse" data-bs-parent="#nosFormateurs">
-                <div class="accordion-body">
-                  <ul>
-                    <li>
-                      <Link to="/admin/formateur"> <i className='bi bi-eye'style={styleIconeBody} title={change ? '' : 'Liste'}></i>{change && <span>Liste</span>}</Link>
-                    </li>
-                    <li>
-                      <Link to="/admin/formateur/ajoutformateurcabinet"> <i className='bi bi-plus'style={styleIconeBody} title={change ? '' : 'Ajouter'}></i>{change && <span>Ajout</span>}</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+          <Accordion open={open} toggle={toggle}>
+            <AccordionItem>
+              <AccordionHeader targetId="formations">
+                <i className="bi bi-mortarboard-fill" title={change ? '' : 'Formations'}></i>
+                {change && <span className="me-3">Formations</span>}
+              </AccordionHeader>
+              <AccordionBody accordionId="formations">
+                <ul>
+                  <li>
+                    <Link to="/admin/formation/list" className="sidebar-link">
+                      <i className='bi bi-eye' style={styleIconeBody} title={change ? '' : 'Liste'}></i>
+                      {change && <span>Liste</span>}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/admin/formation/ajoutformation" className="sidebar-link">
+                      <i className='bi bi-plus' style={styleIconeBody} title={change ? '' : 'Ajouter'}></i>
+                      {change && <span>Ajout</span>}
+                    </Link>
+                  </li>
+                </ul>
+              </AccordionBody>
+            </AccordionItem>
 
-          </div>
-          
-          <li>
-            <Link to="/admin/utilisateurs">
-              <i className="bi bi-people-fill" style={styleIcone} title={change ? '' : 'Utilisateurs'}></i>
-              {change && <span>Utilisateurs</span>}
-            </Link>
-          </li>
-          <li>
-            <Link to="/admin/payement">
-              <i className="bi bi-cash-coin" style={styleIcone} title={change ? '' : 'Payements'}></i>
-              {change && <span>Payements</span>}
-            </Link>
-          </li>
-          <li>
-            <Link to="/admin/profil">
-              <i className="bi bi-person-circle" style={styleIcone} title={change ? '' : 'Profil'}></i>
-              {change && <span>Profil</span>}
-            </Link>
-          </li>
-          <li>
-            <Link to="/deconnexion">
-              <i className="bi bi-box-arrow-in-right" style={styleIcone} title={change ? '' : 'Déconnexion'}></i>
-              {change && <span>Déconnexion</span>}
-            </Link>
-          </li>
+            <AccordionItem>
+              <AccordionHeader targetId="formateurs">
+                <i className="bi bi-person-lines-fill" title={change ? '' : 'Formateurs'}></i>
+                {change && <span className="me-3">Formateurs</span>}
+              </AccordionHeader>
+              <AccordionBody accordionId="formateurs">
+                <ul>
+                  <li>
+                    <Link to="/admin/formateur" className="sidebar-link">
+                      <i className='bi bi-eye' style={styleIconeBody} title={change ? '' : 'Liste'}></i>
+                      {change && <span>Liste</span>}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/admin/formateur/ajoutformateurcabinet" className="sidebar-link">
+                      <i className='bi bi-plus' style={styleIconeBody} title={change ? '' : 'Ajouter'}></i>
+                      {change && <span>Ajout</span>}
+                    </Link>
+                  </li>
+                </ul>
+              </AccordionBody>
+            </AccordionItem>
+          </Accordion>
+
+          <SidebarLink to="/admin/gestionInscription" icon="bi bi-clipboard-check" title="Inscriptions" change={change} />
+          <SidebarLink to="/admin/utilisateurs" icon="bi bi-people-fill" title="Utilisateurs" change={change} />
+          <SidebarLink to="/admin/payement" icon="bi bi-cash-coin" title="Payements" change={change} />
+          <SidebarLink to="/admin/profil" icon="bi bi-person-circle" title="Profil" change={change} />
+          <SidebarLink to="/deconnexion" icon="bi bi-box-arrow-in-right" title="Déconnexion" change={change} />
         </ul>
-
       </div>
-
     </div>
   );
 }
+
+const SidebarLink = ({ to, icon, title, change }) => (
+  <Link to={to} className="sidebar-link">
+    <li className={change ? '' : 'sidebar-link-collapsed'}>
+      <i className={icon} title={change ? '' : title}></i>
+      {change && <span>{title}</span>}
+      {!change && <span style={{ fontSize: '10px' }}>{title}</span>}
+    </li>
+  </Link>
+);
 
 export default Sidebar;

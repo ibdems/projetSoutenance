@@ -24,8 +24,8 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 export default function PieChartBox({ icone, title }) {
     return (
         <div>
-            <div className='fw-bold fs-3'><i className={`${icone} fs-4`}></i>{title}</div>
-            <div style={{ height: '350px', width: '100%' }}>
+            <div className='fw-bold fs-4'><i className={`${icone} fs-5`}></i>{title}</div>
+            <div style={{ height: '250px', width: '100%' }}>
                 <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                         <Tooltip 
@@ -37,8 +37,8 @@ export default function PieChartBox({ icone, title }) {
                             cy="50%"
                             labelLine={false}
                             label={renderCustomizedLabel}
-                            outerRadius={120}
-                            innerRadius={40}
+                            outerRadius={80}
+                            innerRadius={20}
                             fill="#8884d8"
                             dataKey="value"
                         >
@@ -56,14 +56,14 @@ export default function PieChartBox({ icone, title }) {
                             <span style={{
                                 position: 'absolute',
                                 left: '0',
-                                top: '50%',
+                                top: '70%',
                                 transform: 'translateY(-50%)',
                                 width: '10px',
                                 height: '10px',
                                 borderRadius: '50%',
                                 backgroundColor: item.color
                             }}></span>
-                            <span style={{fontSize: '12px'}}>{item.name}</span>
+                            <span style={{fontSize: '10px'}}>{item.name}</span>
                         </li>
                         <div className='text-center fw-bold'>{item.value}</div>
                     </Col>
