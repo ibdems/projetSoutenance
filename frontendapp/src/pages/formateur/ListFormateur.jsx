@@ -86,7 +86,7 @@ function ListFormateur() {
           <Link to='/' style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Accueil</Link>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <Link style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Liste</Link>
+          <Link style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Liste de nos formateurs</Link>
         </BreadcrumbItem>
       </Breadcrumb>
       <Row>
@@ -96,7 +96,7 @@ function ListFormateur() {
         </Col>
         <Col></Col>
         <Col xs={12} lg={6} md={12}>
-          <Card className='p-1 mt-2'>
+          <Card className='px-1 '>
             <Row>
               <Col xs={12} md={6}>
                 <Row><MyLabel text={'Option de recherche'} /></Row>
@@ -144,19 +144,19 @@ function ListFormateur() {
               <th>Plus</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody >
             {currentElements.map((formateur, index) => (
               <tr key={formateur.id}>
                 <td>{startIndex + index + 1}</td>
                 <td>{formateur.code}</td>
-                <td><img src={image} alt="" height={50} width={50} style={{ borderRadius: '50%' }} /></td>
+                <td><img src={image} alt="" height={40} width={40} style={{ borderRadius: '50%' }} /></td>
                 <td>{formateur.nomComplet}</td>
                 <td>{formateur.adresse}</td>
                 <td>{formateur.telephone}</td>
                 <td>{formateur.email}</td>
                 <td>{formateur.profession}</td>
-                <td><i className="bi bi-pen fs-4 fw-bold text-success" onClick={() => { }} title='Modifier'></i></td>
-                <td><i className="bi bi-trash fs-4 fw-bold text-danger" onClick={() => { }} title='Supprimer'></i></td>
+                <td><i className="bi bi-pen fs-5 fw-bold text-success" onClick={() => { }} title='Modifier'></i></td>
+                <td><i className="bi bi-trash fs-5 fw-bold text-danger" onClick={() => { }} title='Supprimer'></i></td>
                 <td><i className="bi bi-eye-fill" onClick={() => openModal(formateur)}></i></td>
               </tr>
             ))}

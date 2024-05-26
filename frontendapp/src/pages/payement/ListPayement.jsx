@@ -82,7 +82,7 @@ function ListPayement() {
           <Link to='/' style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Accueil</Link>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <Link style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Liste</Link>
+          <Link style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Liste des payements</Link>
         </BreadcrumbItem>
       </Breadcrumb>
       <Row>

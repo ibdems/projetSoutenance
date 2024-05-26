@@ -41,7 +41,7 @@ export function AjoutSession({clickAnnuler, clickValider}) {
     return (
         <Form>
             <Row>
-                <CardHeader className='text-center fs-4 fw-bold mb-4'>
+                <CardHeader className='text-center fs-4 fw-bold' style={{marginTop: '-10px'}}>
                     Crée une session de formation
                 </CardHeader>
                 <Col lg={6} xs={12} md={6}>
@@ -89,9 +89,9 @@ export function AjoutSession({clickAnnuler, clickValider}) {
                     <FormGroup tag="fieldset">
                         <Row><MyLabel text='Jours de la session'/></Row>
                         
-                        <Row>
+                        <Row style={{marginTop: '-10px', fontSize: '15px'}} className='p-2 me-2'>
                             {Object.keys(sessions.joursSemaine).map(day => (
-                                <Col key={day} xl={2} md={2} lg={2} xs={4}>
+                                <Col key={day} xl={2} md={2} lg={2} xs={4} >
                                     <FormGroup check>
                                         <Label check>
                                             <Input className='border-secondary' type="checkbox" checked={sessions.joursSemaine[day]} onChange={() => handleDayChange(day)} />{' '}
@@ -104,7 +104,7 @@ export function AjoutSession({clickAnnuler, clickValider}) {
                     </FormGroup>
                 </Col>
             </Row>
-            <Row>
+            <Row style={{marginTop: '-20px'}}>
                 <Col></Col>
                 <Col>
                     <button type='submit' className='form-control btnGestionFormations'><span className='fs-5 fw-600 text-white'>Enregistrer</span> </button>

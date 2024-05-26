@@ -6,7 +6,7 @@ import Select from 'react-select';
 
 export function MyButton({ text, onClick, bgColor, className, type,icone }) {
   return (
-    <Button type={type} className={' p-1 fw-bold fs-4 form-control' + className} style={{ backgroundColor: bgColor }} onClick={onClick}>
+    <Button type={type} className={' fw-bold fs-5 form-control' + className} style={{ backgroundColor: bgColor }} onClick={onClick}>
       <i className={`${icone} fs-2 fw-bold`}></i> {text} 
     </Button>
   );

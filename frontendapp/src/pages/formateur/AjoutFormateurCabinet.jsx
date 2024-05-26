@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react"
 import InfoPersonnel from '../inscriptions/formateur/InfoPersonnel'
 import DetailProfessionnel from "../inscriptions/formateur/detailProfessionnal"
-import { Breadcrumb, BreadcrumbItem, Card, Col, FormGroup, Row } from "reactstrap"
+import { Breadcrumb, BreadcrumbItem, Button, Card, Col, FormGroup, Row } from "reactstrap"
 import { Link } from "react-router-dom"
 import { MyButton, MyInput, MyLabel } from "../../components/Forms/Forms"
 
@@ -42,7 +42,7 @@ function AjoutFormateurCabinet() {
     }
     return (
         <div>
-            <Breadcrumb listTag="div" className="mt-2">
+            <Breadcrumb listTag="div" className="">
                 <BreadcrumbItem>
                     <Link to='/' style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Accueil</Link>
                 </BreadcrumbItem>
@@ -50,8 +50,8 @@ function AjoutFormateurCabinet() {
                     <Link style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Ajout</Link>
                 </BreadcrumbItem>
             </Breadcrumb>
-            <Row className="ps-1 mt-4">
-                <Col xs={10} lg={4} className=" p-2 ms-2 text-white text-center fs-3" style={{ backgroundColor: '#03031efc' }}>
+            <Row className="ps-1">
+                <Col xs={10} lg={4} className=" ms-2 text-white text-center fs-3" style={{ backgroundColor: '#03031efc' }}>
                     Ajout d'un formateur
                 </Col>
                 <Col></Col>
@@ -60,7 +60,7 @@ function AjoutFormateurCabinet() {
                 {
                     etape === 1 &&
                     <div>
-                        <h3 className="text-center mb-2">Etape 1/2: Informations personnelle</h3>
+                        <h4 className="text-center mb-1">Etape 1/2: Informations personnelle</h4>
                         <Row>
                             <Col xs={12} lg={4} className="d-flex flex-column justify-content-center align-items-center">
                                 <div>
@@ -150,13 +150,29 @@ function AjoutFormateurCabinet() {
                 {
                     etape === 2 &&
                     <div>
-                        <h3 className="text-center mb-2">Etape 2/2: Informations professionnelle    </h3>
+                        <h4 className="text-center mb-2">Etape 2/2: Informations professionnelle    </h4>
                         <DetailProfessionnel />
                     </div>
-                    
-                }
-                
 
+                }
+
+                <Row className={etape === 1 ? 'mt-1' : 'mt-4'}>
+                    <Col></Col>
+                    <Col lg={2}>
+                        {
+                            etape === 2 && <Button className='form-control bg-warning text-black fw-bold' onClick={etapePrecedent}  > Précedent</Button>
+                        }
+                    </Col>
+                    <Col lg={2}>
+                        {
+                            etape === 1 && <Button className='form-control bg-warning text-black fw-bold' onClick={etapeSuivante} > Suivant</Button>
+                        }
+                        {
+                            etape === 2 && <Button className='form-control fw-bold' onClick={null} style={{ backgroundColor: '#03031efc' }} > Valider</Button>
+                        }
+
+                    </Col>
+                </Row>
 
             </Card>
 

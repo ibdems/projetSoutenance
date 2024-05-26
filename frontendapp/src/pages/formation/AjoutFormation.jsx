@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Form, Row, Col, FormGroup, Card, CardBody, CardHeader, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Form, Row, Col, FormGroup, Card, CardBody, CardHeader, Breadcrumb, BreadcrumbItem, Button } from 'reactstrap';
 import { MyButton, MyLabel, MyInput, MySelect } from '../../components/Forms/Forms.jsx';
 import { ajouterFormation, formations } from './dataFormation.js';
 import './formation.scss';
@@ -108,7 +108,7 @@ export default function AjoutFormation() {
           <Link to='/admin/formation/ajoutformation' style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Ajout</Link>
         </BreadcrumbItem>
       </Breadcrumb>
-      <Row className="ps-1 mt-4">
+      <Row className="ps-1 mt-2">
         <Col xs={10} lg={4} className=" p-2 ms-2 text-white text-center fs-3" style={{ backgroundColor: '#03031efc' }}>
           Ajout d'une formation
         </Col>
@@ -116,11 +116,11 @@ export default function AjoutFormation() {
       </Row>
 
       <Card style={{ border: '3px  solid #03031efc', borderRadius: '0' }} className="p-3">
-        <Form className={` bg-white ${window.innerWidth <= 576 ? ' p-1' : 'ms-4 '}`} onSubmit={handleSubmit}>
+        <Form className={` bg-white ${window.innerWidth <= 576 ? '' : ' '}`} onSubmit={handleSubmit}>
           {
             etape === 1 &&
             <div>
-              <h3 className="text-center mb-2">Etape 1/2: Informations obligattoires</h3>
+              <h4 className="text-center mb-2">Etape 1/2: Informations obligattoires</h4>
               <Row>
                 <Col xl={7}>
                   <FormGroup>
@@ -299,7 +299,7 @@ export default function AjoutFormation() {
                   <Card className='border-secondary'>
                     <CardBody>
                       <Row>
-                        
+
                         <Col xs={6} className='text-end'>
                           {image ? (
                             <img src={URL.createObjectURL(image)} alt="" height={100} width={100} style={{ border: '1px solid black', borderRadius: '10%' }} />
@@ -307,11 +307,11 @@ export default function AjoutFormation() {
                             <img src='' alt="" className='class="bi bi-image-alt"' height={100} width={100} style={{ border: '1px solid black', borderRadius: '10%' }} />
                           )}
                         </Col>
-                        <Col xs={6} md={3}  className='mt-4'>
+                        <Col xs={6} md={3} className='mt-4'>
                           <input type="file" ref={inputRef} className='d-none' onChange={handleImageChange} name="" id="" />
                           <button type='button' onClick={handleImageClick} className={' mt-3 form-control bg-warning text-black fs-5  fw-bold'}> Photo</button>
                         </Col>
-                        
+
                       </Row>
                     </CardBody>
                   </Card>
@@ -325,15 +325,15 @@ export default function AjoutFormation() {
             <Col></Col>
             <Col lg={2}>
               {
-                etape === 2 && <MyButton text={'Précedent'} className={''} bgColor={'#03031efc'} onClick={etapePrecedent} />
+                etape === 2 && <Button className='form-control bg-warning text-black fw-bold' onClick={etapePrecedent}  > Précedent</Button>
               }
             </Col>
             <Col lg={2}>
               {
-                etape === 1 && <MyButton text={'Suivant'} className={''} bgColor={'#03031efc'} onClick={etapeSuivante} />
+                etape === 1 && <Button className='form-control bg-warning text-black fw-bold' onClick={etapeSuivante} > Suivant</Button>
               }
               {
-                etape === 2 && <MyButton text={'Valider'} bgColor={'#03031efc'} className={''} onClick={() => { }} />
+                etape === 2 && <Button className='form-control fw-bold' onClick={null} style={{ backgroundColor: '#03031efc' }} > Valider</Button>
               }
 
             </Col>

@@ -27,14 +27,14 @@ export default function ProfilFormateur() {
             <Row style={{ marginTop: '-10px' }}>
                 <Col md={6} lg={6} xl={5}>
                     <Card>
-                        <div className='fw-bold fs-4 ms-2'>Détail Personnel</div>
+                        <div className='fw-bold fs-5 ms-2'>Détail Personnel</div>
                         <div>
                             <Row>
                                 <Col></Col>
-                                <Col><img src={image} alt="photo" height={150} style={{ borderRadius: '50%' }} /></Col>
+                                <Col><img src={image} alt="photo" height={120} style={{ borderRadius: '50%' }} /></Col>
                                 <Col></Col>
                             </Row>
-                            <h2 className='text-center fs-1 fw-bold mt-1'>{formateur.nomComplet}</h2>
+                            <h2 className='text-center fs-3 fw-bold mt-1'>{formateur.nomComplet}</h2>
                             <Row>
                                 <Col>
                                     <Row className=' p-1 m-1 styleCol'>
@@ -76,7 +76,7 @@ export default function ProfilFormateur() {
                                     <Row>
                                         <Col></Col>
                                         <Col md={7}>
-                                            <MyButton text={'Modifier'} icone={'bi bi-pen'} className={''} bgColor={'#03031efc'} onClick={toggleDetail} />
+                                            <Button   className={'form-control fw-bold mb-1'} style={{backgroundColor: '#03031efc'}} onClick={toggleDetail} > <i className='bi bi-pen'></i> Modifier</Button>
                                         </Col>
                                         <Col></Col>
                                     </Row>
@@ -87,7 +87,7 @@ export default function ProfilFormateur() {
                 </Col>
                 <Col>
                     <Row>
-                        <Col className='mt-4 mt-lg-0' md={12} xl={6}>
+                        <Col className='mt-4 mt-md-0' md={12} xl={6}>
                             <Card>
                                 <div className='fw-bold fs-4 ms-2'>Détail Professionnel</div>
                                 <Row className=' p-1 m-1 styleCol'>

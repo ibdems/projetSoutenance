@@ -98,18 +98,18 @@ function ListUtilisateur() {
   };
 
   return (
-    <div className='mb-5 mt-4'>
+    <div className='mb-5'>
       <Breadcrumb listTag="div">
         <BreadcrumbItem>
           <Link to='/' style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Accueil</Link>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <Link style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Liste</Link>
+          <Link style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Liste des utilisateurs</Link>
         </BreadcrumbItem>
       </Breadcrumb>
       <Row>
         <Col lg={6} md={12}>
-          <Card className='p-1'>
+          <Card className='px-1'>
             <Row>
               <Col xs={12} md={6}>
                 <Row><MyLabel text={'Option de recherche'} /></Row>
@@ -139,7 +139,7 @@ function ListUtilisateur() {
           </Card>
         </Col>
         <Col lg={6} md={12}>
-          <Card className='p-1'>
+          <Card className='px-1'>
             <Row>
               <Col xs={12} md={6}>
                 <FormGroup>
@@ -208,18 +208,18 @@ function ListUtilisateur() {
               <tr key={utilisateur.id}>
                 <td>{startIndex + index + 1}</td>
                 <td>{utilisateur.code}</td>
-                <td><img src={photo} alt="" height={50} width={50} style={{ borderRadius: '50%' }} /></td>
+                <td><img src={photo} alt="" height={40} width={40} style={{ borderRadius: '50%' }} /></td>
                 <td>{utilisateur.nomComplet}</td>
                 <td>{utilisateur.telephone}</td>
                 <td>{utilisateur.adresse}</td>
                 <td>{utilisateur.email}</td>
                 <td>{utilisateur.type}</td>
                 <td>{utilisateur.statut ? 'Actif' : 'Bloqué'}</td>
-                <td><i className="bi bi-pen fs-3 fw-bold text-success" onClick={() => { }} title='Modifier'></i></td>
+                <td><i className="bi bi-pen fs-5 fw-bold text-success" onClick={() => { }} title='Modifier'></i></td>
                 <td>{utilisateur.statut ?
-                  <i className="bi bi-x-lg fs-3 fw-bold text-danger" onClick={() => { }} title='Bloqué'></i>
+                  <i className="bi bi-x-lg fs-5 fw-bold text-danger" onClick={() => { }} title='Bloqué'></i>
                   :
-                  <i className="bi bi-check-lg fs-3 fw-bold" onClick={() => { }} title='Debloqué'></i>}
+                  <i className="bi bi-check-lg fs-5 fw-bold" onClick={() => { }} title='Debloqué'></i>}
                 </td>
                 <td><i className="bi bi-eye-fill" onClick={() => openModal(utilisateur)}></i></td>
               </tr>
@@ -247,7 +247,7 @@ function ListUtilisateur() {
                 <div>
                   <Row>
                     <Col></Col>
-                    <Col><img src={photo} alt="photo" height={200} style={{ borderRadius: '50%' }} /></Col>
+                    <Col><img src={photo} alt="photo" height={200} style={{ borderRadius: '40%' }} /></Col>
                     <Col></Col>
 
                   </Row>
@@ -298,7 +298,7 @@ function ListUtilisateur() {
                     <div>
                       <Row>
                         <Col></Col>
-                        <Col><img src={photo} alt="photo" height={200} style={{ borderRadius: '50%' }} /></Col>
+                        <Col><img src={photo} alt="photo" height={200} style={{ borderRadius: '40%' }} /></Col>
                         <Col></Col>
 
                       </Row>
@@ -331,7 +331,7 @@ function ListUtilisateur() {
                   <div>
                     <Row>
                       <Col></Col>
-                      <Col><img src={photo} alt="photo" height={200} style={{ borderRadius: '50%' }} /></Col>
+                      <Col><img src={photo} alt="photo" height={200} style={{ borderRadius: '40%' }} /></Col>
                       <Col></Col>
 
                     </Row>

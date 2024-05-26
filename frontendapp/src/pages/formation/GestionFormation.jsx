@@ -46,48 +46,94 @@ export default function GestionFormation() {
         </BreadcrumbItem>
         <BreadcrumbItem >
           <Link to='/admin/formation/list' style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Liste</Link>
-        </BreadcrumbItem> 
+        </BreadcrumbItem>
         <BreadcrumbItem >
           <span className='fs-5 fw-bold text-black'>Gestion</span>
         </BreadcrumbItem>
       </Breadcrumb>
       <h3 className='text-center fs-bold'>Gestion de la formation</h3>
-      <Row className='m-lg-2 m-sm-0 mt-5 bg-white'>
+      <Row className='m-lg-2 m-sm-0 mt-1 bg-white'>
         <Col md={11} lg={6}>
           <Card >
-            <CardHeader>
-              <CardTitle className='text-center fs-4 fw-bold'>Information sur la formation</CardTitle>
-            </CardHeader>
-            <CardBody className='contenueFormation' style={{overflowY: 'auto', maxHeight: '500px'}}>
+            
+            <CardTitle className='text-center fs-4 fw-bold'>Information sur la formation</CardTitle>
+
+            <CardBody className='' style={{ overflowY: 'auto', maxHeight: '390px' }}>
               {/* Affichez les détails de la formation */}
               <h3 className='titre'>{formation.titre}</h3>
-              <div className=' mt-3'> {formation.description}</div>
+              <div className=''> {formation.description}</div>
               <div > <span className=' fw-bold'>- Durée :</span> {formation.duree}</div>
               <div > <span className=' fw-bold'>- Prix :</span> {formation.prix}</div>
               <div > <span className=' fw-bold'>- Niveau :</span> {formation.niveau}</div>
               <div > <span className=' fw-bold'>- Langue :</span> {formation.langue}</div>
               <div > <span className=' fw-bold'>- Domaine :</span> {formation.domaine}</div>
-              <div > <span className=' fw-bold'>- Les Prerequis :</span>
-                <ul>
-                  {formation.prerequis.map(prerequis => (
-                    <li key={prerequis.id}>{prerequis.libelle}</li>
-                  ))}
-                </ul>
-              </div>
-              {formation.criteres !== '' && <div > <span className=' fw-bold'>- Les Critères :</span>
-                <ul>
-                  {formation.criteres.map(critere => (
-                    <li key={critere.id}>{critere.libelle}</li>
-                  ))}
-                </ul>
-              </div>}
-              <div > <span className=' fw-bold'>- Les Objectifs :</span>
-                <ul>
-                  {formation.objectifs.map(objectifs => (
-                    <li key={objectifs.id}>{objectifs.libelle}</li>
-                  ))}
-                </ul>
-              </div>
+              <Row className=' styleCol'>
+                <Col xs={12}>
+                  <Row>
+                    <Col><span className=' fw-bold'>- Les Prerequis :</span></Col>
+                    <Col xs={2}><i className='bi bi-plus iconePlus' onClick={null}></i></Col>
+                  </Row>
+                </Col>
+                {
+                  formation.prerequis.map(domaine => (
+                    <Col key={domaine.id}>
+                      <Row>
+                        <Col><li className='ms-2'><span className='liText text-justify'>{domaine.libelle}</span></li></Col>
+                        <Col xs={3} lg={3} className='text-end'>
+                          <i className='bi bi-pen  fw-bold' title='modifier' onClick={null}></i>
+                          <i className='bi bi-trash  fw-bold ms-2 text-danger' title='Supprimer'></i>
+                        </Col>
+                      </Row>
+                    </Col>
+                  ))
+                }
+              </Row>
+              
+              
+              <Row className=' styleCol mt-1'>
+                <Col xs={12}>
+                  <Row>
+                    <Col><span className=' fw-bold'>- Les Critères :</span></Col>
+                    <Col xs={2}><i className='bi bi-plus iconePlus' onClick={null}></i></Col>
+                  </Row>
+                </Col>
+                {
+                  formation.criteres.map(domaine => (
+                    <Col key={domaine.id}>
+                      <Row>
+                        <Col><li className='ms-2'><span className='liText text-justify'>{domaine.libelle}</span></li></Col>
+                        <Col xs={3} lg={3} className='text-end'>
+                          <i className='bi bi-pen  fw-bold' title='modifier' onClick={null}></i>
+                          <i className='bi bi-trash  fw-bold ms-2 text-danger' title='Supprimer'></i>
+                        </Col>
+                      </Row>
+                    </Col>
+                  ))
+                }
+              </Row>
+
+              <Row className=' styleCol mt-1'>
+                <Col xs={12}>
+                  <Row>
+                    <Col><span className=' fw-bold'>- Les Objectifs :</span></Col>
+                    <Col xs={2}><i className='bi bi-plus iconePlus' onClick={null}></i></Col>
+                  </Row>
+                </Col>
+                {
+                  formation.objectifs.map(domaine => (
+                    <Col key={domaine.id}>
+                      <Row>
+                        <Col><li className='ms-2'><span className='liText text-justify'>{domaine.libelle}</span></li></Col>
+                        <Col xs={3} lg={3} className='text-end'>
+                          <i className='bi bi-pen  fw-bold' title='modifier' onClick={null}></i>
+                          <i className='bi bi-trash  fw-bold ms-2 text-danger' title='Supprimer'></i>
+                        </Col>
+                      </Row>
+                    </Col>
+                  ))
+                }
+              </Row>
+              
             </CardBody>
             <CardFooter>
               <Row className='mt-1'>
@@ -97,10 +143,10 @@ export default function GestionFormation() {
                 <Col lg={6} md={6} className='mb-2'>
                   <button onClick={displaySessions} type='button' className='form-control btnGestionFormations'> <i class="bi bi-eye-fill fs-5 fw-bold text-white align-right m-1"></i> <span className='fs-5 fw-600 text-white'>Voir les sessions</span> </button>
                 </Col>
-                <Col lg={6} md={6} className='mb-2'>
+                <Col lg={6} md={6} className='mb-2 mb-md-0'>
                   <button type='button' className='form-control btnGestionFormations'> <i class="bi bi-pencil-square fs-5 fw-bold text-white align-right m-1"></i> <span className='fs-5 fw-600 text-white'>Modifier</span> </button>
                 </Col>
-                <Col lg={6} md={6} className='mb-2'>
+                <Col lg={6} md={6} className='mb-2 mb-md-0'>
                   <button type='button' className='form-control btnGestionFormations'> <i class="bi bi-trash3-fill fs-5 fw-bold text-white align-right m-1"></i> <span className='fs-5 fw-600 text-white'>Supprimer</span> </button>
                 </Col>
 
@@ -109,10 +155,10 @@ export default function GestionFormation() {
           </Card>
         </Col>
         <Col md={11} lg={6}>
-          <Card className='p-2' style={{overflowY: 'auto', maxHeight: '680px'}}>
+          <Card className='p-2' style={{ overflowY: 'auto', maxHeight: '550px'}}>
             {col2}
           </Card>
-          
+
         </Col>
       </Row>
     </div>

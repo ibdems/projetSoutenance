@@ -104,7 +104,7 @@ function ListDemande() {
   };
 
   return (
-    <div className='mb-5 mt-4'>
+    <div className='mb-5'>
       <Breadcrumb listTag="div">
         <BreadcrumbItem>
           <Link to='/' style={{ textDecoration: 'none' }} className='fs-5 fw-bold text-black'>Accueil</Link>
@@ -115,7 +115,7 @@ function ListDemande() {
       </Breadcrumb>
       <Row>
         <Col lg={6} md={12}>
-          <Card className='p-1'>
+          <Card className='px-1'>
             <Row>
               <Col xs={12} md={6}>
                 <Row><MyLabel text={'Option de recherche'} /></Row>
@@ -147,7 +147,7 @@ function ListDemande() {
           </Card>
         </Col>
         <Col lg={6} md={12}>
-          <Card className='p-1'>
+          <Card className='px-1'>
             <Row>
               <Col xs={12} md={6}>
                 <FormGroup>
@@ -220,14 +220,14 @@ function ListDemande() {
             <tr key={demande.id}>
               <td>{startIndex + index + 1}</td>
               <td>{demande.code}</td>
-              <td><img src={photo} alt="" height={50} width={50} style={{ borderRadius: '50%' }} /></td>
+              <td><img src={photo} alt="" height={40} width={40} style={{ borderRadius: '50%' }} /></td>
               <td>{demande.nomPrenom}</td>
               <td>{demande.formation}</td>
               <td>{demande.session}</td>
               <td>{demande.genre}</td>
               <td>{demande.profession}</td>
-              <td><i className="bi bi-check-lg fs-3 fw-bold text-success" onClick={() => { }} title='Accepter'></i></td>
-              <td><i className="bi bi-x-lg fs-3 fw-bold text-danger" onClick={() => { }} title='Réfuser'></i></td>
+              <td><i className="bi bi-check-lg fs-5 fw-bold text-success" onClick={() => { }} title='Accepter'></i></td>
+              <td><i className="bi bi-x-lg fs-5 fw-bold text-danger" onClick={() => { }} title='Réfuser'></i></td>
               <td><i className="bi bi-eye-fill" onClick={() => openModal(demande)}></i></td>
             </tr>
           ))}
@@ -252,7 +252,7 @@ function ListDemande() {
             <div>
               <Row>
                 <Col></Col>
-                <Col><img src={photo} alt="photo" height={200} style={{ borderRadius: '50%' }} /></Col>
+                <Col><img src={photo} alt="photo" height={200} style={{ borderRadius: '40%' }} /></Col>
                 <Col></Col>
 
               </Row>
