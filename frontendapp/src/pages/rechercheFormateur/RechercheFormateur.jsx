@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import hero from '../accueil/images/hero-bg.png'
+import hero from '../../image/hero-bg.png'
 import '../accueil/css/style.css'
 import { Col, Row, FormGroup, Label } from 'reactstrap'
 import { MyLabel, MyInput, MySelect } from '../../components/Forms/Forms'
@@ -74,7 +74,7 @@ export default function Recherche() {
                 </div>
 
                 {/* Contenue du navbar */}
-                <nav className="navbar navbar-expand-lg fixed-top" aria-label="Offcanvas navbar large" style={{ backgroundColor: '#03031efc', padding: '15px 0 15px 0', marginTop: '-10px' }} >
+                <nav className="navbar navbar-expand-lg fixed-top" aria-label="Offcanvas navbar large" style={{ backgroundColor: '#03031efc' }} >
                     <div className="container-fluid">
                         <Link className="navbar-brand text-white" href="#">
                             MacthSavoir
@@ -106,15 +106,15 @@ export default function Recherche() {
                                 />
                             </div>
                             <div className="offcanvas-body text-center" style={{ backgroundColor: '#03031efc' }}>
-                                <ul className="navbar-nav justify-content-center flex-grow-1 pe-3 mx-auto">
+                                <ul className="navbar-nav justify-content-center flex-grow-1 mx-auto">
                                     <li className="nav-item ">
-                                        <Link className="nav-link active text-white fs-4" aria-current="page" to='/' >
+                                        <Link className="nav-link active text-white fs-5" aria-current="page" to='/' >
                                             Accueil
                                         </Link>
                                     </li>
 
                                     <li className="nav-item">
-                                        <a className="nav-link text-white fs-4" href='#contacteznous'>
+                                        <a className="nav-link text-white fs-5" href='#contacteznous'>
                                             Contactez-nous
                                         </a>
                                     </li>
@@ -131,24 +131,29 @@ export default function Recherche() {
                                         </li>
                                     )}
                                     {showTextLieu && (
-                                        <li className="nav-item ms-2 mt-2">
+                                        <li className="nav-item ms-2">
                                             <i className="bi bi-search iconeButton " onClick={rechercher}></i>
                                         </li>
                                     )
                                     }
                                 </ul>
-                                <ul className="ml-auto navbar-nav">
-                                    <li className="nav-item me-2 mb-2">
-                                        <button className='form-control fw-bold bg-warning fs-5 border-none' style={{ color: '#03031efc' }}>
-                                            <i className="bi bi-person-fill-add fs-5 me-2" aria-hidden="true" /> S'inscrire
-                                        </button>
-                                    </li>
-                                    <li className="nav-item me-2">
-                                        <button className='form-control fw-bold bg-warning fs-5 border-none' style={{ color: '#03031efc' }}>
-                                            <i className="bi bi-box-arrow-in-right fs-5 me-2" aria-hidden="true" />Se Connecter
-                                        </button>
-                                    </li>
+                                <ul className="ml-auto navbar-nav mt-2">
+                                    <li className="nav-item me-3  mb-2">
+                                        <Link to={'/inscription'} style={{ textDecoration: 'none' }}>
+                                            <button className='form-control fw-bold bg-warning fs-5 border-none' style={{ color: '#03031efc' }}>
+                                                <i className="bi bi-person-fill-add fs-5 me-2" aria-hidden="true" /> S'inscrire
+                                            </button>
+                                        </Link>
 
+                                    </li>
+                                    <li className="nav-item me-3">
+                                        <Link to={'/connexion'} style={{ textDecoration: 'none' }}>
+                                            <button className='form-control fw-bold bg-warning fs-5 border-none' style={{ color: '#03031efc' }}>
+                                                <i className="bi bi-box-arrow-in-right fs-5 me-2" aria-hidden="true" />Se Connecter
+                                            </button>
+                                        </Link>
+
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -226,10 +231,10 @@ export default function Recherche() {
             {/* Section des sessions */}
             <section className="service_section layout_padding">
                 <div className="ms-md-5 me-md-5">
-                    <Row className='gx-3 gy-4 justify-content-center'>
+                    <Row className='gx-3 gy-4 align-items-stretch'>
                         {formateurDomicile.map(formateur => (
-                            <Col key={formateur.id} xs={12} sm={6} xl={3} lg={6} md={6} className='d-flex  flex-column justify-content-between colForm'>
-                                <Col className='p-5 d-flex flex-column justify-content-between'>
+                            <Col key={formateur.id} xs={12} sm={6} xl={3} lg={6} md={6} className='d-flex flex-column justify-content-between'>
+                                <Col className='p-2 d-flex flex-column justify-content-between colFormFormateur border-black m-1'>
                                     <Row>
                                         <Col>
                                             <img src={image} alt="photo" style={{ borderRadius: '10px' }} />
@@ -259,7 +264,7 @@ export default function Recherche() {
                                 </Col>
                             </Col>
                         ))}
-                        <Modal isOpen={modal} toggle={toggle}  scrollable={true} className='fs-5'  style={{ maxHeight: '80vh', width: '200vw' , marginTop: '10vh'}}>
+                        <Modal isOpen={modal} toggle={toggle} scrollable={true} className='fs-5' style={{ maxHeight: '80vh', width: '200vw', marginTop: '10vh' }}>
 
                             <ModalBody>
                                 {selectedFormateur && (

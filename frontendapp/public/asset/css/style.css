@@ -94,6 +94,7 @@ a:focus {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+
 }
 
 .hero_area .hero_bg_box {
@@ -318,6 +319,7 @@ a:focus {
   background-color: #f8f8f9;
   padding: 20px;
   border-radius: 5px;
+  min-height: 357px;
 }
 
 .service_section .box .img-box {

@@ -12,6 +12,7 @@ import GestionFormation from '../pages/formation/GestionFormation'
 import AjoutFormation from '../pages/formation/AjoutFormation'
 import AjoutFormateurCabinet from '../pages/formateur/AjoutFormateurCabinet'
 import ListUtilisateur from '../pages/utilisateurs/ListUtilisateur'
+import MesMessages from '../pages/message/MesMessages'
 
 function LayoutRouter() {
     return (
@@ -40,6 +41,10 @@ function LayoutRouter() {
                 {/* Les routes pour la gestion des utilisateurs */}
                 <Route path='/utilisateurs'>
                     <Route index element={<ListUtilisateur />} />
+                </Route>
+                {/* Les routes pour la messageries */}
+                <Route path='/messages'>
+                    <Route index element={<MesMessages />} />
                 </Route>
                 {/* Les routes pour la gestion des payements */}
                 <Route path='/payement'>

@@ -46,7 +46,7 @@
   border-radius: 5px;
 }
 
-.sidebar-link:hover, .accordion-item:hover {
+.sidebar-link:hover, .sidebar-accordion .accordion-item:hover {
   background: linear-gradient(1000deg, #918A31, #000121);
   border: 3px solid #010332;
   width: 100%;
@@ -64,6 +64,7 @@
   padding-top: 1px;
   width: 100%;
   margin-top: 5px;
+  
 }
 
 .sidebar-link i {
@@ -80,9 +81,8 @@
   font-size: 20px; /* Taille de l'icône */
   color: #adadad; /* Couleur de l'icône */
 }
-
-/* Styles pour les accordions */
-.accordion-button {
+/* Styles pour les accordions du Sidebar */
+.sidebar-accordion .accordion-button {
   --bs-accordion-btn-bg: none;
   --bs-accordion-btn-color: #adadad;
   font-weight: bold;
@@ -93,33 +93,34 @@
   margin-left: -0.9em;
 }
 
-.accordion-button span {
+.sidebar-accordion .accordion-button span {
   margin-left: 15px;
 }
 
-.accordion-item {
+.sidebar-accordion .accordion-item {
   font-weight: bold;
   --bs-accordion-bg: transparent;
-  --bs-accordion-active-bg: transparent;
+  --bs-accordion-active-bg: none;
   --bs-accordion-active-color: #adadad;
   align-items: center;
-  --bs-accordion-border-color: transparent;
+  --bs-accordion-border-color: none;
   border-radius: 5px;
 }
 
 /* Supprimer les bordures des accordions */
-.custom-accordion .accordion-item {
+.sidebar-accordion .accordion-item {
   border: none; /* Supprimer la bordure */
 }
 
-.accordion-body {
+.sidebar-accordion .accordion-body {
   color: #adadad;
   font-weight: bold;
   font-size: 0.9em;
   margin-top: -40px;
   margin-bottom: -20px;
-  border: 1px solid transparent;
+  border: none;
 }
+
 
 .sidebar-link-collapsed {
   flex-direction: column;

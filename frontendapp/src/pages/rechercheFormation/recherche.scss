@@ -1,43 +1,52 @@
 @import '../../styles/responsive.scss';
 
 .chiffre {
-    font-size: 4em;
-  }
-  
-  .iconeButton{
-    font-size: 2em;
-    background-color: rgb(255, 187, 0);
-    padding: 10px;
-    border-radius: 20%;
-    
-  }
-  
-  .colForm {
-    box-shadow: 20px 40px 400px transparent;
-    border-radius: 15px;
-    color: black;
-    background-color: rgba(239, 239, 247, 0.978);
-    min-height: 100%;
-    box-shadow: 20px 20px 100px rgb(231, 219, 219) ;
-   }
+  font-size: 4em;
+}
 
-   .detailFormation  {
-    box-shadow: 10px 0px 90px rgb(231, 219, 219) ;
-   }
+.iconeButton {
+  font-size: 2em;
+  background-color: rgb(255, 187, 0);
+  padding: 0px 10px;
+  border-radius: 20%;
+}
 
-   .styleCol {
-    background-color: rgb(228, 222, 222);
-   }
+.colForm {
+  box-shadow: 20px 40px 400px transparent;
+  color: #adadad;
+  background: -webkit-gradient(linear, left top, left bottom, from(#01012afc), to(#002b64));
+  background: linear-gradient(to bottom, #010127ed, #021733);
+  min-height: 100%;
   
-  .colForm span {
-    font-size: 20px;
-  }
-  
-  .btnVoirplus {
-    background: linear-gradient(to right, #03031efc, #021733);
-    color:  white;
-  }
+}
 
-  .inputNav {
-    width: 500px;
-  }
+.colFormFormateur {
+  box-shadow: 20px 40px 400px transparent;
+  border-radius: 15px;
+  color: black;
+  background-color: rgba(239, 239, 247, 0.978);
+  min-height: 100%;
+  box-shadow: 20px 20px 100px rgb(231, 219, 219) ;
+
+}
+
+.detailFormation {
+  box-shadow: 10px 0px 90px rgb(231, 219, 219);
+}
+
+.styleCol {
+  background-color: rgb(228, 222, 222);
+}
+
+.colForm span {
+  font-size: 20px;
+}
+
+.btnVoirplus {
+  background: linear-gradient(to right, #03031efc, #021733);
+  color: white;
+}
+
+.inputNav {
+  width: 500px;
+}

@@ -11,12 +11,12 @@ function Connexion() {
     <div className='contenuConnexion'>
       {/* Votre arrière-plan fixe pour toute la page */}
 
-      <div className='container mb-lg-2 mt-lg-5' style={{ marginTop: '5em' }}>
+      <div className='container  mb-lg-2' style={{marginTop: '4em'}}>
         {/* Le bloc de ligne avec deux colonnes éloignées */}
         <Row className=" container-special" >
-          <Col lg={6} className='special-col  d-none d-lg-block'>
-            <div className="container-fluid">
-              <Carousel interval={5000} prevLabel="Précédent" nextLabel="Suivant" indicators={false} style={{marginTop: '10em'}}>
+          <Col lg={6} className='special-col  d-none mt-lg-5 mt-1 d-md-block'>
+            <div className="container-fluid mt-lg-5 mt-1" style={{marginTop: '6.5em'}}>
+              <Carousel interval={5000} prevLabel="Précédent" nextLabel="Suivant" indicators={false} >
                 <Carousel.Item>
 
                   <div className="row">
@@ -25,11 +25,11 @@ function Connexion() {
                       Vous êtes élève, étudiant ou professionnel et vous souhaitez ameliorer vos competances
                       ou vous reconvertir, cette plateforme est pour vous.
                     </p>
-                    <h2 className='text-warning text-center '>Trouvez la formation qui vous convient</h2>
+                    <h4 className='text-warning text-center '>Trouvez la formation qui vous convient</h4>
                     <Row>
                       <Col></Col>
                       <Col md={8}>
-                        <Link to={'/rechercheformation'}>
+                        <Link to={'/rechercheformation'} style={{textDecoration: 'none'}}>
                           <button className='form-control fs-5 fw-bold bg-warning border-none' style={{ color: '#03031efc' }}>
                             <i className="bi bi-search" aria-hidden="true" /> Rechercher
                           </button>
@@ -57,7 +57,7 @@ function Connexion() {
                       <Row>
                         <Col></Col>
                         <Col md={8}>
-                          <Link to={'/inscription'}>
+                          <Link to={'/inscription'} style={{textDecoration: 'none'}}>
                             <button className='form-control fw-bold bg-warning fs-4 border-none' style={{ color: '#03031efc' }}>
                               <i className="bi bi-person-fill-add" aria-hidden="true" /> M'inscrire
                             </button>
@@ -83,7 +83,7 @@ function Connexion() {
                       <Row>
                         <Col></Col>
                         <Col md={8}>
-                          <Link to={'/rechercheformateur'}>
+                          <Link to={'/rechercheformateur'} style={{textDecoration: 'none'}}>
                             <button className='form-control fw-bold bg-warning fs-5 border-none' style={{ color: '#03031efc' }}>
                               <i className="bi bi-search" aria-hidden="true" /> Rechercher
                             </button>
@@ -100,6 +100,8 @@ function Connexion() {
               </Carousel>
             </div>
           </Col>
+
+          {/* Colonne pour la connexion */}
           <Col className='special-col-login'><FormLogin lienConnexion={'/admin'}/></Col> {/* Deuxième colonne pour le formulaire de connexion */}
 
         </Row>

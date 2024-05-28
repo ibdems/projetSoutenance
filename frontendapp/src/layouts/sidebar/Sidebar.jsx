@@ -26,7 +26,7 @@ function Sidebar({ size }) {
         <ul>
           <SidebarLink to="/admin" icon="bi bi-speedometer2" title="Tableau de bord" change={change} />
 
-          <Accordion open={open} toggle={toggle}>
+          <Accordion open={open} toggle={toggle} className="sidebar-accordion">
             <AccordionItem>
               <AccordionHeader targetId="formations">
                 <i className="bi bi-mortarboard-fill" title={change ? '' : 'Formations'}></i>
@@ -74,8 +74,9 @@ function Sidebar({ size }) {
             </AccordionItem>
           </Accordion>
 
-          <SidebarLink to="/admin/gestionInscription" icon="bi bi-clipboard-check" title="Inscriptions" change={change} />
+          <SidebarLink to="/admin/gestionInscription" icon="bi bi-clipboard-check-fill" title="Inscriptions" change={change} />
           <SidebarLink to="/admin/utilisateurs" icon="bi bi-people-fill" title="Utilisateurs" change={change} />
+          <SidebarLink to="/admin/messages" icon="bi bi-chat-right-fill" title="Messages" change={change} />
           <SidebarLink to="/admin/payement" icon="bi bi-cash-coin" title="Payements" change={change} />
           <SidebarLink to="/admin/profil" icon="bi bi-person-circle" title="Profil" change={change} />
           <SidebarLink to="/deconnexion" icon="bi bi-box-arrow-in-right" title="Déconnexion" change={change} />

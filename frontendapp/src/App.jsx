@@ -5,7 +5,7 @@ import Erreur from './components/Erreur';
 import PublicRouter from './layoutsPublic/PublicRouter';
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{}}>
         <BrowserRouter>
             <Routes>
                 <Route path='/admin/*' element={<LayoutRouter/>}  />

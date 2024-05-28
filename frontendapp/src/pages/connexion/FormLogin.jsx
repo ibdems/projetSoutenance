@@ -17,14 +17,14 @@ export default function FormLogin({lienConnexion}) {
     }
   return (
     <div >
-        <Row className='mt-5'>
+        <Row className='mt-2 mt-lg-5'>
             <Col></Col>
             <Col xs={3} xl={3} md={2} lg={3} className='mt-md-5 mt-lg-3'>
                 <img src="" alt="" height={100} width={100}/>
             </Col>
             <Col></Col>
         </Row>
-        <Row className='mt-3'>
+        <Row className='mt-1'>
             <Col></Col>
             <Col xs={9} md={7} xl={8} >
                 <Form>
@@ -41,14 +41,14 @@ export default function FormLogin({lienConnexion}) {
                     <Row>
                         <Col></Col>
                         <Col xs={8}  md={8} lg={10}>
-                            <Link to={lienConnexion}>
+                            <Link to={lienConnexion} style={{textDecoration: 'none'}}>
                                 <button className='form-control bg-warning fs-5 fw-bold mt-3' > Se Connecter</button>
                             </Link>
                             
                         </Col>
                         <Col></Col>
                     </Row>
-                    <div className='text-white text-center mt-3 mb-lg-3 fs-5'>J'ai pas de compte! <span className='text-warning'><Link to={'/inscription'}>M'inscrire</Link></span> </div>
+                    <div className='text-white text-center mt-3 mb-3 fs-5'>J'ai pas de compte! <span className='text-warnin'><Link to={'/inscription'} style={{textDecoration: 'none'}} className='text-warning'>M'inscrire</Link></span> </div>
                     
                 </Form>
             </Col>

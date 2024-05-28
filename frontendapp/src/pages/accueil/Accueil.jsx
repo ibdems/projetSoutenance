@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import hero from './images/hero-bg.png'
+import hero from '../../image/hero-bg.png'
 import NotreEquipe from './NotreEquipe';
 
 import ContactezNous from './ContactezNous';
@@ -10,10 +10,6 @@ import Footer from './Footer';
 import NosChiffre from './NosChiffre';
 import Carroussel from './Carroussel';
 export default function Accueil() {
-
-
-
-
 
     return (
         <>
@@ -76,7 +72,7 @@ export default function Accueil() {
                                         </ul>
                                         <ul className="ml-auto navbar-nav">
                                             <li className="nav-item me-2 mb-2">
-                                                <Link to={'/inscription'}>
+                                                <Link style={{textDecoration: 'none'}} to={'/inscription'}>
                                                     <button className='form-control fw-bold bg-warning fs-5 border-none' style={{ color: '#03031efc' }}>
                                                         <i className="bi bi-person-fill-add fs-5 me-2" aria-hidden="true" /> S'inscrire
                                                     </button>
@@ -84,7 +80,7 @@ export default function Accueil() {
 
                                             </li>
                                             <li className="nav-item me-2">
-                                                <Link to={'/connexion'}>
+                                                <Link style={{textDecoration: 'none'}} to={'/connexion'}>
                                                     <button className='form-control fw-bold bg-warning fs-5 border-none' style={{ color: '#03031efc' }}>
                                                         <i className="bi bi-box-arrow-in-right fs-5 me-2" aria-hidden="true" />Se Connecter
                                                     </button>
@@ -100,7 +96,7 @@ export default function Accueil() {
                     </div>
                 </header>
                 {/* Section pour les carouselles */}
-                <section className='slider_section '>
+                <section className='slider_section ' style={{marginTop: '-50px'}}>
                     <Carroussel />
                 </section>
             </div>
@@ -117,7 +113,7 @@ export default function Accueil() {
                                 vos besoins et ceux qui souhaite avoir des apprenants, nous avons les propositions suivantes
                             </p>
                         </div>
-                        <div className="row">
+                        <div className="row" >
                             <div className="col-md-4 ">
                                 <div className="box ">
                                     <div className="img-box">
@@ -125,11 +121,11 @@ export default function Accueil() {
                                     </div>
                                     <div className="detail-box">
                                         <h6 className='text-center fs-5 fw-bold'>Trouver une formation</h6>
-                                        <p>
+                                        <p className='text-justify'>
                                             Vous êtes élève, étudiant ou professionnel et vous souhaitez ameliorer vos competances
                                             ou vous reconvertir, cette plateforme est pour vous.
                                         </p>
-                                        <Link to="/rechercheformation">
+                                        <Link style={{textDecoration: 'none'}} to="/rechercheformation">
                                             <button className='form-control fs-5 fw-bold bg-warning border-none' style={{ color: '#03031efc' }}>
                                                 <i className="bi bi-search" aria-hidden="true" /> Rechercher
                                             </button>
@@ -149,7 +145,7 @@ export default function Accueil() {
                                             de demandes et gérer
                                             les demandes d'inscriptions
                                         </p>
-                                        <Link to={'/inscription'}>
+                                        <Link style={{textDecoration: 'none'}} to={'/inscription'}>
                                             <button className='form-control fw-bold bg-warning fs-5  border-none' style={{ color: '#03031efc' }}>
                                                 <i className="bi bi-person-fill-add" aria-hidden="true" /> M'inscrire
                                             </button>
@@ -168,7 +164,7 @@ export default function Accueil() {
                                             Vous êtes à la recherche d'un formateur pour vos votre formation ou celle de vos enfants selon votre
                                             disponibilité, vous êtes au bon endroit
                                         </p>
-                                        <Link to="/rechercheformateur">
+                                        <Link style={{textDecoration: 'none'}} to="/rechercheformateur">
                                             <button className='form-control fw-bold bg-warning fs-5 border-none' style={{ color: '#03031efc' }}>
                                                 <i className="bi bi-search" aria-hidden="true" /> Rechercher
                                             </button>

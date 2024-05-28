@@ -15,51 +15,51 @@ export default function DetailOrganisme() {
                 <h2 className='text-center mt-3'>Tech Evolution</h2>
             </Row>
             <Row className=' p-1 styleCol'>
-                <Col md={12} lg={6}>
-                    <h5 className='mt-2 text-justify'><i className="bi bi-job fs-3"></i> Descrption</h5>
+                <Col xs={12}>
+                    <div className='fw-bold text-justify'><i className="bi bi-job fs-3"></i> Descrption:</div>
                 </Col>
                 <Col>
-                    <p className='text-justify fw-3 fs-5 mt-2'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas nisi temporibus provident dolore earum odit fugit amet, minima nostrum similique quas numquam placeat, magnam aspernatur incidunt ea sequi reiciendis vel?</p>
+                    <p className='mt-1 text-justify  '>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas nisi temporibus provident dolore earum odit fugit amet, minima nostrum similique quas numquam placeat, magnam aspernatur incidunt ea sequi reiciendis vel?</p>
                 </Col>
             </Row>
             <Row className=' p-1 '>
-                <Col>
-                    <h5 className='mt-2 text-justify'><i className="bi bi-job fs-3"></i> Adresse</h5>
+                <Col xs={5} md={4}>
+                    <div className=' text-start text-md-end fw-bold'><i className="bi bi-geo-alt"></i> Adresse:</div>
                 </Col>
                 <Col>
-                    <p className='text-justify fw-3 fs-5 mt-2'>Conakry/Hamdallaye</p>
+                    <p className='text-justify  fw-3 fs-5 '>Conakry/Hamdallaye</p>
                 </Col>
             </Row>
             <Row className=' p-1 styleCol'>
-                <Col>
-                    <h5 className='mt-2 text-justify'><i className="bi bi-job fs-3"></i> Telephone</h5>
+                <Col xs={5} md={4}>
+                    <div className=' text-start text-md-end fw-bold'><i className="bi bi-telephone "></i> Telephone:</div>
                 </Col>
                 <Col>
-                    <p className='text-justify fw-3 fs-5 mt-2'>620 000 000</p>
+                    <p className='mt-1 text-justify  '>620 000 000</p>
                 </Col>
             </Row>
             <Row className=' p-1 '>
-                <Col>
-                    <h5 className='mt-2 text-justify'><i className="bi bi-job fs-3"></i> Email</h5>
+                <Col xs={5} md={4}>
+                    <div className=' text-start text-md-end fw-bold'><i className="bi bi-envelope"></i> Email:</div>
                 </Col>
                 <Col>
-                    <p className='text-justify fw-3 fs-5 mt-2'>techEvolution@gmail.com</p>
+                    <p className='mt-1 text-justify  '>techEvolution@gmail.com</p>
                 </Col>
             </Row>
             <Row className=' p-1 styleCol'>
-                <Col>
-                    <h5 className='mt-2 text-justify'><i className="bi bi-job fs-3"></i> Site Web</h5>
+                <Col xs={5} md={4}>
+                    <div className=' text-start text-md-end fw-bold'><i className="bi bi-job fs-3"></i> Site Web :</div>
                 </Col>
                 <Col>
-                    <p className='text-justify fw-3 fs-5 mt-2'>https//:techEvolution.com</p>
+                    <p className='mt-1 text-justify  '>https//:techEvolution.com</p>
                 </Col>
             </Row>
             <Row className=' p-1 '>
-                <Col>
-                    <h5 className='mt-2 text-justify'><i className="bi bi-job fs-3"></i> Domaine</h5>
+                <Col md={4}>
+                    <div className=' text-start text-md-end fw-bold'><i className="bi bi-job fs-3"></i> Domaine:</div>
                 </Col>
                 <Col>
-                    <p className='text-justify fw-3 fs-5 mt-2'><li>Formation</li><li>Developpement Logiciel</li></p>
+                    <p className='mt-1 text-justify  '><li>Formation</li><li>Developpement Logiciel</li></p>
                 </Col>
             </Row>
             

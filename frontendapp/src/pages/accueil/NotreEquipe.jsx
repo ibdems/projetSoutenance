@@ -1,7 +1,7 @@
 import React from 'react'
-import dems from './images/afficherPhotoUtilisateur.jpeg'
-import aissata from './images/team-1.jpg'
-import saidou from './images/team-2.jpg'
+import dems from '../../image/team-2.jpg'
+import aissata from '../../image/team-1.jpg'
+import saidou from '../../image/team-2.jpg'
 import { Link } from 'react-router-dom'
 
 export default function NotreEquipe() {

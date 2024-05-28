@@ -49,26 +49,26 @@ export default function ContactezNous() {
                                     <div className="contact-info white">
                                         <div className="contact-item media"> <i className="fa fa-map-marker-alt media-left media-right-margin"></i>
                                             <div className="media-body">
-                                                <p className="font-bold">Address</p>
-                                                <p className="">Université Gamal Abdel Nasser de Conakry</p>
+                                                <p className="">Address :</p>
+                                                <p className="fw-bold">Université Gamal Abdel Nasser de Conakry</p>
                                             </div>
                                         </div>
                                         <div className="contact-item media"> <i className="fa fa-mobile media-left media-right-margin"></i>
                                             <div className="media-body">
-                                                <p className="text-uppercase">Telephone</p>
-                                                <p className="text-uppercase"><a className="text-black" href="tel:+15173977100">63874839237</a> </p>
+                                                <p className="">Telephone :</p>
+                                                <p className=""><a className="text-black fw-bold" style={{textDecoration: 'none'}} href="tel:+15173977100">63874839237</a> </p>
                                             </div>
                                         </div>
                                         <div className="contact-item media"> <i className="fa fa-envelope media-left media-right-margin"></i>
                                             <div className="media-body">
-                                                <p className="text-uppercase">E-mail</p>
-                                                <p className=""><a className="text-black" href="mailto:abcdefg@gmail.com">ibrahima882001@gmail.com</a> </p>
+                                                <p className="">E-mail :</p>
+                                                <p className=""><a className="text-black fw-bold" href="mailto:ibrahima882001@gmail.com">ibrahima882001@gmail.com</a> </p>
                                             </div>
                                         </div>
                                         <div className="contact-item media"> <i className="fa fa-clock media-left media-right-margin"></i>
                                             <div className="media-body">
-                                                <p className="text-uppercase">Jours de travaille</p>
-                                                <p className="text-uppercase">H24</p>
+                                                <p className="">Jours de travaille</p>
+                                                <p className="fw-bold">H24</p>
                                             </div>
                                         </div>
                                     </div>

@@ -14,68 +14,68 @@ export default function DetailFormateur() {
             <Row>
                 <h2 className='text-center mt-3'>Ibrahim Dems</h2>
             </Row>
-            <Row className=' p-1 styleCol'>
-                <Col>
-                    <h5 className='mt-2 text-justify'><i className="bi bi-job fs-3"></i> Profession</h5>
+            <Row className=' px-1 styleCol'>
+                <Col xs={4}>
+                    <div className='fw-bold text-start text-md-end'><i className="bi bi-job fs-3"></i> Profession:</div>
                 </Col>
                 <Col>
-                    <p className='text-justify fw-3 fs-5 mt-2'>Developpeur Web & Mobile</p>
-                </Col>
-            </Row>
-            <Row className=' p-1 '>
-                <Col>
-                    <h5 className='mt-2 text-justify'><i className="bi bi-job fs-3"></i> Adresse</h5>
-                </Col>
-                <Col>
-                    <p className='text-justify fw-3 fs-5 mt-2'>Conakry/Hamdallaye</p>
+                    <p className='text-justify fs-5 mt-1'>Developpeur Web & Mobile</p>
                 </Col>
             </Row>
-            <Row className=' p-1 styleCol'>
-                <Col>
-                    <h5 className='mt-2 text-justify'><i className="bi bi-job fs-3"></i> Telephone</h5>
+            <Row className=' px-1 '>
+                <Col xs={4}>
+                    <div className='fw-bold text-start text-md-end'><i className="bi bi-job fs-3"></i> Adresse:</div>
                 </Col>
                 <Col>
-                    <p className='text-justify fw-3 fs-5 mt-2'>620 000 000</p>
-                </Col>
-            </Row>
-            <Row className=' p-1 '>
-                <Col>
-                    <h5 className='mt-2 text-justify'><i className="bi bi-job fs-3"></i> Email</h5>
-                </Col>
-                <Col>
-                    <p className='text-justify fw-3 fs-5 mt-2'>ibrahima2ds@gmail.com</p>
+                    <p className='text-justify fs-5 mt-1'>Conakry/Hamdallaye</p>
                 </Col>
             </Row>
-            <Row className=' p-1 styleCol'>
-                <Col>
-                    <h5 className='mt-2 text-justify'><i className="bi bi-job fs-3"></i> Linkdin</h5>
+            <Row className=' px-1 styleCol'>
+                <Col xs={4}>
+                    <div className='fw-bold text-start text-md-end'><i className="bi bi-job fs-3"></i> Telephone:</div>
                 </Col>
                 <Col>
-                    <p className='text-justify fw-3 fs-5 mt-2'>@IbrahimaDiallo</p>
-                </Col>
-            </Row>
-            <Row className=' p-1'>
-                <Col>
-                    <h5 className='mt-2 text-justify'><i className="bi bi-job fs-3"></i> Competances</h5>
-                </Col>
-                <Col>
-                    <p className='text-justify fw-3 fs-5 mt-2'><li>Developpement Web</li><li>Developpement Mobile</li></p>
+                    <p className='text-justify fs-5 mt-1'>620 000 000</p>
                 </Col>
             </Row>
-            <Row className=' p-1 styleCol'>
-                <Col>
-                    <h5 className='mt-2 text-justify'><i className="bi bi-job fs-3"></i> Domaine d'expertise</h5>
+            <Row className=' px-1 '>
+                <Col xs={4}>
+                    <div className='fw-bold text-start text-md-end'><i className="bi bi-job fs-3"></i> Email:</div>
                 </Col>
                 <Col>
-                    <p className='text-justify fw-3 fs-5 mt-2'><li>Analyse et modelisation</li><li>ReactJs</li></p>
+                    <p className='text-justify fs-5 mt-1'>ibrahima2ds@gmail.com</p>
                 </Col>
             </Row>
-            <Row className=' p-1'>
-                <Col>
-                    <h5 className='mt-2 text-justify'><i className="bi bi-job fs-3"></i> Certifications</h5>
+            <Row className=' px-1 styleCol'>
+                <Col xs={4}>
+                    <div className='fw-bold text-start text-md-end'><i className="bi bi-job fs-3"></i> Linkdin:</div>
                 </Col>
                 <Col>
-                    <p className='text-justify fw-3 fs-5 mt-2'><li>Diplomé en Genie Informatique de Guinée</li><li>DevOps</li></p>
+                    <p className='text-justify fs-5 mt-1'>@IbrahimaDiallo</p>
+                </Col>
+            </Row>
+            <Row className=' px-1'>
+                <Col xs={12} md={4}>
+                    <div className='fw-bold text-start text-md-end'><i className="bi bi-job fs-3"></i> Competances:</div>
+                </Col>
+                <Col>
+                    <p className='text-justify fs-5 mt-1'><li>Developpement Web</li><li>Developpement Mobile</li></p>
+                </Col>
+            </Row>
+            <Row className=' px-1 styleCol'>
+                <Col xs={12} md={4}>
+                    <div className='fw-bold text-start text-md-end'><i className="bi bi-job fs-3"></i> Domaine d'expertise:</div>
+                </Col>
+                <Col>
+                    <p className='text-justify fs-5 mt-1'><li>Analyse et modelisation</li><li>ReactJs</li></p>
+                </Col>
+            </Row>
+            <Row className=' px-1'>
+                <Col xs={12} md={4}>
+                    <div className='fw-bold text-start text-md-end'><i className="bi bi-job fs-3"></i> Certifications:</div>
+                </Col>
+                <Col>
+                    <p className='text-justify fs-5 mt-1'><li>Diplomé en Genie Informatique de Guinée</li><li>DevOps</li></p>
                 </Col>
             </Row>
         </div>

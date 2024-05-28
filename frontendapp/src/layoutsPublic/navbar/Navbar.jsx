@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 export default function Navbar({contacteznous }) {
     return (
-        <nav className="navbar navbar-expand-lg fixed-top" aria-label="Offcanvas navbar large" style={{ backgroundColor: '#03031efc', padding: '15px 0 15px 0', marginTop: '-10px' }}>
+        <nav className="navbar navbar-expand-lg fixed-top" aria-label="Offcanvas navbar" style={{ backgroundColor: '#03031efc' }}>
             <div className="container-fluid">
                 <Link className="navbar-brand text-white" href="#">
                     MatchSavoir
@@ -48,9 +48,9 @@ export default function Navbar({contacteznous }) {
                                 </a>
                             </li>
                         </ul>
-                        <ul className="ml-auto navbar-nav mt-3">
+                        <ul className="ml-auto navbar-nav">
                             <li className="nav-item me-2 mb-2">
-                                <Link to={'/inscription'}>
+                                <Link to={'/inscription'} style={{textDecoration: 'none'}}>
                                     <button className='form-control fw-bold bg-warning fs-5 border-none' style={{ color: '#03031efc' }}>
                                         <i className="bi bi-person-fill-add fs-5 me-2" aria-hidden="true" /> S'inscrire
                                     </button>
@@ -58,7 +58,7 @@ export default function Navbar({contacteznous }) {
                                 
                             </li>
                             <li className="nav-item me-2">
-                                <Link to={'/connexion'}>
+                                <Link to={'/connexion'} style={{textDecoration: 'none'}}>
                                     <button className='form-control fw-bold bg-warning fs-5 border-none' style={{ color: '#03031efc' }}>
                                         <i className="bi bi-box-arrow-in-right fs-5 me-2" aria-hidden="true" />Se Connecter
                                     </button>
