@@ -8,8 +8,8 @@ export default function ReponseMessage({expediteur, objet}) {
     }
   return (
     <div>
-        <div className='fw-bold'>A: <span>{expediteur}</span></div>
-        <div className='fw-bold mb-2'>Objet: <span>{objet}</span></div>
+        <div className='fw-bold' style={{fontSize: '18px'}}>A: <span>{expediteur}</span></div>
+        <div className='fw-bold mb-2' style={{fontSize: '18px'}}>Objet: <span>{objet}</span></div>
 
         <MyInput type={'textarea'} rows={8} value={contenue} onChange={handleContenuChange}/>
 

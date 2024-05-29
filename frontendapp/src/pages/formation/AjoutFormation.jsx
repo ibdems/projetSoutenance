@@ -4,6 +4,25 @@ import { MyButton, MyLabel, MyInput, MySelect } from '../../components/Forms/For
 import { ajouterFormation, formations } from './dataFormation.js';
 import './formation.scss';
 import { Link, NavLink } from 'react-router-dom';
+import * as yup from 'yup';
+
+const validationSchemaEtape1 = yup.object().shape({
+  titre: yup.string().required('Le titre est requis').min(3, 'Minimum 3 charactères'),
+  description: yup.string().required('La description est requise').min(10, 'Minimum 10 charactères'),
+  duree: yup.string().required('La durée est requise'),
+  prix: yup.string().required('Le prix est requis'),
+  domaine: yup.string().required('Le domaine est requis'),
+  format: yup.string().required('Le format est requis'),
+  langue: yup.string().required('La langue est requise'),
+  tags: yup.string().required('Les tags sont requis'),
+  niveau: yup.string().required('Le niveau est requis'),
+});
+
+const validationSchemaEtape2 = yup.object().shape({
+  objectifs: yup.array().of(yup.string()),
+  prerequis: yup.array().of(yup.string()),
+  criteres: yup.array().of(yup.string()),
+});
 
 export default function AjoutFormation() {
   const [elements, setElements] = useState({

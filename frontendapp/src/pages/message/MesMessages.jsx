@@ -21,6 +21,7 @@ export default function MesMessages() {
   const [selectedMessage, setSelectedMessage] = useState(null)
   const openModalReponse = (reponse) => {
     setSelectedMessage(reponse)
+    toggleReponse()
   }
   return (
     <div>
@@ -92,7 +93,7 @@ export default function MesMessages() {
                     <Row className='mb-2'>
                       <Col></Col>
                       <Col lg={2} md={3} xs={5}>
-                        <Button type='button' className='form-control fw-bold px-0' onClick={toggleReponse} style={{ backgroundColor: '#03031efc' }}>
+                        <Button type='button' className='form-control fw-bold px-0' onClick={() => openModalReponse(message)} style={{ backgroundColor: '#03031efc' }}>
                           <i className='bi bi-pen fs-5'></i> Repondre
                         </Button>
                       </Col>
@@ -112,6 +113,7 @@ export default function MesMessages() {
             <Modal isOpen={modalNouveau} toggle={toggleNouveau} centered={true} scrollable={true} className='fs-5' style={{ maxHeight: '80vh' }}>
                 <ModalHeader toggle={toggleNouveau} className='text-center fs-4 fw-bold text-white' style={{ backgroundColor: '#03031efc' }}>Nouveau message</ModalHeader>
                 <ModalBody>
+                    
                     <Nouveau />
                 </ModalBody>
                 <ModalFooter>
@@ -125,7 +127,10 @@ export default function MesMessages() {
             <Modal isOpen={modalReponse} toggle={toggleReponse} centered={true} scrollable={true} className='fs-5' style={{ maxHeight: '80vh' }}>
                 <ModalHeader toggle={toggleReponse} className='text-center fs-4 fw-bold text-white' style={{ backgroundColor: '#03031efc' }}>Ma reponse</ModalHeader>
                 <ModalBody>
-                    <ReponseMessage />
+                    {
+                      selectedMessage && <ReponseMessage expediteur={selectedMessage.expediteur} objet={selectedMessage.objet}/>
+                    }
+                    
                 </ModalBody>
                 <ModalFooter>
                     <Button color="primary" onClick={toggleReponse} style={{ backgroundColor: '#03031efc' }}>Envoyer</Button>{' '}
