@@ -249,7 +249,7 @@ export default function Recherche() {
             {sessions.filter((session) => session.formation.nom.toLowerCase().includes(elements.textRecherche.toLowerCase()))
               .map(sessions => (
                 <Col key={sessions.id} xs={12} sm={6} xl={3} lg={4} md={6} className='d-flex flex-column justify-content-between'>
-                  <Col className='p-2 d-flex flex-column justify-content-between colForm border-black m-1'>
+                  <Col className='p-2 d-flex flex-column justify-content-between colForm border-black m-2 m-md-1'>
                     <Row className=''>
                       <Col>
                         <i className='bi bi-person-fill fs-1'></i>

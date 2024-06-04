@@ -49,15 +49,15 @@ export default function IndexInscription() {
                     <h3 className='text-center fw-5 '>Inscrivez-vous à la plateforme MatchSavoir et gérer vos formations</h3>
 
                     <Row style={{marginLeft: '0px'}}>
-                        <Col xs={2} className={`fs-5 fw-bold text-center py-1 ${role === 'formateur' ? 'bg-secondary text-white' : 'bg-warning text-black'}`} 
+                        <Col xs={4} md={2} className={` fw-bold text-center py-1 ${role === 'formateur' ? 'bg-secondary text-white' : 'bg-warning text-black'}`} 
                              onClick={() => handleRoleChange('formateur')} style={{ cursor: 'pointer', borderRight: '1px solid white'}}>
                             Formateur
                         </Col>
-                        <Col xs={2} className={`fs-5 fw-bold text-center py-1 ${role === 'cabinet' ? 'bg-secondary text-white' : 'bg-warning text-black'}`}
+                        <Col xs={4} md={2} className={` fw-bold text-center py-1 ${role === 'cabinet' ? 'bg-secondary text-white' : 'bg-warning text-black'}`}
                              onClick={() => handleRoleChange('cabinet')} style={{ cursor: 'pointer', borderRight: '1px solid white' }}>
                             Organisme
                         </Col>
-                        <Col xs={2} className={`fs-5 fw-bold text-center py-1 ${role === 'desirant' ? 'bg-secondary text-white' : 'bg-warning text-black'}`}
+                        <Col xs={3} md={2} className={` fw-bold text-center py-1 ${role === 'desirant' ? 'bg-secondary text-white' : 'bg-warning text-black'}`}
                              onClick={() => handleRoleChange('desirant')} style={{ cursor: 'pointer' }}>
                             Désirant
                         </Col>

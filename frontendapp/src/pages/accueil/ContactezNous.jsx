@@ -80,7 +80,7 @@ export default function ContactezNous() {
                                                 </div>
                                                 <div>
                                                     <Row>
-                                                        <Col xs={3}><Button type="submit" className='form-control fw-bold' style={{ backgroundColor: '#000121' }}>Envoyer</Button></Col>
+                                                        <Col xs={4}><Button type="submit" className='form-control fw-bold' style={{ backgroundColor: '#000121' }}>Envoyer</Button></Col>
                                                     </Row>
 
                                                 </div>

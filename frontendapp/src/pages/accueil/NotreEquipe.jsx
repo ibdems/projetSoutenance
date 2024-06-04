@@ -1,6 +1,6 @@
 import React from 'react'
-import dems from '../../image/team-2.jpg'
-import aissata from '../../image/team-1.jpg'
+import aissata from '../../image/aissata.jpg'
+import ibrahima from '../../image/ibrahima.jpg'
 import saidou from '../../image/team-2.jpg'
 import { Link } from 'react-router-dom'
 
@@ -18,11 +18,11 @@ export default function NotreEquipe() {
                         <div className="col-lg-4 col-sm-6">
                             <div className="box ">
                                 <div className="img-box">
-                                    <img src={dems} className="img1" alt="" />
+                                    <img src={ibrahima} className="img1" alt="" />
                                 </div>
                                 <div className="detail-box text-center">
                                     <h5>Diallo Ibrahima</h5>
-                                    <p>Developpeur Web</p>
+                                    <p>Developpeur FullStack</p>
                                 </div>
                                 <div className="social_box">
                                     <Link to="#">

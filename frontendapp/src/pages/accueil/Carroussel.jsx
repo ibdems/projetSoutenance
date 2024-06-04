@@ -31,7 +31,7 @@ export default function Carroussel() {
                             </Row>
 
                         </div>
-                        <div className="col-md-6">
+                        <div className="col-md-6 d-none d-md-block">
                             <div className="img-box">
                                 <img src={imgCarousel1} alt="" />
                             </div>
@@ -62,7 +62,7 @@ export default function Carroussel() {
                                 <Col></Col>
                             </Row>
                         </div>
-                        <div className="col-md-6">
+                        <div className="col-md-6 d-none d-md-block">
                             <div className="img-box">
                                 <img src={imgCarousel1} alt="" />
                             </div>
@@ -93,7 +93,7 @@ export default function Carroussel() {
                             </Row>
                         </div>
                         <div className="col-md-6">
-                            <div className="img-box">
+                            <div className="img-box d-none d-md-block">
                                 <img src={imgCarousel1} alt="" />
                             </div>
                         </div>

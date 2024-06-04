@@ -283,7 +283,7 @@ export default function Recherche() {
                                 </Col>
                             </Col>
                         ))}
-                        <Modal isOpen={modal} toggle={toggle} scrollable={true} className='fs-5' style={{ maxHeight: '80vh', width: '200vw', marginTop: '10vh' }}>
+                        <Modal isOpen={modal} toggle={toggle} centered={true} scrollable={true} className='fs-5' style={{ maxHeight: '80vh' }}>
 
                             <ModalBody>
                                 {selectedFormateur && (
@@ -298,39 +298,39 @@ export default function Recherche() {
                                         <Row>
                                             <Col>
                                                 <Row className=' p-1 styleCol'>
-                                                    <Col><div className='fs-5 text-center fw-bold'><i className="bi bi-geo-alt fs-5 fw-bold"></i> Adresse: </div></Col>
+                                                    <Col xs={12} md={5}><div className='fs-5 fw-bold text-start text-md-end'><i className="bi bi-geo-alt fs-5 fw-bold"></i> Adresse: </div></Col>
                                                     <Col>{selectedFormateur.adresse}</Col>
                                                 </Row>
                                                 <Row className='p-1'>
-                                                    <Col><div className='fs-5 text-center fw-bold'><i className="bi bi-person-badge"></i> Profession: </div></Col>
+                                                    <Col xs={12} md={5}><div className='fs-5 fw-bold text-start text-md-end'><i className="bi bi-person-badge"></i> Profession: </div></Col>
                                                     <Col>{selectedFormateur.profession}</Col>
                                                 </Row>
                                                 <Row className=' p-1 styleCol'>
-                                                    <Col><div className='fs-5 text-center fw-bold'> Niveau d'étude: </div></Col>
+                                                    <Col xs={12} md={5}><div className='fs-5 fw-bold text-start text-md-end'> Niveau d'étude: </div></Col>
                                                     <Col>{selectedFormateur.niveauEtude}</Col>
                                                 </Row>
                                                 <Row className=' p-1 '>
-                                                    <Col><div className='fs-5 text-center fw-bold'> Linkdein :</div></Col>
+                                                    <Col xs={12} md={5}><div className='fs-5 fw-bold text-start text-md-end'> Linkdein :</div></Col>
                                                     <Col>{selectedFormateur.linkedin}</Col>
                                                 </Row>
                                                 <Row className=' p-1 styleCol'>
-                                                    <Col><div className='fs-5 text-center fw-bold'> Domaines dispensés : </div></Col>
+                                                    <Col xs={12} md={5}><div className='fs-5 fw-bold text-start text-md-end'> Domaines dispensés : </div></Col>
                                                     <Col>{selectedFormateur.domaineExpertise.map(domaine => (<li key={domaine.id} className='ms-4'>{domaine.libelle}</li>))}</Col>
                                                 </Row>
                                                 <Row className=' p-1 '>
-                                                    <Col><div className='fs-5 text-center fw-bold'> Niveau concernés : </div></Col>
+                                                    <Col xs={12} md={5}><div className='fs-5 fw-bold text-start text-md-end'> Niveau concernés : </div></Col>
                                                     <Col>{selectedFormateur.niveau.map(niveau => (<li key={niveau.id} className='ms-4'>{niveau.libelle}</li>))}</Col>
                                                 </Row>
                                                 <Row className=' p-1 styleCol'>
-                                                    <Col><div className='fs-5 text-center fw-bold'> Competances </div></Col>
+                                                    <Col xs={12} md={5}><div className='fs-5 fw-bold text-start text-md-end'> Competances </div></Col>
                                                     <Col>{selectedFormateur.competances.map(competances => (<li key={competances.id} className='ms-4'>{competances.libelle}</li>))}</Col>
                                                 </Row>
                                                 <Row className=' p-1 '>
-                                                    <Col><div className='fs-5 text-center fw-bold'> Domaine d'expertises </div></Col>
+                                                    <Col xs={12} md={5}><div className='fs-5 fw-bold text-start text-md-end'> Domaine d'expertises </div></Col>
                                                     <Col>{selectedFormateur.domaineExpertise.map(domaineExpertise => (<li key={domaineExpertise.id} className='ms-4'>{domaineExpertise.libelle}</li>))}</Col>
                                                 </Row>
                                                 <Row className=' p-1 styleCol'>
-                                                    <Col><div className='fs-5 text-center fw-bold'>Temps de disponibilité </div></Col>
+                                                    <Col xs={12} md={5}><div className='fs-5 fw-bold text-start text-md-end'>Temps de disponibilité </div></Col>
                                                     <Col>
                                                         <ul>
                                                             <li>Jeudi de 8h20 a 18h00</li>
