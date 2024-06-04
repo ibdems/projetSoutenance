@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Breadcrumb, BreadcrumbItem, Button, Card, Col, FormGroup, Modal, ModalBody, ModalFooter, Row } from 'reactstrap';
-import { MyButton, MyInput, MyLabel, MySelect } from '../../components/Forms/Forms';
+import { Breadcrumb, BreadcrumbItem, Button, Card, Col, FormGroup, Input, Modal, ModalBody, ModalFooter, Row } from 'reactstrap';
+import { MyButton, MyLabel } from '../../components/Forms/Forms';
 import image from '../../image/team-3.jpg';
 import { formateurCabinet as formateurCabinetData } from '../../data/formateur';
+import Select from 'react-select';
 import { MyTable } from '../../components/table/Table';
 
 function ListFormateur() {
@@ -90,7 +91,7 @@ function ListFormateur() {
         </BreadcrumbItem>
       </Breadcrumb>
       <Row>
-        <Col lg={2} className='mt-lg-5'>
+        <Col lg={2} className='mt-lg-3'>
           <Link to={'/admin/formateur/ajoutformateurcabinet'}><MyButton text={'Ajouter '} bgColor={'#03031efc'} icone={'bi bi-plus'} /></Link>
           
         </Col>
@@ -100,7 +101,16 @@ function ListFormateur() {
             <Row>
               <Col xs={12} md={6}>
                 <Row><MyLabel text={'Option de recherche'} /></Row>
-                <MySelect
+                <Select
+                  styles={{
+                    control: (provided) => ({
+                      ...provided,
+                      height: 'auto',
+                      minHeight: '40px',
+                      border: '1px solid black',
+                      color: 'black'
+                    }),
+                  }}
                   value={elements.option}
                   onChange={(selectedOption) => handleInputChange('option', selectedOption)}
                   options={[
@@ -113,12 +123,13 @@ function ListFormateur() {
               <Col xs={12} md={6}>
                 <FormGroup>
                   <Row><MyLabel text={'Rechercher'} /></Row>
-                  <MyInput
+                  <Input
+                    className='form-control p-2 border-black text-black'
                     id="search"
                     placeholder="Rechercher"
                     type="text"
                     value={elements.recherche}
-                    onChange={(e) => handleInputChange('recherche', e)}
+                    onChange={(e) => handleInputChange('recherche', e.target.value)}
                   />
                 </FormGroup>
               </Col>

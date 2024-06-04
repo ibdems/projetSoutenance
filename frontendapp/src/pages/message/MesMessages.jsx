@@ -92,7 +92,7 @@ export default function MesMessages() {
                     <hr className='bg-secondary'/>
                     <Row className='mb-2'>
                       <Col></Col>
-                      <Col lg={2} md={3} xs={5}>
+                      <Col lg={2} md={3} xs={7}>
                         <Button type='button' className='form-control fw-bold px-0' onClick={() => openModalReponse(message)} style={{ backgroundColor: '#03031efc' }}>
                           <i className='bi bi-pen fs-5'></i> Repondre
                         </Button>

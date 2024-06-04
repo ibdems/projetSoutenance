@@ -22,7 +22,7 @@ const ListSession = () => {
           <Col md={8}>
             <input
               id="search"
-              className="form-control mt-2 p-2 fs-5 text-black"
+              className="form-control mt-2 p-2 fs-5 text-black border-black"
               placeholder="Rechercher par lieu"
               type="text"
               value={search}

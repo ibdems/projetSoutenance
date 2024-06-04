@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Breadcrumb, BreadcrumbItem, Col, Row } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Col, Input, Row } from 'reactstrap';
 import './formation.scss';
 import { formations } from './dataFormation.js';
 import PropTypes from 'prop-types';
-import { MyInput, MyButton } from '../../components/Forms/Forms.jsx';
 import { Link, NavLink } from 'react-router-dom';
 
 
@@ -11,7 +10,7 @@ function ListFormation(props) {
   const [search, setSearch] = useState('');
 
   const searchFormation = (value) => {
-    setSearch(value);
+    setSearch(value.target.value);
   };
 
   return (
@@ -28,7 +27,7 @@ function ListFormation(props) {
       <Row>
         <Col></Col>
         <Col xs={12} md={10} lg={8}>
-          <MyInput type='text' name='searchFormation' value={search} placeholder='Recherchez vos formations' onChange={(value) => searchFormation(value)} />
+          <Input type='text' name='searchFormation' value={search} placeholder='Recherchez vos formations' onChange={(value) => searchFormation(value)} />
         </Col>
         <Col></Col>
       </Row>
@@ -43,7 +42,7 @@ function ListFormation(props) {
               </div>
               <div>
                 <NavLink to={`/admin/formation/gestion/${formation.id}`} className='lien-gestion'>
-                  <button type='button' className='btn btn-outline-secondary mt-3 form-control'> <span className='fs-3 fw-bold text-white'>Gérer</span>   <i className="bi bi-arrow-right-square fs-3 fw-bold text-white align-right m-1"></i> </button>
+                  <button type='button' className='btn btn-outline-secondary mt-2 p-0 form-control'> <span className='fs-3 fw-bold text-white'>Gérer</span>   <i className="bi bi-arrow-right-square fs-3 fw-bold text-white align-right m-1"></i> </button>
                 </NavLink>
               </div>
             </Col>

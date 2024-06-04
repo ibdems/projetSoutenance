@@ -1,20 +1,23 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { MyInput, MyButton } from '../../components/Forms/Forms'
+import { Field, Formik } from 'formik';
+import * as Yup from 'yup';
+import { Button, Col, Row } from 'reactstrap';
 
+
+
+const validationSchema = Yup.object().shape({
+    nomComplet: Yup.string().required('Le nom complet est requis').min(3, 'Trop court'),
+    email: Yup.string().email('Format email invalide').required('L\'email est requis'),
+    sujet: Yup.string().required('Le susjet est requis'),
+    message: Yup.string().required('Le message est requis').min(5, 'Le contenu est trop court'),
+});
 export default function ContactezNous() {
-    const [infocontact, setInfoContact] = useState({
-        nomComplet: '',
-        email: '',
-        sujet: '',
-        message: '',
-    })
-    
-    const handleInputChange = (name, value) => {
-
-        setInfoContact(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
+    const handleSubmit = (values, { resetForm }) => {
+        // Traitement de l'envoi du formulaire
+        console.log(values);
+        // Réinitialiser le formulaire après soumission
+        resetForm();
     };
 
 
@@ -30,20 +33,62 @@ export default function ContactezNous() {
                         </div>
                         <div className="section-content">
                             <div className="row">
-                                <div className="col-sm-12 col-md-12 col-lg-8">
-                                    <form id="contact_form" action="">
-                                        <div className="row">
-                                            <div className="col-sm-12 col-md-12 mb-3 ">
-                                                <MyInput type="text" id="your_name" name="nomComplet" placeholder="Nom Complet" value={infocontact.nomComplet} onChange={(value) => handleInputChange('nomComplet', value)} required />
-                                            </div>
-                                            <div className="col mb-3">
-                                                <MyInput type="email" id="email" name="email" placeholder="Email" value={infocontact.email} onChange={(value) => handleInputChange('email', value)} required />
-                                            </div>
-                                        </div>
-                                        <MyInput type="text" id="sujet" className='mb-3' name="sujet" placeholder="Sujet" value={infocontact.sujet} onChange={(value) => handleInputChange('sujet', value)} />
-                                        <MyInput className={'mb-3'} id="message" placeholder="Message" type={'textarea'} rows={3} value={infocontact.message} name="message" onChange={(value) => handleInputChange('message', value)} />
-                                        <MyButton type="submit" name="button" text={'Envoyer'} bgColor={'#03031efc'} onClick={() => { }} />
-                                    </form>
+                                <div className="col-sm-12 col-md-12 col-lg-6">
+                                    <Formik
+                                        initialValues={{
+                                            nomComplet: '',
+                                            email: '',
+                                            sujet: '',
+                                            message: '',
+                                        }}
+                                        validationSchema={validationSchema}
+                                        onSubmit={handleSubmit}
+                                    >
+                                        {(formik) => (
+                                            <form onSubmit={formik.handleSubmit}>
+                                                <div className='mb-3'>
+                                                    <Field as={MyInput}
+                                                        type="text"
+                                                        name="nomComplet"
+                                                        placeholder="Nom Complet"
+                                                    />
+
+                                                </div>
+                                                <div className='mb-3'>
+                                                    <Field as={MyInput}
+                                                        type="email"
+                                                        name="email"
+                                                        placeholder="Email"
+                                                    />
+                                                </div>
+                                                <div className='mb-3'>
+                                                    <Field as={MyInput}
+                                                        type="text"
+                                                        name="sujet"
+                                                        placeholder="Sujet"
+                                                    />
+                                                   
+                                                </div>
+                                                <div className='mb-3'>
+                                                    <Field as={MyInput}
+                                                        type="textarea"
+                                                        name="message"
+                                                        placeholder="Message"
+                                                        rows={3}
+                                                    />
+                                                   
+                                                </div>
+                                                <div>
+                                                    <Row>
+                                                        <Col xs={3}><Button type="submit" className='form-control fw-bold' style={{ backgroundColor: '#000121' }}>Envoyer</Button></Col>
+                                                    </Row>
+
+                                                </div>
+                                            </form>
+                                        )}
+                                    </Formik>
+
+
                                 </div>
                                 <div className="col-sm-12 col-md-12 col-lg-4">
                                     <div className="contact-info white">
@@ -56,7 +101,7 @@ export default function ContactezNous() {
                                         <div className="contact-item media"> <i className="fa fa-mobile media-left media-right-margin"></i>
                                             <div className="media-body">
                                                 <p className="">Telephone :</p>
-                                                <p className=""><a className="text-black fw-bold" style={{textDecoration: 'none'}} href="tel:+15173977100">63874839237</a> </p>
+                                                <p className=""><a className="text-black fw-bold" style={{ textDecoration: 'none' }} href="tel:+15173977100">63874839237</a> </p>
                                             </div>
                                         </div>
                                         <div className="contact-item media"> <i className="fa fa-envelope media-left media-right-margin"></i>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Breadcrumb, BreadcrumbItem, Card, FormGroup, Row, Col, ModalBody, Modal, ModalFooter, Button } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Card, FormGroup, Row, Col, ModalBody, Modal, ModalFooter, Button, Input } from 'reactstrap';
 import { MyInput, MyLabel, MySelect } from '../../components/Forms/Forms';
 import { MyTable } from '../../components/table/Table';
 import { demande as demandeData } from '../../data/demande.js';
@@ -119,7 +119,16 @@ function ListDemande() {
             <Row>
               <Col xs={12} md={6}>
                 <Row><MyLabel text={'Option de recherche'} /></Row>
-                <MySelect
+                <Select
+                  styles={{
+                    control: (provided) => ({
+                      ...provided,
+                      height: 'auto',
+                      minHeight: '40px',
+                      border: '1px solid black',
+                      color: 'black'
+                    }),
+                  }}
                   value={elements.option}
                   onChange={(selectedOption) => handleInputChange('option', selectedOption)}
                   options={[
@@ -133,13 +142,13 @@ function ListDemande() {
               <Col>
                 <FormGroup>
                   <Row><MyLabel text={'Rechercher'} /></Row>
-                  <MyInput
+                  <Input
                     id="search"
-
+                    className='border-black p-2 text-black'
                     placeholder="Rechercher"
                     type="text"
                     value={elements.recherche}
-                    onChange={(e) => handleInputChange('recherche', e)}
+                    onChange={(e) => handleInputChange('recherche', e.target.value)}
                   />
                 </FormGroup>
               </Col>
@@ -157,7 +166,16 @@ function ListDemande() {
                   </Row>
                   <Row>
                     <Col xs={10} lg={9}>
-                      <MySelect
+                      <Select
+                        styles={{
+                          control: (provided) => ({
+                            ...provided,
+                            height: 'auto',
+                            minHeight: '40px',
+                            border: '1px solid black',
+                            color: 'black'
+                          }),
+                        }}
                         value={elements.profession}
                         onChange={(selectedOption) => handleInputChange('profession', selectedOption)}
                         options={[
@@ -180,7 +198,16 @@ function ListDemande() {
                   </Row>
                   <Row>
                     <Col xs={10} lg={9}>
-                      <MySelect
+                      <Select
+                        styles={{
+                          control: (provided) => ({
+                            ...provided,
+                            height: 'auto',
+                            minHeight: '40px',
+                            border: '1px solid black',
+                            color: 'black'
+                          }),
+                        }}
                         value={elements.genre}
                         onChange={(selectedOption) => handleInputChange('genre', selectedOption)}
                         options={[

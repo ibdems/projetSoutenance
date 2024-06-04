@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Breadcrumb, BreadcrumbItem, Card, FormGroup, Row, Col, ModalBody, Modal, ModalFooter, Button } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Card, FormGroup, Row, Col, ModalBody, Modal, ModalFooter, Button, Input } from 'reactstrap';
 import { MyInput, MyLabel, MySelect } from '../../components/Forms/Forms';
 import { MyTable } from '../../components/table/Table';
 import { users as usersData } from '../../data/users.js';
 import photo from '../../image/team-2.jpg';
+import Select from 'react-select'
 
 function ListUtilisateur() {
   const [elements, setElements] = useState({
@@ -113,7 +114,16 @@ function ListUtilisateur() {
             <Row>
               <Col xs={12} md={6}>
                 <Row><MyLabel text={'Option de recherche'} /></Row>
-                <MySelect
+                <Select
+                  styles={{
+                    control: (provided) => ({
+                      ...provided,
+                      height: 'auto',
+                      minHeight: '40px',
+                      border: '1px solid black',
+                      color: 'black'
+                    }),
+                  }}
                   value={elements.option}
                   onChange={(selectedOption) => handleInputChange('option', selectedOption)}
                   options={[
@@ -126,12 +136,13 @@ function ListUtilisateur() {
               <Col>
                 <FormGroup>
                   <Row><MyLabel text={'Rechercher'} /></Row>
-                  <MyInput
+                  <Input
+                    className='p-2 border-black text-black'
                     id="search"
                     placeholder="Rechercher"
                     type="text"
                     value={elements.recherche}
-                    onChange={(e) => handleInputChange('recherche', e)}
+                    onChange={(e) => handleInputChange('recherche', e.target.value)}
                   />
                 </FormGroup>
               </Col>
@@ -148,7 +159,16 @@ function ListUtilisateur() {
                   </Row>
                   <Row>
                     <Col xs={10} lg={9}>
-                      <MySelect
+                      <Select
+                        styles={{
+                          control: (provided) => ({
+                            ...provided,
+                            height: 'auto',
+                            minHeight: '40px',
+                            border: '1px solid black',
+                            color: 'black'
+                          }),
+                        }}
                         value={elements.type}
                         onChange={(selectedOption) => handleInputChange('type', selectedOption)}
                         options={[
@@ -169,7 +189,16 @@ function ListUtilisateur() {
                   </Row>
                   <Row>
                     <Col xs={10} lg={9}>
-                      <MySelect
+                      <Select
+                        styles={{
+                          control: (provided) => ({
+                            ...provided,
+                            height: 'auto',
+                            minHeight: '40px',
+                            border: '1px solid black',
+                            color: 'black'
+                          }),
+                        }}
                         value={elements.statut}
                         onChange={(selectedOption) => handleInputChange('statut', selectedOption)}
                         options={[

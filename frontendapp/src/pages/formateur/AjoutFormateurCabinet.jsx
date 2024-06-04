@@ -119,7 +119,7 @@ function AjoutFormateurCabinet() {
                             <Row>
                               <MyLabel text='Nom Complet' forLabel='nomComplet' />
                             </Row>
-                            <Field as={MyInput} type='text' name='nomComplet' placeholder='Ex: Alpha Amadou Diallo' />
+                            <MyInput type='text' name='nomComplet' placeholder='Ex: Alpha Amadou Diallo' />
                           </FormGroup>
                         </Col>
                         <Col lg={6}>
@@ -127,7 +127,7 @@ function AjoutFormateurCabinet() {
                             <Row>
                               <MyLabel text='Téléphone' forLabel='telephone' />
                             </Row>
-                            <Field as={MyInput} type='text' name='telephone' placeholder='Ex: 600000000' />
+                            <MyInput type='text' name='telephone' placeholder='Ex: 600000000' />
                           </FormGroup>
                         </Col>
                         <Col lg={6}>
@@ -135,7 +135,7 @@ function AjoutFormateurCabinet() {
                             <Row>
                               <MyLabel text='Adresse' forLabel='adresse' />
                             </Row>
-                            <Field as={MyInput} type='text' name='adresse' placeholder='Ex: Wanindara' />
+                            <MyInput type='text' name='adresse' placeholder='Ex: Wanindara' />
                           </FormGroup>
                         </Col>
                         <Col lg={6}>
@@ -143,7 +143,7 @@ function AjoutFormateurCabinet() {
                             <Row>
                               <MyLabel text='Profession' forLabel='profession' />
                             </Row>
-                            <Field as={MyInput} type='text' name='profession' placeholder='Ex: Enseignant' />
+                            <MyInput type='text' name='profession' placeholder='Ex: Enseignant' />
                           </FormGroup>
                         </Col>
                         <Col lg={6}>
@@ -151,7 +151,7 @@ function AjoutFormateurCabinet() {
                             <Row>
                               <MyLabel text='LinkedIn' forLabel='linkedin' />
                             </Row>
-                            <Field as={MyInput} type='text' name='linkedin' placeholder='Ex: ibrahimaDiallo' />
+                            <MyInput type='text' name='linkedin' placeholder='Ex: ibrahimaDiallo' />
                           </FormGroup>
                         </Col>
                       </Row>
@@ -163,7 +163,7 @@ function AjoutFormateurCabinet() {
                         <Row>
                           <MyLabel text='Email' forLabel='email' />
                         </Row>
-                        <Field as={MyInput} type='email' name='email' placeholder='Ex: ibrahima9999@gmail.com' />
+                        <MyInput type='email' name='email' placeholder='Ex: ibrahima9999@gmail.com' />
                       </FormGroup>
                     </Col>
                     <Col md={6}>
@@ -171,7 +171,7 @@ function AjoutFormateurCabinet() {
                         <Row>
                           <MyLabel text="Niveau d'étude le plus élevé" forLabel='niveauEtude' />
                         </Row>
-                        <Field as={MyInput} type='text' name='niveauEtude' placeholder='Ex: Bac+4' />
+                        <MyInput type='text' name='niveauEtude' placeholder='Ex: Bac+4' />
                       </FormGroup>
                     </Col>
                   </Row>

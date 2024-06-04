@@ -1,36 +1,52 @@
 import React, { useState } from 'react'
 import { MyInput, MyLabel } from '../../../components/Forms/Forms'
 import { FormGroup, Row } from 'reactstrap'
+import * as Yup from 'yup';
+import { Form, Formik } from 'formik';
 
 export default function Disponibilite() {
-  const [elements, setElements] = useState({
+
+  const initialValues = {
     jour: '',
     heureDebut: '',
     heureFin: '',
-    
-  })
-
-  const handleInputChange = (name, value) => {
-    setElements(prevState => ({
-        ...prevState,
-        [name]: value
-      }
-    ))
   }
+
+  const validationSchema = Yup.object().shape({
+    jour: Yup.string().required('Le Jour est requis'),
+    heureDebut: Yup.string().required('Heure de debut est requis'),
+    heureFin: Yup.string().required('Heure de fin est requis'),
+  });
+
+  const onSubmit = (values) => {
+    // Logique pour la soumission du formulaire
+    console.log(values);
+  };
   return (
     <div>
-      <FormGroup>
-        <Row><MyLabel text={'Jours'} /></Row>
-        <MyInput type={'text'} name={elements.jour} value={elements.jour} onChange={(e) => handleInputChange('jour', e)}/>
-      </FormGroup>
-      <FormGroup>
-        <Row><MyLabel text={'Heure début'} /></Row>
-        <MyInput type={'time'} name={elements.heureDebut} value={elements.heureDebut} onChange={(e) => handleInputChange('heureDebut', e)}/>
-      </FormGroup>
-      <FormGroup>
-        <Row><MyLabel text={'Heure Fin'} /></Row>
-        <MyInput type={'time'} name={elements.heureFin} value={elements.heureFin} onChange={(e) => handleInputChange('heureFin', e)}/>
-      </FormGroup>
+      <Formik initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}>
+        {
+          ({ values}) => (
+            <Form>
+              <FormGroup>
+                <Row><MyLabel text={'Jours'} /></Row>
+                <MyInput type={'text'} name={'jour'} value={values.jour} />
+              </FormGroup>
+              <FormGroup>
+                <Row><MyLabel text={'Heure début'} /></Row>
+                <MyInput type={'time'} name={'heureDebut'} value={values.heureDebut}/>
+              </FormGroup>
+              <FormGroup>
+                <Row><MyLabel text={'Heure Fin'} /></Row>
+                <MyInput type={'time'} name={'heureFin'} value={values.heureFin} />
+              </FormGroup>
+            </Form>
+          )
+        }
+      </Formik>
+
     </div>
   )
 }
