@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import hero from '../../image/fontPetite.jpg'
 import '../accueil/css/style.css'
-import { Col, Row, FormGroup, Label } from 'reactstrap'
+import { Col, Row, FormGroup, Input } from 'reactstrap'
 import { MyLabel, MyInput, MySelect } from '../../components/Forms/Forms'
-import { formations } from '../formation/dataFormation'
 import { sessions } from '../formation/dataSession'
 import { Link } from 'react-router-dom'
 import './recherche.scss'
 import ContactezNous from '../accueil/ContactezNous'
 import Footer from '../accueil/Footer'
 import InfoSection from '../accueil/InfoSection'
+import Select from 'react-select'
 
 
 
@@ -107,13 +107,13 @@ export default function Recherche() {
                   </li>
                   {showTextRecherche && (
                     <li className="nav-item">
-                      <MyInput type={'text'} placeholder={'Saisissez un mot clé, un prix .....'} className={'inputNav'} name={'textRecherche'} value={elements.textRecherche} onChange={(value) => handleInputChange('textRecherche', value)}></MyInput>
+                      <Input type={'text'} placeholder={'Saisissez un mot clé, un prix .....'} className='form-control p-2 border-black text-black inputNav' name={'textRecherche'} value={elements.textRecherche} onChange={(value) => handleInputChange('textRecherche', value.target.value)}></Input>
 
                     </li>
                   )}
                   {showTextLieu && (
                     <li className="nav-item">
-                      <MyInput type={'text'} placeholder={'lieu'} name={'textLieu'} value={elements.textLieu} onChange={(value) => handleInputChange('textlieu', value)}></MyInput>
+                      <Input type={'text'} className='form-control p-2 border-black text-black' placeholder={'lieu'} name={'textLieu'} value={elements.textLieu} onChange={(value) => handleInputChange('textlieu', value.target.value)}></Input>
 
                     </li>
                   )}
@@ -154,13 +154,13 @@ export default function Recherche() {
                   <Col md={7}>
                     <FormGroup>
                       
-                      <MyInput type={'text'} placeholder={'Saisissez un mot clé, un domaine,une langue .....'} name={'textRecherche'} value={elements.textRecherche} onChange={(value) => handleInputChange('textRecherche', value)}></MyInput>
+                      <Input type={'text'} placeholder={'Saisissez un mot clé, un domaine,une langue .....'} name={'textRecherche'} value={elements.textRecherche} className='form-control p-2 border-black text-black' onChange={(value) => handleInputChange('textRecherche', value.target.value)}></Input>
                     </FormGroup>
                   </Col>
                   <Col md={3} xs={9}>
                     <FormGroup>
                       
-                      <MyInput type={'text'} placeholder={'lieu'} name={'textLieu'} value={elements.textLieu} onChange={(value) => handleInputChange('textlieu', value)}></MyInput>
+                      <Input type={'text'} placeholder={'lieu'} name={'textLieu'} className='form-control p-2 border-black text-black' value={elements.textLieu} onChange={(value) => handleInputChange('textlieu', value.target.value)}></Input>
                     </FormGroup>
                   </Col>
                   <Col md={2} sm={3} xs={3} style={{marginTop: '-15px'}}>
@@ -173,11 +173,20 @@ export default function Recherche() {
                       <Row>
                         <MyLabel forMyLabel='format' text={'Trier par format'} className='text-white'></MyLabel>
                       </Row>
-                      <MySelect id={'format'} name={'format'} value={elements.format} onChange={(value) => handleInputChange('format', value)} options={[
+                      <Select id={'format'} name={'format'} value={elements.format} onChange={(value) => handleInputChange('format', value)} options={[
                         { label: 'Présentielle', value: 'presentielle' },
                         { label: 'En ligne', value: 'ligne' },
                         { label: 'À domicile', value: 'domicile' }
-                      ]} />
+                      ]}
+                      styles={{
+                        control: (provided) => ({
+                          ...provided,
+                          height: 'auto',
+                          minHeight: '40px',
+                          border: '1px solid black',
+                          color: 'black'
+                        }),
+                      }} />
                     </FormGroup>
                   </Col>
                   <Col xs={12} md={5} sm={6} lg={4}>
@@ -185,11 +194,21 @@ export default function Recherche() {
                       <Row>
                         <MyLabel forMyLabel='niveau' text={'Trier par niveau'} className='text-white'></MyLabel>
                       </Row>
-                      <MySelect id={'niveau'} name={'niveau'} value={elements.niveau} onChange={(value) => handleInputChange('niveau', value)} options={[
+                      <Select id={'niveau'} name={'niveau'} value={elements.niveau} onChange={(value) => handleInputChange('niveau', value)} options={[
                         { label: 'Débutant', value: 'debutant' },
                         { label: 'Intermédiaire', value: 'intermediaire' },
                         { label: 'Supérieur', value: 'superieur' }
-                      ]} />
+                      ]} 
+                      styles={{
+                        control: (provided) => ({
+                          ...provided,
+                          height: 'auto',
+                          minHeight: '40px',
+                          border: '1px solid black',
+                          color: 'black'
+                        }),
+                      }}
+                      />
                     </FormGroup>
                   </Col>
                   <Col></Col>
@@ -201,14 +220,14 @@ export default function Recherche() {
                     <Row>
                       <MyLabel forMyLabel='prixMin' text={'Prix minimal'} className='text-white'></MyLabel>
                     </Row>
-                    <MyInput type={'text'} placeholder={'Ex: 25000'} name={'prixMin'} value={elements.prixMin} onChange={(value) => handleInputChange('prixMin', value)} ></MyInput>
+                    <Input type={'text'} className='form-control p-2 border-black text-black' placeholder={'Ex: 25000'} name={'prixMin'} value={elements.prixMin} onChange={(value) => handleInputChange('prixMin', value.target.value)} ></Input>
 
                   </Col>
                   <Col md={4} sm={6} xs={12}>
                     <Row>
                       <MyLabel forMyLabel='prixMax' text={'Prix maximal'} className='text-white'></MyLabel>
                     </Row>
-                    <MyInput type={'text'} placeholder={'Ex: 75000'} name={'prixMax'} value={elements.prixMax} onChange={(value) => handleInputChange('prixMax', value)}></MyInput>
+                    <Input type={'text'} className='form-control p-2 border-black text-black' placeholder={'Ex: 75000'} name={'prixMax'} value={elements.prixMax} onChange={(value) => handleInputChange('prixMax', value.target.value)}></Input>
                   </Col>
                   <Col></Col>
                 </Row>
