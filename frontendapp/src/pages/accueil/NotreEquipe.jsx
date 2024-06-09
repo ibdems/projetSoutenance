@@ -10,7 +10,7 @@ export default function NotreEquipe() {
             <div className="container-fluid">
                 <div className="heading_container heading_center">
                     <h2 className="">
-                        Notre <span> Equipe</span>
+                        Notre <span className='fs-2'> Equipe</span>
                     </h2>
                 </div>
                 <div className="team_container">
@@ -46,7 +46,7 @@ export default function NotreEquipe() {
                         <div className="col-lg-4 col-sm-6">
                             <div className="box ">
                                 <div className="img-box">
-                                    <img src={aissata} className="img1" alt="" />
+                                    <img src={aissata} className="img1" alt="" height={130} />
                                 </div>
                                 <div className="detail-box text-center">
                                     <h5>Barry Aissata</h5>

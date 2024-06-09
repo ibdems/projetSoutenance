@@ -106,7 +106,7 @@ export default function Accueil() {
                     <div className="container ">
                         <div className="heading_container heading_center">
                             <h2>
-                                Nos <span>Propositions</span>
+                                Nos <span className='fs-2'>Propositions</span>
                             </h2>
                             <p className='fs-5 fw-300'>
                                 Afin de vous faciliter la mise en relation entre vous qui desirez trouver des formations selons
@@ -186,7 +186,7 @@ export default function Accueil() {
                 <div className="container  ">
                     <div className="heading_container heading_center">
                         <h2>
-                            Apropos de <span>Nous</span>
+                            Apropos de <span className='fs-2'>Nous</span>
                         </h2>
 
                     </div>

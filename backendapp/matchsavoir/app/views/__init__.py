@@ -1,0 +1,3 @@
+from .utilisateurs_view import FormateurInscriptionView, CabinetInscriptionView, DesirantInscriptionView, UtilisateurListView, UtilisateurDetailView, Login, Logout, DomaineExpertisesListView, DomaineExpertisesDetailView
+from .formateurs_view import FormateurDetailView, FormateurListView, CertificationsDetailView, CertificationsListView, CompetenceDetailView, CompetenceListView
+from .cabinets_view import CabinetDetailView, CabinetListView, DomaineExpertiseListView, DomaineExpertiseDetailView

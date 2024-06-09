@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { MyInput, MyButton } from '../../components/Forms/Forms'
-import { Field, Formik } from 'formik';
+import React from 'react'
+import { MyInput } from '../../components/Forms/Forms'
+import {  Formik } from 'formik';
 import * as Yup from 'yup';
 import { Button, Col, Row } from 'reactstrap';
 
@@ -47,7 +47,7 @@ export default function ContactezNous() {
                                         {(formik) => (
                                             <form onSubmit={formik.handleSubmit}>
                                                 <div className='mb-3'>
-                                                    <Field as={MyInput}
+                                                    <MyInput
                                                         type="text"
                                                         name="nomComplet"
                                                         placeholder="Nom Complet"
@@ -55,14 +55,14 @@ export default function ContactezNous() {
 
                                                 </div>
                                                 <div className='mb-3'>
-                                                    <Field as={MyInput}
+                                                    <MyInput
                                                         type="email"
                                                         name="email"
                                                         placeholder="Email"
                                                     />
                                                 </div>
                                                 <div className='mb-3'>
-                                                    <Field as={MyInput}
+                                                    <MyInput
                                                         type="text"
                                                         name="sujet"
                                                         placeholder="Sujet"
@@ -70,7 +70,7 @@ export default function ContactezNous() {
                                                    
                                                 </div>
                                                 <div className='mb-3'>
-                                                    <Field as={MyInput}
+                                                    <MyInput
                                                         type="textarea"
                                                         name="message"
                                                         placeholder="Message"
