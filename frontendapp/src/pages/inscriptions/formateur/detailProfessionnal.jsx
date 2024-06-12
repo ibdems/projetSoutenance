@@ -50,7 +50,7 @@ export default function DetailProfessionnel() {
                               <FormGroup>
                                 <MyInput
                                   id={`competance-${index}`}
-                                  name={`competances[${index}]`}
+                                  name={`competances`}
                                   placeholder="Ex: Maîtrise de la langue Anglaise"
                                   type="text"
                                 />

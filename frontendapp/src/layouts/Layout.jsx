@@ -2,11 +2,15 @@
   import Sidebar from './sidebar/Sidebar';
   import Navbar from './navbar/Navbar';
   import { Outlet } from 'react-router-dom';
-
+  import { ProgressBar } from 'primereact/progressbar';
   function Layout() {
     const [sizeSide, setSizeSide] = useState(window.innerWidth > 1200 ? '250px' : '80px');
     const [sizeNav, setSizeNav] = useState(window.innerWidth > 1200 ? 'calc(100% - 250px)' : 'calc(100% - 80px)');
+    const [loading, setLoading] = useState(false); // État local pour suivre si une requête est en cours
 
+    const toggleLoading = (status) => {
+      setLoading(status);
+    };
     useEffect(() => {
       const handleResize = () => {
         const windowWidth = window.innerWidth;
@@ -34,6 +38,7 @@
           <div className="container" style={{overflowY:"auto",maxHeight:'calc(100vh - 90px)'}}>
             <Outlet />
           </div>
+          {loading && <ProgressBar mode="indeterminate" style={{ height: '6px', backgroundColor: 'red' }} />} {/* Afficher la barre de progression si loading est true */}
         </div>
       </div>
     );

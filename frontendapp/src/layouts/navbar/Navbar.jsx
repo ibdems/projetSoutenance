@@ -2,10 +2,12 @@ import React from 'react';
 import './navbar.css';
 import { Col, Row } from 'reactstrap';
 import image from '../../image/team-1.jpg'
+import { ProgressBar } from 'primereact/progressbar';
 
 function Navbar({ sizeNav, onNavToggle, sizeNavWidth }) {
   return (
-    <nav className="stylenavbar" style={{ width: sizeNav, left: sizeNavWidth }}>
+    <>
+      <nav className="stylenavbar" style={{ width: sizeNav, left: sizeNavWidth }}>
       <div className="navbar-menu-toggle">
         <button className="menu-toggle-button" onClick={onNavToggle}>
           <i className="bi bi-blockquote-right"></i>
@@ -26,6 +28,8 @@ function Navbar({ sizeNav, onNavToggle, sizeNavWidth }) {
         </Row>
       </div>
     </nav>
+    <ProgressBar mode="indeterminate" style={{ height: '6px', backgroundColor: 'red' }}></ProgressBar>
+    </>
   );
 }
 

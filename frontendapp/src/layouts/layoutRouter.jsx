@@ -13,6 +13,7 @@ import AjoutFormation from '../pages/formation/AjoutFormation'
 import AjoutFormateurCabinet from '../pages/formateur/AjoutFormateurCabinet'
 import ListUtilisateur from '../pages/utilisateurs/ListUtilisateur'
 import MesMessages from '../pages/message/MesMessages'
+import Objectif from '../pages/formation/Objectif'
 
 function LayoutRouter() {
     return (
@@ -27,6 +28,7 @@ function LayoutRouter() {
                     {/* Route pour la gestion des formations, héritant de la liste des formations */}
                     <Route path='gestion/:formationId' element={<GestionFormation />} />
                     <Route path='ajoutformation' element={<AjoutFormation/>}/>
+                    <Route path='objectifs' element={<Objectif/>}/>
                 </Route>
                 {/* Les routes pour la gestion d'inscription */}
                 <Route path='/gestionInscription'>

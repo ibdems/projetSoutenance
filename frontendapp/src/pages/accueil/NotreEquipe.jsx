@@ -1,7 +1,7 @@
 import React from 'react'
 import aissata from '../../image/aissata.jpg'
 import ibrahima from '../../image/ibrahima.jpg'
-import saidou from '../../image/team-2.jpg'
+import saidou from '../../image/saidou.jpg'
 import { Link } from 'react-router-dom'
 
 export default function NotreEquipe() {
@@ -9,9 +9,9 @@ export default function NotreEquipe() {
         <section className="team_section layout_padding">
             <div className="container-fluid">
                 <div className="heading_container heading_center">
-                    <h2 className="">
-                        Notre <span className='fs-2'> Equipe</span>
-                    </h2>
+                    <h1 className="">
+                        Notre <span className='fs-2 text-warning'> Equipe</span>
+                    </h1>
                 </div>
                 <div className="team_container">
                     <div className="row">
@@ -46,7 +46,7 @@ export default function NotreEquipe() {
                         <div className="col-lg-4 col-sm-6">
                             <div className="box ">
                                 <div className="img-box">
-                                    <img src={aissata} className="img1" alt="" height={130} />
+                                    <img src={aissata} className="img1" alt="" />
                                 </div>
                                 <div className="detail-box text-center">
                                     <h5>Barry Aissata</h5>

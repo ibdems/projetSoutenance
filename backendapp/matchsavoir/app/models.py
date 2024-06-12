@@ -1,3 +1,5 @@
+import random
+from turtle import mode
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.utils.translation import gettext_lazy as _
@@ -33,6 +35,7 @@ class Utilisateur(AbstractBaseUser, PermissionsMixin):
         ('formateur', 'Formateur'),
         ('cabinet', 'Cabinet'),
         ('desirant', 'Desirant'),
+        ('admin', 'admin'),
     ]
 
     email = models.EmailField(_('adresse email'), unique=True)
@@ -109,7 +112,7 @@ class Certifications(models.Model):
 
 
 class FormateurDomicile(models.Model):
-    statut = models.BooleanField(default=True)
+    statut = models.BooleanField(default=False)
     formateur = models.OneToOneField(Formateur, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -143,34 +146,29 @@ class TempsDisponibilite(models.Model):
 
 
 class Formation(models.Model):
-    code_formation = models.CharField(max_length=50, unique=True, blank=True, null=True)
     titre = models.CharField(max_length=254)
-    description = models.CharField(max_length=254)
-    duree = models.CharField(max_length=254)
-    prix = models.IntegerField()
+    description = models.TextField()  
+    duree = models.CharField(max_length=100)  
+    prix = models.DecimalField(max_digits=10, decimal_places=2)
     format = models.CharField(max_length=254)
     niveau = models.CharField(max_length=254)
-    photo = models.CharField(max_length=254)
+    photo = models.ImageField(upload_to='media/', blank=True, null=True) 
     tags = models.CharField(max_length=254)
     langue = models.CharField(max_length=254)
     domaine = models.CharField(max_length=254)
-    attendue = models.CharField(max_length=254)
     public_vise = models.CharField(max_length=254)
     utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
+    code_formation = models.CharField(max_length=50, unique=True, blank=True, null=True)
 
     def __str__(self):
         return self.titre
     
     def save(self, *args, **kwargs):
         if not self.code_formation:
-            # Générer le code formation
-            user_initials = self.utilisateur.nom_complet[:2].upper()  # Les 2 premières lettres du nom complet de l'utilisateur
-            increment_part = Formation.objects.filter(utilisateur=self.utilisateur).count() + 1  # Compter les formations de cet utilisateur et incrémenter de 1
-            super().save(*args, **kwargs)  # Sauvegarder pour obtenir l'ID
-            self.code_formation = f"MSF{user_initials}{increment_part}{self.id}"
-            self.save(update_fields=['code_formation'])  # Sauvegarder à nouveau pour mettre à jour le code avec l'ID
-        else:
-            super().save(*args, **kwargs)
+            latest_id = Formation.objects.latest('id').id if Formation.objects.exists() else 0
+            random_values = ''.join(str(random.randint(0, 9)) for _ in range(3))
+            self.code_formation = f"MSF{random_values}{latest_id}"
+        super().save(*args, **kwargs)
 
 class Objectifs(models.Model):
     libelle = models.CharField(max_length=254)
@@ -179,12 +177,14 @@ class Objectifs(models.Model):
     def __str__(self):
         return self.libelle
 
+
 class Annee(models.Model):
     libelle = models.CharField(max_length=254)
     formation = models.ForeignKey(Formation, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.libelle
+
 
 class Criteres(models.Model):
     libelle = models.CharField(max_length=254)
@@ -193,13 +193,14 @@ class Criteres(models.Model):
     def __str__(self):
         return self.libelle
 
+
 class Prerequis(models.Model):
     libelle = models.CharField(max_length=254)
     formation = models.ForeignKey(Formation, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.libelle
-
+    
 class Session(models.Model):
     date_debut = models.DateField()
     date_fin = models.DateField()
@@ -207,20 +208,18 @@ class Session(models.Model):
     nb_place_dispo = models.IntegerField()
     tarif = models.IntegerField()
     statut = models.BooleanField()
-    code_session = models.CharField(max_length=254)
+    code_session = models.CharField(max_length=254, blank=True, null=True, unique=True)
     formation = models.ForeignKey(Formation, on_delete=models.CASCADE)
 
     def __str__(self):
-        return  f"Session du {self.date_debut} au {self.fin} pour la formation en {self.formation.titre}"
+        return  f"Session du {self.date_debut} au {self.date_fin} pour la formation en {self.formation.titre}"
     
     def save(self, *args, **kwargs):
         if not self.code_session:
-
-            super().save(*args, **kwargs)  # Sauvegarder pour obtenir l'ID
-            self.code_session = f"MSS{self.id}"
-            self.save(update_fields=['code_session'])  # Sauvegarder à nouveau pour mettre à jour le code avec l'ID
-        else:
-            super().save(*args, **kwargs)
+            latest_id = Session.objects.latest('id').id if Session.objects.exists() else 0
+            random_values = ''.join(str(random.randint(0, 9)) for _ in range(3))
+            self.code_session = f"MSSF{random_values}{latest_id}"
+        super().save(*args, **kwargs)
 
 class Calendrier(models.Model):
     jours = models.CharField(max_length=60)
@@ -256,17 +255,17 @@ class Payement(models.Model):
 class Inscription(models.Model):
     code_inscription = models.CharField(max_length=50, unique=True, blank=True, null=True)    
     date = models.DateTimeField()
-    statut = models.BooleanField()
+    statut = models.BooleanField(null=True, blank=True, default=None)
     prenom = models.CharField(max_length=254)
     nom = models.CharField(max_length=254)
     genre = models.CharField(max_length=254)
     telephone = models.CharField(max_length=254)
-    date_naissance = models.DateTimeField()
+    date_naissance = models.DateField()
     lieu_naissance = models.CharField(max_length=254)
     email = models.CharField(max_length=254)
     adresse = models.CharField(max_length=254)
-    universite = models.CharField(max_length=254)
-    specialite = models.CharField(max_length=254)
+    universite = models.CharField(max_length=254, blank=True, null=True)
+    specialite = models.CharField(max_length=254, blank=True, null=True)
     motivation = models.TextField()
     utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
     session = models.ForeignKey(Session, on_delete=models.CASCADE)
@@ -275,15 +274,13 @@ class Inscription(models.Model):
         return  f"Inscription de {self.nom} {self.prenom} numero {self.code}"
 
     def save(self, *args, **kwargs):
-        if not self.code_formation:
-            # Générer le code formation
-            user_initials = self.utilisateur.nom_complet[:2].upper()  # Les 2 premières lettres du nom complet de l'utilisateur
-            increment_part = Inscription.objects.filter(utilisateur=self.utilisateur).count() + 1  # Compter les formations de cet utilisateur et incrémenter de 1
-            super().save(*args, **kwargs)  # Sauvegarder pour obtenir l'ID
-            self.code_formation = f"MSI{user_initials}{increment_part}{self.id}"
-            self.save(update_fields=['code'])  # Sauvegarder à nouveau pour mettre à jour le code avec l'ID
-        else:
-            super().save(*args, **kwargs)
+        if not self.code_inscription:
+            prenom = self.prenom[:1].upper() 
+            nom = self.nom[:1].upper()
+            latest_id = Inscription.objects.latest('id').id if Inscription.objects.exists() else 0
+            
+            self.code_session = f"MSD{prenom}{nom}{latest_id}"
+        super().save(*args, **kwargs)
 
 class Evaluation(models.Model):
     note = models.IntegerField()
@@ -299,11 +296,12 @@ class Evaluation(models.Model):
 
 class Message(models.Model):
     objet = models.CharField(max_length=254)
+    nomComplet= models.CharField(max_length=200, blank=True, null=True)
     contenu = models.CharField(max_length=254)
     date_envoie = models.DateTimeField()
-    statut = models.BooleanField()
-    expediteur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE, related_name='expediteur')
-    destinateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE, related_name='destinateur')
+    statut = models.BooleanField(default=False)
+    expediteur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE, related_name='expediteur',  blank=True, null=True)
+    destinateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE, related_name='destinateur' ,  blank=True, null=True)
 
     def __str__(self):
         return self.objet

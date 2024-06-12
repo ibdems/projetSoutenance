@@ -1,3 +1,4 @@
+import datetime
 from rest_framework import serializers
 from .models import Utilisateur, Formateur, Cabinet, DomaineExpertise, Competence, Certifications, FormateurDomicile, Domaine, Niveau, TempsDisponibilite, Formation, Objectifs, Annee, Criteres, Prerequis, Session, Calendrier, Payement, Inscription, Evaluation, Message
 
@@ -91,11 +92,6 @@ class TempsDisponibiliteSerializer(serializers.ModelSerializer):
         model = TempsDisponibilite
         fields = '__all__'
 
-class FormationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Formation
-        fields = '__all__'
-
 class ObjectifsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Objectifs
@@ -116,10 +112,19 @@ class PrerequisSerializer(serializers.ModelSerializer):
         model = Prerequis
         fields = '__all__'
 
+class FormationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Formation
+        fields = ['id', 'code_formation' 'titre', 'description', 'duree', 'prix', 'format', 'niveau', 'photo', 'tags', 'langue', 'domaine', 'public_vise', 'utilisateur']
+        read_only_fields = ['id', 'code_formation']
+
+    
+    
 class SessionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Session
         fields = '__all__'
+        read_only_fields = ['code_session']
 
 class CalendrierSerializer(serializers.ModelSerializer):
     class Meta:
@@ -135,6 +140,14 @@ class InscriptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Inscription
         fields = '__all__'
+        read_only_fields = ['code_inscription', 'statut']
+
+class ReponseDemandeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Inscription
+        fields = ['statut']
+        
+     
 
 class EvaluationSerializer(serializers.ModelSerializer):
     class Meta:
@@ -145,3 +158,4 @@ class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
         fields = '__all__'
+        read_only_fields = ['statut']
