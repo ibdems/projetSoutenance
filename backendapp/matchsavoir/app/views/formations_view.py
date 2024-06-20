@@ -2,24 +2,28 @@
 from rest_framework import generics, status
 from rest_framework.response import Response
 from ..models import Annee, Criteres, Formation, Objectifs, Prerequis
-from ..serializers import AnneeSerializer, CriteresSerializer, FormationSerializer, ObjectifsSerializer, PrerequisSerializer
+from ..serializers import AnneeSerializer, CriteresSerializer, FormationAjoutSerializer, FormationSerializer, ObjectifsSerializer, PrerequisSerializer
 
-class FormationView(generics.ListCreateAPIView):
+class FormationAjout(generics.CreateAPIView):
     queryset = Formation.objects.all()
-    serializer_class = FormationSerializer
+    serializer_class = FormationAjoutSerializer
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             formation = serializer.save()
-            response_data = FormationSerializer(formation).data
+            response_data = FormationAjoutSerializer(formation).data
             return Response(response_data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class FormationDetailView(generics.RetrieveUpdateDestroyAPIView):
+class FormationView(generics.ListAPIView):
     queryset = Formation.objects.all()
     serializer_class = FormationSerializer
+
+class FormationDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Formation.objects.all()
+    serializer_class = FormationAjoutSerializer
 
 # Views pour les objectifs des formations
 class ObjectifsListView(generics.ListCreateAPIView):

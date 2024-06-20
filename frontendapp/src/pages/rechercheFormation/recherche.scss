@@ -16,7 +16,8 @@
   color: rgba(7, 7, 7, 0.784);
   background-color: white;
   min-height: 100%;
-  
+  border: 2px solid #021733;
+  border-radius: 10px;
 }
 
 .infoForm {
@@ -58,4 +59,15 @@
 
 .inputNav {
   width: 500px;
+}
+
+.photo {
+  margin-top: 10px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+Card {
+  border: 1px solid #021733;
 }

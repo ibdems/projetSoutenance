@@ -9,33 +9,41 @@ class UserLoginSerializer(serializers.Serializer):
 class CompetenceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Competence
-        fields = ['libelle']
+        fields = '__all__'
 
 class CertificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Certifications
-        fields = ['libelle', 'fichier']
+        fields = '__all__'
 
 class DomaineExpertiseSerializer(serializers.ModelSerializer):
     class Meta:
         model = DomaineExpertise
-        fields = ['libelle']
+        fields = '__all__'
 
 class FormateurSerializer(serializers.ModelSerializer):
+    competances = CompetenceSerializer(many=True, read_only=True)
+    certifications = CertificationSerializer(many=True, read_only=True)
+    domaineExpertises = DomaineExpertiseSerializer(many=True, read_only = True)
     class Meta:
         model = Formateur
-        fields = ['linkedin', 'profession', 'niveau_etude', 'duree_experience', 'utilisateur']
+        fields = ['linkedin', 'competances', 'certifications', 'domaineExpertises', 'profession', 'niveau_etude', 'duree_experience', 'utilisateur']
 
 class CabinetSerializer(serializers.ModelSerializer):
+    domaineExpertises = DomaineExpertiseSerializer(many=True, read_only = True)
     class Meta:
         model = Cabinet
-        fields = ['numero', 'description', 'logo', 'siteweb', 'utilisateur']
+        fields = ['numero', 'domaineExpertises', 'description', 'siteweb', 'utilisateur']
 
 class UtilisateurSerializer(serializers.ModelSerializer):
+    formateur = FormateurSerializer(read_only=True)
+    cabinet = CabinetSerializer(read_only=True)
+
     class Meta:
         model = Utilisateur
-        fields = ['email', 'nom_complet', 'telephone', 'adresse', 'type', 'password']
+        fields = ['id','email', 'cabinet', 'formateur', 'nom_complet', 'telephone', 'adresse', 'type', 'password', 'photo']
         extra_kwargs = {'password': {'write_only': True}}
+        read_only_fields = ['id']
 
     def create(self, validated_data):
         password = validated_data.pop('password')
@@ -43,7 +51,7 @@ class UtilisateurSerializer(serializers.ModelSerializer):
         utilisateur.set_password(password)
         utilisateur.save()
         return utilisateur
-
+    
 class FormateurInscriptionSerializer(serializers.ModelSerializer):
     utilisateur = UtilisateurSerializer()
 
@@ -63,7 +71,7 @@ class CabinetInscriptionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Cabinet
-        fields = ['utilisateur', 'numero', 'description', 'logo', 'siteweb']
+        fields = ['utilisateur', 'numero', 'description','siteweb']
 
     def create(self, validated_data):
         utilisateur_data = validated_data.pop('utilisateur')
@@ -112,24 +120,48 @@ class PrerequisSerializer(serializers.ModelSerializer):
         model = Prerequis
         fields = '__all__'
 
-class FormationSerializer(serializers.ModelSerializer):
+class FormationAjoutSerializer(serializers.ModelSerializer) :
     class Meta:
         model = Formation
-        fields = ['id', 'code_formation' 'titre', 'description', 'duree', 'prix', 'format', 'niveau', 'photo', 'tags', 'langue', 'domaine', 'public_vise', 'utilisateur']
+        fields = '__all__'
         read_only_fields = ['id', 'code_formation']
 
+class FormationSerializer(serializers.ModelSerializer):
+    prerequis = PrerequisSerializer(many=True, read_only=True)
+    criteres = CriteresSerializer(many=True, read_only=True)
+    objectifs = ObjectifsSerializer(many=True, read_only=True)
+    annee = AnneeSerializer(many=True, read_only=True)
+    utilisateur = UtilisateurSerializer()
+    class Meta:
+        model = Formation
+        fields = '__all__'
+        read_only_fields = ['id', 'code_formation', 'utilisateur']
+
     
-    
-class SessionSerializer(serializers.ModelSerializer):
+class CalendrierSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Calendrier
+        fields = '__all__'
+
+class SessionSerializerAjout(serializers.ModelSerializer):
+
     class Meta:
         model = Session
         fields = '__all__'
         read_only_fields = ['code_session']
 
-class CalendrierSerializer(serializers.ModelSerializer):
+
+class SessionSerializer(serializers.ModelSerializer):
+    calendriers = CalendrierSerializer(many=True, read_only=True)
+    formation = FormationSerializer()
+
     class Meta:
-        model = Calendrier
+        model = Session
         fields = '__all__'
+        read_only_fields = ['code_session', 'calendriers']
+        extra_kwargs = {
+            'formation': {'write_only': True},  # Permet de ne pas afficher les détails de la formation lors de l'ajout de la session
+        }
 
 class PayementSerializer(serializers.ModelSerializer):
     class Meta:

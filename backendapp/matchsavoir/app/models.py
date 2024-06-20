@@ -79,33 +79,32 @@ class Formateur(models.Model):
 class Cabinet(models.Model):
     numero = models.IntegerField()
     description = models.CharField(max_length=254)
-    logo = models.CharField(max_length=254)
     siteweb = models.URLField(max_length=254)
     utilisateur = models.OneToOneField(Utilisateur, on_delete=models.CASCADE, related_name='cabinet')
-    formateur = models.ForeignKey(Formateur, on_delete=models.CASCADE, related_name='cabinets', null=True)
+    formateur = models.ForeignKey(Formateur, on_delete=models.CASCADE, related_name='cabinets', null=True, blank=True)
 
     def __str__(self):
         return self.utilisateur.nom_complet
 
 class DomaineExpertise(models.Model):
     libelle = models.CharField(max_length=254)
-    cabinet = models.ForeignKey(Cabinet, on_delete=models.CASCADE, null=True)
-    formateur = models.ForeignKey(Formateur, on_delete=models.CASCADE, null=True)
+    cabinet = models.ForeignKey(Cabinet, on_delete=models.CASCADE, null=True, blank=True, related_name = 'domaineExpertises')
+    formateur = models.ForeignKey(Formateur, on_delete=models.CASCADE, null=True, blank=True, related_name = 'domaineExpertises')
 
     def __str__(self):
         return self.formateur.utilisateur.nom_complet
 
 class Competence(models.Model):
     libelle = models.CharField(max_length=254)
-    formateur = models.ForeignKey(Formateur, on_delete=models.CASCADE)
+    formateur = models.ForeignKey(Formateur, on_delete=models.CASCADE, related_name = 'competances')
 
     def __str__(self):
         return self.formateur.utilisateur.nom_complet
 
 class Certifications(models.Model):
     libelle = models.CharField(max_length=254)
-    fichier = models.CharField(max_length=254)
-    formateur = models.ForeignKey(Formateur, on_delete=models.CASCADE)
+    fichier = models.ImageField(upload_to='photos/', blank=True, null=True)
+    formateur = models.ForeignKey(Formateur, on_delete=models.CASCADE, related_name = 'certifications')
 
     def __str__(self):
         return self.formateur.utilisateur.nom_complet
@@ -148,8 +147,6 @@ class TempsDisponibilite(models.Model):
 class Formation(models.Model):
     titre = models.CharField(max_length=254)
     description = models.TextField()  
-    duree = models.CharField(max_length=100)  
-    prix = models.DecimalField(max_digits=10, decimal_places=2)
     format = models.CharField(max_length=254)
     niveau = models.CharField(max_length=254)
     photo = models.ImageField(upload_to='media/', blank=True, null=True) 
@@ -157,7 +154,7 @@ class Formation(models.Model):
     langue = models.CharField(max_length=254)
     domaine = models.CharField(max_length=254)
     public_vise = models.CharField(max_length=254)
-    utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
+    utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE, related_name='formation')
     code_formation = models.CharField(max_length=50, unique=True, blank=True, null=True)
 
     def __str__(self):
@@ -172,7 +169,7 @@ class Formation(models.Model):
 
 class Objectifs(models.Model):
     libelle = models.CharField(max_length=254)
-    formation = models.ForeignKey(Formation, on_delete=models.CASCADE)
+    formation = models.ForeignKey(Formation, on_delete=models.CASCADE, related_name='objectifs')
 
     def __str__(self):
         return self.libelle
@@ -180,7 +177,7 @@ class Objectifs(models.Model):
 
 class Annee(models.Model):
     libelle = models.CharField(max_length=254)
-    formation = models.ForeignKey(Formation, on_delete=models.CASCADE)
+    formation = models.ForeignKey(Formation, on_delete=models.CASCADE, related_name='annee')
 
     def __str__(self):
         return self.libelle
@@ -188,7 +185,7 @@ class Annee(models.Model):
 
 class Criteres(models.Model):
     libelle = models.CharField(max_length=254)
-    formation = models.ForeignKey(Formation, on_delete=models.CASCADE)
+    formation = models.ForeignKey(Formation, on_delete=models.CASCADE, related_name='criteres')
 
     def __str__(self):
         return self.libelle
@@ -196,7 +193,7 @@ class Criteres(models.Model):
 
 class Prerequis(models.Model):
     libelle = models.CharField(max_length=254)
-    formation = models.ForeignKey(Formation, on_delete=models.CASCADE)
+    formation = models.ForeignKey(Formation, on_delete=models.CASCADE, related_name='prerequis')
 
     def __str__(self):
         return self.libelle
@@ -206,6 +203,7 @@ class Session(models.Model):
     date_fin = models.DateField()
     lieu = models.CharField(max_length=254)
     nb_place_dispo = models.IntegerField()
+    duree = models.IntegerField()
     tarif = models.IntegerField()
     statut = models.BooleanField()
     code_session = models.CharField(max_length=254, blank=True, null=True, unique=True)
@@ -225,7 +223,7 @@ class Calendrier(models.Model):
     jours = models.CharField(max_length=60)
     heure_debut = models.TimeField()
     heure_fin = models.TimeField()
-    session = models.ForeignKey(Session, on_delete=models.CASCADE)
+    session = models.ForeignKey(Session, on_delete=models.CASCADE, related_name='calendriers')
 
     def __str__(self):
         return f"{self.jours} de {self.heure_debut} a {self.heure_fin}"

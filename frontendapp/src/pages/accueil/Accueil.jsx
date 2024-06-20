@@ -190,7 +190,7 @@ export default function Accueil() {
                         className="form-control fs-5 fw-bold bg-warning border-none"
                         style={{ color: "#03031efc" }}
                       >
-                        <i className="bi bi-search" aria-hidden="true" />{" "}
+                        <i className="bi bi-search" aria-hidden="true" />
                         Rechercher
                       </button>
                     </Link>
@@ -269,25 +269,25 @@ export default function Accueil() {
         id="apropos"
         style={{ marginTop: "-4em" }}
       >
-        <div className="container  ">
+        <div className="container-fluid ">
           <div className="heading_container heading_center">
             <h1>
               Apropos de <span className="fs-2 text-warning">Nous</span>
             </h1>
           </div>
           <div className="row mt-3">
-            <div className="col-md-4">
-              <div className="img-box">
+            <div className="col-md-5">
+              <div className="justify-content-center d-flex align-items-center">
                 <img
                   src={logo}
                   height={300}
-                  width={400}
+                  width={390}
                   alt="Logo MatchSavoir"
                 />
               </div>
             </div>
-            <div className="col-md-8">
-              <div className="detail-box fw-bold">
+            <div className="col-md-7">
+              <div className="detail-box fw-bold text-justify">
                 <p>
                   Nous sommes MatchSavoir, votre plateforme de référence pour
                   connecter formateurs qualifiés et chercheurs de formations.

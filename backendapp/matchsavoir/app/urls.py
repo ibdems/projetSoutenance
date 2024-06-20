@@ -13,7 +13,7 @@ urlpatterns = [
     
     # URLs pour la gestion CRUD des utilisateurs
     path('utilisateurs/', UtilisateurListView.as_view(), name='utilisateur_list'),
-    path('utilisateurs/<int:pk>/', UtilisateurDetailView.as_view(), name='utilisateur_detail'),
+    path('utilisateurs/detail/<int:pk>/', UtilisateurDetailView.as_view(), name='utilisateur_detail'),
 
     # URLS pour les messages
     path('messages/', MessageListView.as_view(), name='message_view'),
@@ -22,7 +22,7 @@ urlpatterns = [
 
     # URLs pour la gestion CRUD des formateurs
     path('formateurs/', FormateurListView.as_view(), name='formateur_list'),
-    path('formateurs/<int:pk>/', FormateurDetailView.as_view(), name='formateur_detail'),
+    path('formateurs/detail/<int:pk>/', FormateurDetailView.as_view(), name='formateur_detail'),
     path('formateurs/active_formateur_domicile', ActivateFormateurDomicile.as_view(), name='active_formateur_domicile'),
     path('formateurs/detail_formateur_domicile/<int:pk>/', ruFormateurDomicile.as_view(), name='formateur_detail_domicile'),
     path('formateurs/domaine', DomaineListView.as_view(), name='domaine_list'),
@@ -50,7 +50,8 @@ urlpatterns = [
     path('certifications/<int:pk>/', CertificationsDetailView.as_view(), name='certifications_detail'),
 
     # URLS pour les formations
-     path('formations/', FormationView.as_view(), name='formation_ajout'),
+     path('formations/', FormationView.as_view(), name='formation_list'),
+     path('formations/add', FormationAjout.as_view(), name='formation_ajout'),
      path('formations/detail/<int:pk>', FormationDetailView.as_view(), name='formation_detail'),
     path('formations/objectifs', ObjectifsListView.as_view(), name='objectifs_list'),
     path('formations/objectifs/<int:pk>/', ObjectifsDetailView.as_view(), name='objectifs_detail'),
@@ -62,7 +63,8 @@ urlpatterns = [
     path('formations/prerequis/<int:pk>/', PrerequisDetailView.as_view(), name='prerequis_detail'),
 
     # URLS pour les sessions
-    path('sessions/', SessionListView.as_view(), name='session_ajout'),
+    path('sessions/add', SessionAjout.as_view(), name='session_ajout'),
+    path('sessions/', SessionListView.as_view(), name='session_list'),
     path('sessions/detail/<int:pk>/', SessionDetailView.as_view(), name='session_detail'),
     path('sessions/calendrier/', CalendrierListView.as_view(), name='calendrier_ajout'),
     path('sessions/calendrier/detail/<int:pk>/', CalendrierDetailView.as_view(), name='calendrier_detail'),

@@ -3,11 +3,16 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 
 from ..models import Calendrier, Inscription, Session
-from ..serializers import CalendrierSerializer, InscriptionSerializer, ReponseDemandeSerializer, SessionSerializer
+from ..serializers import CalendrierSerializer, InscriptionSerializer, ReponseDemandeSerializer, SessionSerializer, SessionSerializerAjout
 
-class SessionListView(generics.ListCreateAPIView):
+class SessionListView(generics.ListAPIView):
     queryset = Session.objects.all()
     serializer_class = SessionSerializer
+
+class SessionAjout(generics.CreateAPIView):
+    queryset = Session.objects.all()
+    serializer_class = SessionSerializerAjout
+    
 
 class SessionDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Session.objects.all()

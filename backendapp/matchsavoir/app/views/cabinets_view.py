@@ -18,7 +18,7 @@ class CabinetDetailView(generics.RetrieveUpdateDestroyAPIView):
 class DomaineExpertiseListView(generics.ListCreateAPIView):
     queryset = DomaineExpertise.objects.all()
     serializer_class = DomaineExpertiseSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
 class DomaineExpertiseDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = DomaineExpertise.objects.all()

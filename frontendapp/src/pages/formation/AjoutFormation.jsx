@@ -20,11 +20,11 @@ import {
 import "./formation.scss";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
-import axios from "axios";
 import { Toast } from "primereact/toast";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
+import Axios from "../../components/Axios.jsx";
 
 const validationSchemaEtape1 = yup.object().shape({
   titre: yup
@@ -35,8 +35,6 @@ const validationSchemaEtape1 = yup.object().shape({
     .string()
     .required("La description est requise")
     .min(10, "Minimum 10 caractères"),
-  duree: yup.string().required("La durée est requise"),
-  prix: yup.string().required("Le prix est requis"),
   domaine: yup.string().required("Le domaine est requis"),
   format: yup.string().required("Le format est requis"),
   langue: yup.string().required("La langue est requise"),
@@ -69,8 +67,6 @@ export default function AjoutFormation() {
   const initialValues = {
     titre: "",
     description: "",
-    duree: "",
-    prix: "",
     domaine: "",
     langue: "",
     tags: "",
@@ -88,8 +84,6 @@ export default function AjoutFormation() {
       const formData = new FormData();
       formData.append("titre", values.titre);
       formData.append("description", values.description);
-      formData.append("duree", values.duree);
-      formData.append("prix", values.prix);
       formData.append("format", values.format);
       formData.append("niveau", values.niveau);
       formData.append("photo", image);
@@ -100,8 +94,8 @@ export default function AjoutFormation() {
       formData.append("utilisateur", 3); // ou récupéré dynamiquement
 
       // Envoyer les données de formation via FormData
-      const formationResponse = await axios.post(
-        "http://127.0.0.1:8000/api/formations",
+      const formationResponse = await Axios.post(
+        "formations/add",
         formData,
         {
           headers: {
@@ -117,21 +111,21 @@ export default function AjoutFormation() {
 
       // Ajouter l'ID de la formation aux objectifs, critères, prérequis et année
       for (const objectif of values.objectifs) {
-        await axios.post("http://localhost:8000/api/formations/objectifs", {
+        await Axios.post("formations/objectifs", {
           libelle: objectif,
           formation: formationId,
         });
       }
 
       for (const critere of values.criteres) {
-        await axios.post("http://localhost:8000/api/formations/criteres", {
+        await Axios.post("formations/criteres", {
           libelle: critere,
           formation: formationId,
         });
       }
 
       for (const prerequi of values.prerequis) {
-        await axios.post("http://localhost:8000/api/formations/prerequis", {
+        await Axios.post("formations/prerequis", {
           libelle: prerequi,
           formation: formationId,
         });
@@ -142,7 +136,7 @@ export default function AjoutFormation() {
         formation: formationId,
       };
 
-      await axios.post("http://127.0.0.1:8000/api/formations/annee", anneeData);
+      await Axios.post("formations/annee", anneeData);
 
       console.log("Données envoyées avec succès");
       toast.current.show({
@@ -164,7 +158,7 @@ export default function AjoutFormation() {
 
   return (
     <div>
-      <Toast ref={toast}  position="top-center" style={{ maxWidth: '300px' }}/>
+      <Toast ref={toast} position="top-center" style={{ maxWidth: '300px' }} />
       <Formik
         initialValues={initialValues}
         validationSchema={
@@ -245,32 +239,18 @@ export default function AjoutFormation() {
                           />
                         </FormGroup>
                         <Row>
-                          <Col xl={6}>
+                          <Col>
                             <FormGroup>
-                              <MyLabel
-                                forMyLabel="dureFormation"
-                                text="Durée"
-                              />
+                              <Row><MyLabel
+                                forMyLabel="public_vise"
+                                text="Public visé"
+                              /></Row>
                               <MyInput
-                                id="dureFormation"
-                                name="duree"
-                                placeholder="Entrez la durée de la formation"
+                                id="public_vise"
+                                name="public_vise"
+                                placeholder="Ex: Etudiant, Eleve"
                                 type="text"
-                                value={values.duree}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                              />
-                            </FormGroup>
-                          </Col>
-                          <Col xl={6}>
-                            <FormGroup>
-                              <MyLabel forMyLabel="prix" text="Prix" />
-                              <MyInput
-                                id="prix"
-                                name="prix"
-                                placeholder="Entrez le prix de la formation"
-                                type="number"
-                                value={values.prix}
+                                value={values.public_vise}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                               />
@@ -353,7 +333,7 @@ export default function AjoutFormation() {
                     </Row>
 
                     <Row>
-                      <Col md="12" xl="4">
+                      <Col md="12" lg="4">
                         <FormGroup>
                           <MyLabel forMyLabel="langue" text="Langue" />
                           <MyInput
@@ -368,7 +348,7 @@ export default function AjoutFormation() {
                         </FormGroup>
                       </Col>
 
-                      <Col md="12" xl="8">
+                      <Col md="12" lg="8">
                         <FormGroup>
                           <MyLabel forMyLabel="tags" text="Tags" />
                           <MyInput
@@ -382,23 +362,7 @@ export default function AjoutFormation() {
                           />
                         </FormGroup>
                       </Col>
-                      <Col md="12" xl="8">
-                        <FormGroup>
-                          <MyLabel
-                            forMyLabel="public_vise"
-                            text="public_vise"
-                          />
-                          <MyInput
-                            id="public_vise"
-                            name="public_vise"
-                            placeholder="Ex: Etudiant, Eleve"
-                            type="text"
-                            value={values.public_vise}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                          />
-                        </FormGroup>
-                      </Col>
+
                     </Row>
                   </div>
                 )}
