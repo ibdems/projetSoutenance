@@ -12,7 +12,7 @@ import {
   Button,
 } from "reactstrap";
 import {
-  MyButton,
+
   MyLabel,
   MyInput,
   MySelect,
@@ -95,7 +95,7 @@ export default function AjoutFormation() {
 
       // Envoyer les données de formation via FormData
       const formationResponse = await Axios.post(
-        "formations/add",
+        "formations/add/",
         formData,
         {
           headers: {

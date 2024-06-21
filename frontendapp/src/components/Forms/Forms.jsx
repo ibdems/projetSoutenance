@@ -29,7 +29,7 @@ export function MyInput({ label, ...props }) {
         {...field}
         {...props}
         className={`border p-2 fs-5 fw-5 ${meta.touched && meta.error ? 'border-danger' : meta.touched && !meta.error ? 'border-success' : 'border-black'} ${props.className}`}
-      > </Input> 
+      /> 
       {meta.touched && meta.error ? (
         <span className="position-absolute top-0 end-0 translate-middle-y fs-5 pe-2 text-danger" style={{ right: '10px' }}>❌</span>
       ) : meta.touched ? (
@@ -48,7 +48,7 @@ export function MySelect({ label, ...props }) {
   const { setValue } = helpers;
 
   const handleChange = (option) => {
-    setValue(option);
+    setValue(option.value); // Assurez-vous de passer uniquement la valeur de l'option
   };
 
   return (
@@ -67,8 +67,8 @@ export function MySelect({ label, ...props }) {
             color: 'black'
           }),
         }}
-      > 
-      </Select>
+      /> 
+      
       {meta.touched && meta.error ? (
         <span className="position-absolute top-0 end-0 translate-middle-y fs-5 pe-2 text-danger" style={{ right: '10px' }}>❌</span>
       ) : meta.touched ? (
@@ -77,7 +77,7 @@ export function MySelect({ label, ...props }) {
       {meta.touched && meta.error ? (
         <div className="text-danger">{meta.error}</div>
       ) : null}
-      
     </div>
   );
 }
+

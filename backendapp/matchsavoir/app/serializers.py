@@ -33,7 +33,7 @@ class CabinetSerializer(serializers.ModelSerializer):
     domaineExpertises = DomaineExpertiseSerializer(many=True, read_only = True)
     class Meta:
         model = Cabinet
-        fields = ['numero', 'domaineExpertises', 'description', 'siteweb', 'utilisateur']
+        fields = '__all__'
 
 class UtilisateurSerializer(serializers.ModelSerializer):
     formateur = FormateurSerializer(read_only=True)

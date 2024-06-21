@@ -19,7 +19,7 @@ export default function PublicRouter() {
         <Route path='/rechercheformation/detail/:sessionId' element={<DetailRecherche />}></Route>
         <Route path='/inscription' element={<IndexInscription />} />
         <Route path='/connexion' element={<Connexion />} />
-        <Route path='/reservation' element={<Reservation />} />
+        <Route path='/reservation/:sessionId' element={<Reservation />} />
         {/* La route pour la déconnexion */}
         <Route path='/deconnexion' element={<Connexion />} />
       </Route>

@@ -51,7 +51,7 @@ urlpatterns = [
 
     # URLS pour les formations
      path('formations/', FormationView.as_view(), name='formation_list'),
-     path('formations/add', FormationAjout.as_view(), name='formation_ajout'),
+     path('formations/add/', FormationAjout.as_view(), name='formation_ajout'),
      path('formations/detail/<int:pk>', FormationDetailView.as_view(), name='formation_detail'),
     path('formations/objectifs', ObjectifsListView.as_view(), name='objectifs_list'),
     path('formations/objectifs/<int:pk>/', ObjectifsDetailView.as_view(), name='objectifs_detail'),

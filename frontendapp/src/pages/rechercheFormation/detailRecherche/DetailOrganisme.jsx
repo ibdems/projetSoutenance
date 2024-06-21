@@ -43,7 +43,7 @@ export default function DetailCabinet({ id }) {
                         {cabinet.photo === null ? (
                             <i className="bi bi-person-fill fs-1"></i>
                         ) : (
-                            <img src={cabinet.photo} alt="Photo" height={200} width={200} style={{ border: '1px solid black', borderRadius: '50%' }} />
+                            <img src={cabinet.photo} alt="Photo" height={200} width={200} style={{ border: '1px solid black', borderRadius: '20%' }} />
                         )}
                     </div>
                 </Col>
@@ -56,7 +56,7 @@ export default function DetailCabinet({ id }) {
                     <div className='fw-bold text-justify'><i className="bi bi-job fs-3"></i> Descrption:</div>
                 </Col>
                 <Col>
-                    <p className='mt-1 text-justify'>{cabinet.cabinet ? cabinet.cabinet.description : 'N/A'}</p>
+                    <p className=' text-justify'>{cabinet.cabinet ? cabinet.cabinet.description : 'N/A'}</p>
                 </Col>
             </Row>
             <Row className=' p-1 '>
@@ -72,7 +72,7 @@ export default function DetailCabinet({ id }) {
                     <div className=' text-start text-md-end fw-bold'><i className="bi bi-telephone "></i> Telephone:</div>
                 </Col>
                 <Col>
-                    <p className='mt-1 text-justify'>{cabinet.telephone}</p>
+                    <p className='fs-5 text-justify'>{cabinet.telephone}</p>
                 </Col>
             </Row>
             <Row className=' p-1 '>
@@ -80,25 +80,19 @@ export default function DetailCabinet({ id }) {
                     <div className=' text-start text-md-end fw-bold'><i className="bi bi-envelope"></i> Email:</div>
                 </Col>
                 <Col>
-                    <p className='mt-1 text-justify'>{cabinet.email}</p>
+                    <p className='fs-5 text-justify'>{cabinet.email}</p>
                 </Col>
             </Row>
             <Row className=' p-1 styleCol'>
                 <Col xs={5} md={4}>
-                    <div className=' text-start text-md-end fw-bold'><i className="bi bi-job fs-3"></i> Site Web :</div>
+                    <div className=' text-start text-md-end fw-bold'><i className="bi bi-job fs-3"></i> Durée d'experience :</div>
                 </Col>
                 <Col>
-                    <p className='mt-1 text-justify'>{cabinet.cabinet ? cabinet.cabinet.siteweb : 'N/A'}</p>
+                    <p className='fs-5 text-justify'>{cabinet.cabinet ? cabinet.cabinet.duree_experience : 'N/A'} ans</p>
                 </Col>
             </Row>
-            <Row className=' p-1 '>
-                <Col md={4}>
-                    <div className=' text-start text-md-end fw-bold'><i className="bi bi-job fs-3"></i> Domaine:</div>
-                </Col>
-                <Col>
-                    <p className='mt-1 text-justify'><li>Formation</li><li>Developpement Logiciel</li></p>
-                </Col>
-            </Row>
+            
+            
         </div>
     );
 }

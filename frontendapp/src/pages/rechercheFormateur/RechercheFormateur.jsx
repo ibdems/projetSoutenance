@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import hero from '../../image/hero-bg.png'
 import '../accueil/css/style.css'
-import { Col, Row, FormGroup, Label, Input } from 'reactstrap'
-import { MyLabel, MyInput, MySelect } from '../../components/Forms/Forms'
+import { Col, Row, FormGroup, Input, InputGroup, InputGroupText } from 'reactstrap'
+import { MyLabel } from '../../components/Forms/Forms'
 import image from '../../image/team-1.jpg'
 import { Link } from 'react-router-dom'
 import '../rechercheFormation/recherche.scss'
@@ -13,6 +13,8 @@ import { domaine } from '../../data/domaine'
 import { formateurDomicile } from '../../data/formateurDomicile'
 import { Button, Modal, ModalBody, ModalFooter } from 'reactstrap';
 import Select from 'react-select';
+import logoF from "../../image/logo.jpg";
+import Titre from '../../components/titre/Titre'
 
 
 
@@ -67,18 +69,15 @@ export default function Recherche() {
     }
     return (
         <>
-            <div className="hero_area" >
-                <div className="hero_bg_box">
-                    <div className="bg_img_box">
-                        <img src={hero} alt="" />
-                    </div>
-                </div>
+            <div  >
+
 
                 {/* Contenue du navbar */}
                 <nav className="navbar navbar-expand-lg fixed-top" aria-label="Offcanvas navbar large" style={{ backgroundColor: '#03031efc' }} >
                     <div className="container-fluid">
-                        <Link className="navbar-brand text-white" href="#">
-                            MacthSavoir
+                        <Link className="navbar-brand text-white">
+                            <img src={logoF} alt="" height={40} className="d-lg-none" />
+                            <span className="d-none d-lg-block"><Titre /></span>
                         </Link>
                         <button
                             className="navbar-toggler text-white"
@@ -121,7 +120,7 @@ export default function Recherche() {
                                     </li>
                                     {showTextRecherche && (
                                         <li className="nav-item">
-                                            <Input type={'text'} className='form-control p-2 border-black text-black'   name={'textRecherche'} value={elements.textRecherche} onChange={(value) => handleInputChange('textRecherche', value.target.value)}></Input>
+                                            <Input type={'text'} className='form-control p-2 border-black text-black' name={'textRecherche'} value={elements.textRecherche} onChange={(value) => handleInputChange('textRecherche', value.target.value)}></Input>
 
                                         </li>
                                     )}
@@ -160,89 +159,82 @@ export default function Recherche() {
                         </div>
                     </div>
                 </nav>
-                <section className='slider_section'>
-                    <div className="container-fluid">
-                        <Row style={{ marginTop: '1em' }}>
-                            <Col lg={8} md={12}>
-                                <Row className='m-3 ms-xs-2'>
-                                    <div className='text-warning fs-3 fw-bold'>Trouvez le formateur pour vos cours paticuliers</div>
-                                    <Col md={7}>
-                                        <FormGroup>
-                                            <MyLabel></MyLabel>
-                                            <Input type={'text'} placeholder={'Saisissez un nom, un domaine, une profession .....'} name={'textRecherche'} value={elements.textRecherche} onChange={(value) => handleInputChange('textRecherche', value.target.value)}></Input>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md={3} xs={10}>
-                                        <FormGroup>
-                                            <MyLabel></MyLabel>
-                                            <Input type={'text'} placeholder={'lieu'} name={'textLieu'} value={elements.textLieu} onChange={(value) => handleInputChange('textlieu', value.target.value)}></Input>
-                                        </FormGroup>
-                                    </Col>
-                                    <Col md={2} xs={2} className='mt-2'>
-                                        <i className="bi bi-search iconeButton " onClick={rechercher}></i>
-                                    </Col>
-                                </Row>
-                                <Row className='m-3'>
-                                    <Col xs={12} md={5}>
-                                        <FormGroup>
-                                            <Row>
-                                                <MyLabel forMyLabel='format' text={'Trier par domaine'} className='text-white'></MyLabel>
-                                            </Row>
-                                            <Select
-                                                styles={{
-                                                    control: (provided) => ({
-                                                      ...provided,
-                                                      height: 'auto',
-                                                      minHeight: '40px',
-                                                      border: '1px solid black',
-                                                      color: 'black'
-                                                    }),
-                                                  }}
-                                                options={domaine.map(item => ({ value: item.id, label: item.libelle }))}
-                                                value={elements.domaine}
-                                                onChange={(selectedOption) => handleInputChange('domaine', selectedOption)}
-                                                
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                    <Col xs={12} md={5}>
-                                        <FormGroup>
-                                            <Row>
-                                                <MyLabel forMyLabel='niveau' text={'Trier par niveau'} className='text-white'></MyLabel>
-                                            </Row>
-                                            <Select id={'niveau'} name={'niveau'} value={elements.niveau} onChange={(value) => handleInputChange('niveau', value)} options={[
-                                                { label: 'Primaire', value: 'primaire' },
-                                                { label: 'Collège', value: 'college' },
-                                                { label: 'Lycée', value: 'lycee' },
-                                                { label: 'Universitaire', value: 'universitaire' },
-                                                { label: 'Professionnel', value: 'professionnel' },
-                                            ]}
-                                            styles={{
-                                                control: (provided) => ({
-                                                  ...provided,
-                                                  height: 'auto',
-                                                  minHeight: '40px',
-                                                  border: '1px solid black',
-                                                  color: 'black'
-                                                }),
-                                              }} />
-                                        </FormGroup>
-                                    </Col>
-                                    <Col></Col>
 
-                                </Row>
 
-                            </Col>
-                            <Col className="d-lg-block d-none">
-                                <div className="img-box p-5" style={{ marginTop: '' }}>
-                                    {/* <img src={imgCarousel1} alt="" height={'300px'} width={'200px'} /> */}
-                                </div>
-                            </Col>
-
-                        </Row>
+                <section className="service_section layout_padding" style={{ backgroundColor: "#03031efc", height: "200px", position: "" }}>
+                    <div className="text-warning fs-1 fw-bold mb-4 text-center" style={{ marginTop: "-10px" }}>
+                        Trouvez le formateur qu'il vous faut ou pour vos enfants
                     </div>
-                </section>
+                    <Row style={{ position: "", top: "-40px" }}>
+                        <Col></Col>
+                        <Col md={5}>
+                            <FormGroup className="mx-2 mx-md-0">
+                                <InputGroup>
+                                    <InputGroupText className="border-black"><i className="bi bi-search fw-bold fs-5"></i></InputGroupText>
+                                    <Input type="text" placeholder="Saisissez un nom , un mot clé, un domaine ..." name="textRecherche" value={elements.textRecherche} className="form-control p-2 fs-5 text-black border-black" onChange={(e) => handleInputChange("textRecherche", e.target.value)} style={{ backgroundColor: "white", height: "55px" }} />
+                                </InputGroup>
+                            </FormGroup>
+                        </Col>
+                        <Col md={3}>
+                            <FormGroup className="mx-2 mx-md-0">
+                                <InputGroup>
+                                    <InputGroupText className="border-black"><i className="bi bi-geo-alt fw-bold fs-5"></i></InputGroupText>
+                                    <Input type="text" placeholder="Lieu" name="textLieu" value={elements.textLieu} className="form-control p-2 fs-5 border-black text-black" onChange={(e) => handleInputChange("textLieu", e.target.value)} style={{ backgroundColor: "white", height: "55px" }} />
+                                </InputGroup>
+                            </FormGroup>
+                        </Col>
+                        <Col></Col>
+                    </Row>
+                    <Row className='m-3'>
+                        <Col xs={12} md={5}>
+                            <FormGroup>
+                                <Row>
+                                    <MyLabel forMyLabel='format' text={'Trier par domaine'} className='text-white'></MyLabel>
+                                </Row>
+                                <Select
+                                    styles={{
+                                        control: (provided) => ({
+                                            ...provided,
+                                            height: 'auto',
+                                            minHeight: '40px',
+                                            border: '1px solid black',
+                                            color: 'black'
+                                        }),
+                                    }}
+                                    options={domaine.map(item => ({ value: item.id, label: item.libelle }))}
+                                    value={elements.domaine}
+                                    onChange={(selectedOption) => handleInputChange('domaine', selectedOption)}
 
+                                />
+                            </FormGroup>
+                        </Col>
+                        <Col xs={12} md={5}>
+                            <FormGroup>
+                                <Row>
+                                    <MyLabel forMyLabel='niveau' text={'Trier par niveau'} className='text-white'></MyLabel>
+                                </Row>
+                                <Select id={'niveau'} name={'niveau'} value={elements.niveau} onChange={(value) => handleInputChange('niveau', value)} options={[
+                                    { label: 'Primaire', value: 'primaire' },
+                                    { label: 'Collège', value: 'college' },
+                                    { label: 'Lycée', value: 'lycee' },
+                                    { label: 'Universitaire', value: 'universitaire' },
+                                    { label: 'Professionnel', value: 'professionnel' },
+                                ]}
+                                    styles={{
+                                        control: (provided) => ({
+                                            ...provided,
+                                            height: 'auto',
+                                            minHeight: '40px',
+                                            border: '1px solid black',
+                                            color: 'black'
+                                        }),
+                                    }} />
+                            </FormGroup>
+                        </Col>
+                        <Col></Col>
+
+                    </Row>
+                </section>
 
 
             </div>

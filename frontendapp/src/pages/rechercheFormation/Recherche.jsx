@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import logoF from "../../image/logo.jpg";
 import "../accueil/css/style.css";
 import {
@@ -17,13 +17,18 @@ import Footer from "../accueil/Footer";
 import InfoSection from "../accueil/InfoSection";
 import Titre from "../../components/titre/Titre";
 import Axios from "../../components/Axios";
+import { Skeleton } from 'primereact/skeleton';
+import { Toast } from "primereact/toast";
+import "primereact/resources/themes/saga-blue/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
 
 export default function Recherche() {
+  const toast = useRef(null);
   const [showTextRecherche, setShowTextRecherche] = useState(false);
   const [showTextLieu, setShowTextLieu] = useState(false);
   const [sessions, setsessions] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [elements, setElements] = useState({
     textRecherche: "",
     textLieu: "",
@@ -36,6 +41,7 @@ export default function Recherche() {
   });
 
   useEffect(() => {
+    // Effect to fetch sessions only once
     Axios.get('sessions/')
       .then(response => {
         setsessions(response.data);
@@ -44,12 +50,19 @@ export default function Recherche() {
       })
       .catch(error => {
         console.error("There was an error fetching the sessions!", error);
-        setError(error);
-        setLoading(false);
+        if (toast.current) {
+          toast.current.show({
+            severity: "error",
+            summary: "Erreur",
+            detail: "Echec de chargement des sessions! Verifier votre connexion et reactialisez la page",
+            life: 7000
+          });
+        }
       });
   }, []);
 
   useEffect(() => {
+    // Effect to handle scroll event
     const handleScroll = () => {
       const scrollPosition = window.scrollY || document.documentElement.scrollTop;
       if (scrollPosition > 150) {
@@ -65,11 +78,6 @@ export default function Recherche() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error loading sessions: {error.message}</p>;
-
-
-
   const handleInputChange = (name, value) => {
     setElements((prevState) => ({
       ...prevState,
@@ -77,33 +85,6 @@ export default function Recherche() {
     }));
   };
 
-  const viderFormat = () => {
-    setElements((prevState) => ({
-      ...prevState,
-      format: '',  // Réinitialise le format à une chaîne vide
-    }));
-  };
-
-  const viderNiveau = () => {
-    setElements((prevState) => ({
-      ...prevState,
-      niveau: '',  // Réinitialise le format à une chaîne vide
-    }));
-  };
-
-  const viderDuree = () => {
-    setElements((prevState) => ({
-      ...prevState,
-      duree: '',  // Réinitialise le format à une chaîne vide
-    }));
-  };
-
-  const viderPublic = () => {
-    setElements((prevState) => ({
-      ...prevState,
-      public: '',  // Réinitialise le format à une chaîne vide
-    }));
-  };
   const filterSessions = (sessions) => {
     return sessions.filter((session) => {
       const { textRecherche, textLieu, format, niveau, public: publicAdmis, duree, prixMin, prixMax } = elements;
@@ -115,7 +96,7 @@ export default function Recherche() {
       const sessionPublic = session.formation.public_vise.toLowerCase();
       const sessionDuree = session.duree;
       const sessionPrix = session.tarif;
-  
+
       let dureeType = '';
       if (sessionDuree <= 30) {
         dureeType = 'courte';
@@ -124,7 +105,7 @@ export default function Recherche() {
       } else {
         dureeType = 'longue';
       }
-  
+
       return (
         (!textRecherche || sessionTitle.includes(textRecherche.toLowerCase()) || sessionTags.includes(textRecherche.toLowerCase())) &&
         (!textLieu || sessionLieu.includes(textLieu.toLowerCase())) &&
@@ -137,12 +118,11 @@ export default function Recherche() {
       );
     });
   };
-  
 
   const filteredSessions = filterSessions(sessions);
-
   return (
     <>
+      <Toast ref={toast} position="top-center" style={{ maxWidth: '300px' }} />
       <div>
         {/* Contenue du navbar */}
         <nav className="navbar navbar-expand-lg fixed-top" aria-label="Offcanvas navbar large" style={{ backgroundColor: "#03031efc", padding: "10px 0", marginTop: "-10px" }}>
@@ -237,10 +217,10 @@ export default function Recherche() {
           <Row className="">
             <Col></Col>
             <Col md={4} lg={3}>
-              <div className="fw-bold fs-5 d-none d-lg-block">
+              <div className="fw-bold fs-5 d-none d-md-block">
                 Option de filtre <i className="bi bi-filter"></i>
               </div>
-              <nav className="navbar navbar-expand-lg bg-body-tertiary">
+              <nav className="navbar navbar-expand-md bg-body-tertiary">
                 <div className="container-fluid">
                   <a className="navbar-toggler" style={{ textDecoration: "none", color: "black" }} type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="fw-bold fs-5">Option de filtre <i className="bi bi-filter"></i></span>
@@ -249,36 +229,37 @@ export default function Recherche() {
                     <div className="navbar-nav">
                       <hr />
                       <Row>
-                        <div className="fs-4 fw-200 mb-1">Type de Formation <i onClick={viderFormat} className="bi bi-x fs-5" title="Effacer"></i></div>
+                        <div className="fs-4 fw-200 mb-1">Type de Formation</div>
                         <Col xs={12} className="ms-4">
                           <FormGroup>
-                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="format" value="presentielle" checked={elements.format && elements.format.includes("presentielle")} onChange={(e) => handleInputChange("format", e.target.value ? "presentielle" : "")} /> Présentielle</Label></FormGroup>
-                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="format" value="ligne" checked={elements.format && elements.format.includes("ligne")} onChange={(e) => handleInputChange("format", e.target.value ? "ligne" : "")} /> En ligne</Label></FormGroup>
-                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="format" value="alternance" checked={elements.format && elements.format.includes("alternance")} onChange={(e) => handleInputChange("format", e.target.value) ? "alternance" : ""} /> En alternance</Label></FormGroup>
+                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="format" value="presentielle" checked={elements.format && elements.format.includes("presentielle")} onChange={(e) => handleInputChange("format", e.target.checked ? "presentielle" : "")} /> Présentielle</Label></FormGroup>
+                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="format" value="ligne" checked={elements.format && elements.format.includes("ligne")} onChange={(e) => handleInputChange("format", e.target.checked ? "ligne" : "")} /> En ligne</Label></FormGroup>
+                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="format" value="alternance" checked={elements.format && elements.format.includes("alternance")} onChange={(e) => handleInputChange("format", e.target.checked ? "alternance" : "")} /> En alternance</Label></FormGroup>
+
                           </FormGroup>
                         </Col>
-                        <div className="fs-4 fw-200 mb-1">Niveau <i onClick={viderNiveau} className="bi bi-x fs-5" title="Effacer"></i></div>
+                        <div className="fs-4 fw-200 mb-1">Niveau </div>
                         <Col xs={12} className="ms-4">
                           <FormGroup>
-                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="niveau" value="debutant" checked={elements.niveau.includes("debutant")} onChange={(e) => handleInputChange("niveau", e.target.value ? "debutant" : "")} /> Débutant</Label></FormGroup>
-                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="niveau" value="intermediaire" checked={elements.niveau.includes("intermediaire")} onChange={(e) => handleInputChange("niveau", e.target.value ? "intermediaire" : "")} /> Intermédiaire</Label></FormGroup>
-                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="niveau" value="avanc" checked={elements.niveau.includes("avanc")} onChange={(e) => handleInputChange("niveau", e.target.value ? "avanc" : "")} /> Avancé</Label></FormGroup>
+                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="niveau" value="debutant" checked={elements.niveau.includes("debutant")} onChange={(e) => handleInputChange("niveau", e.target.checked ? "debutant" : "")} /> Débutant</Label></FormGroup>
+                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="niveau" value="intermediaire" checked={elements.niveau.includes("intermediaire")} onChange={(e) => handleInputChange("niveau", e.target.checked ? "intermediaire" : "")} /> Intermédiaire</Label></FormGroup>
+                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="niveau" value="avanc" checked={elements.niveau.includes("avanc")} onChange={(e) => handleInputChange("niveau", e.target.checked ? "avanc" : "")} /> Avancé</Label></FormGroup>
                           </FormGroup>
                         </Col>
-                        <div className="fs-4 fw-200 mb-1">Public admis <i onClick={viderPublic} className="bi bi-x fs-5" title="Effacer"></i></div>
+                        <div className="fs-4 fw-200 mb-1">Public admis</div>
                         <Col xs={12} className="ms-4">
                           <FormGroup>
-                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="public" value="etudiant" checked={elements.public.includes("etudiant")} onChange={(e) => handleInputChange("public", e.target.value ? "etudiant" : "")} /> Etudiants</Label></FormGroup>
-                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="public" value="eleve" checked={elements.public.includes("eleve")} onChange={(e) => handleInputChange("public", e.target.value ? "eleve" : "")} /> Elèves</Label></FormGroup>
-                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="public" value="avanc" checked={elements.public.includes("professionnel")} onChange={(e) => handleInputChange("public", e.target.value ? "professionnel" : "")} /> Diplomés</Label></FormGroup>
+                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="public" value="etudiant" checked={elements.public.includes("etudiant")} onChange={(e) => handleInputChange("public", e.target.checked ? "etudiant" : "")} /> Etudiants</Label></FormGroup>
+                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="public" value="eleve" checked={elements.public.includes("eleve")} onChange={(e) => handleInputChange("public", e.target.checked ? "eleve" : "")} /> Elèves</Label></FormGroup>
+                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="public" value="avanc" checked={elements.public.includes("professionnel")} onChange={(e) => handleInputChange("public", e.target.checked ? "professionnel" : "")} /> Diplomés</Label></FormGroup>
                           </FormGroup>
                         </Col>
-                        <div className="fs-4 fw-200 mb-1">Durée <i onClick={viderDuree} className="bi bi-x fs-5" title="Effacer"></i></div>
+                        <div className="fs-4 fw-200 mb-1">Durée </div>
                         <Col xs={12} className="ms-4">
                           <FormGroup>
-                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="duree" value="courte" checked={elements.duree.includes("courte")} onChange={(e) => handleInputChange("duree", e.target.value ? "courte" : "")} /> Courte</Label></FormGroup>
-                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="duree" value="moyenne" checked={elements.duree.includes("moyenne")} onChange={(e) => handleInputChange("duree", e.target.value ? "moyenne" : "")} /> Moyenne</Label></FormGroup>
-                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="duree" value="longue" checked={elements.duree.includes("longue")} onChange={(e) => handleInputChange("duree", e.target.value ? "longue" : "")} /> Longue</Label></FormGroup>
+                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="duree" value="courte" checked={elements.duree.includes("courte")} onChange={(e) => handleInputChange("duree", e.target.checked ? "courte" : "")} /> Courte</Label></FormGroup>
+                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="duree" value="moyenne" checked={elements.duree.includes("moyenne")} onChange={(e) => handleInputChange("duree", e.target.checked ? "moyenne" : "")} /> Moyenne</Label></FormGroup>
+                            <FormGroup check><Label check><Input className="border-black" type="checkbox" name="duree" value="longue" checked={elements.duree.includes("longue")} onChange={(e) => handleInputChange("duree", e.target.checked ? "longue" : "")} /> Longue</Label></FormGroup>
                           </FormGroup>
                         </Col>
                         <Col xs={12}>
@@ -304,10 +285,19 @@ export default function Recherche() {
 
             </Col>
             {/* Col pour les ecrans large */}
+
             <Col md={7} className="d-none d-lg-block">
               {(elements.textRecherche || elements.textLieu) != '' && <div className="fs-4 fw-bold">Résultat "{elements.textRecherche} {elements.textLieu}"</div>}
-              <Row className="gx-3 gy-4 align-items-stretch">
-                {filteredSessions.map((sessions) => (
+              {loading ? (
+                <div>
+                  <Skeleton width="100%" height="30vh" className="mb-2 bg" />
+                  <Skeleton width="100%" height="30vh" className="mb-2 bg" />
+                  <Skeleton width="100%" height="30vh" className="mb-2 bg" />
+                </div>
+
+              ) : (
+                <Row className="gx-3 gy-4 align-items-stretch d-flex">
+                  {filteredSessions.map((sessions) => (
                     <Col key={sessions.id} xs={12} className="">
                       <Col className="colForm border-black m-2">
                         <Row className="px-4">
@@ -321,6 +311,7 @@ export default function Recherche() {
                               </Col>
                             </Row>
                             <h5 className="fw-bold text-justify">{" " + sessions.formation.titre}</h5>
+                            <div className="mb-1" style={{ fontSize: '12px', marginTop: '-10px' }}>{sessions.formation.description}</div>
                             <div className="lien-gestion">
                               <Link to={`/rechercheformation/detail/${sessions.id}`}>
                                 <button type="button" className="btn mt-1 form-control btnVoirplus">
@@ -347,14 +338,14 @@ export default function Recherche() {
                               <div>
                                 <span>
                                   <i className="bi bi-geo-alt"></i>
-                                  {" " +sessions.formation.format}
+                                  {" " + sessions.formation.format}
                                 </span>
                               </div>
                               {sessions.formation.format.toLowerCase() === 'en presentielle' && (
                                 <div>
                                   <span>
                                     <i className="bi bi-house-door"></i>
-                                    { " " +sessions.lieu}
+                                    {" " + sessions.lieu}
                                   </span>
                                 </div>
                               )}
@@ -366,13 +357,26 @@ export default function Recherche() {
                     </Col>
 
                   ))}
-              </Row>
+                </Row>
+              )}
+
             </Col>
+
+
 
             {/* Col pour les petites ecrans */}
             <Col md={7} className="d-block d-lg-none">
-              <Row className="gx-3 gy-4 align-items-stretch">
-                {filteredSessions.map((sessions) => (
+              {(elements.textRecherche || elements.textLieu) != '' && <div className="fs-4 fw-bold">Résultat "{elements.textRecherche} {elements.textLieu}"</div>}
+              {loading ? (
+                <div>
+                  <Skeleton width="100%" height="30vh" className="mb-2 bg" />
+                  <Skeleton width="100%" height="30vh" className="mb-2 bg" />
+                  <Skeleton width="100%" height="30vh" className="mb-2 bg" />
+                </div>
+
+              ) : (
+                <Row className="gx-3 gy-4 align-items-stretch">
+                  {filteredSessions.map((sessions) => (
                     <Col key={sessions.id} xs={12} className="">
                       <Col className="colForm border-black m-2">
                         <Row className="px-4">
@@ -385,6 +389,7 @@ export default function Recherche() {
                             </Col>
                           </Row>
                           <h5 className="fw-bold text-justify mt-2">{" " + sessions.formation.titre}</h5>
+                          <div className="mb-1" style={{ fontSize: '12px', marginTop: '-10px' }}>{sessions.formation.description}</div>
                           <div className="container infoForm p-2 me-3 mt-3">
                             <div>
                               <span>
@@ -404,7 +409,7 @@ export default function Recherche() {
                             <div>
                               <span>
                                 <i className="bi bi-geo-alt"></i>
-                                { " " +sessions.formation.format}
+                                {" " + sessions.formation.format}
                               </span>
                             </div>
                             {sessions.formation.format.toLowerCase() === 'en presentielle' && (
@@ -434,7 +439,9 @@ export default function Recherche() {
                     </Col>
 
                   ))}
-              </Row>
+                </Row>
+              )}
+
             </Col>
             <Col></Col>
           </Row>

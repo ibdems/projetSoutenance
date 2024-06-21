@@ -229,9 +229,14 @@ export default function DetailRecherche() {
 
                     </div>
                     <div>
-                      <button onClick={toggle} type='button' className='btn mt-3 form-control btnVoirplus'>
+                      <Link to={`/reservation/${session.id}`}>
+                        <button onClick={toggle} type='button' className='btn mt-3 form-control btnVoirplus'>
+                          <span className='fs-4 fw-bold text-end' style={{ color: 'whitesmoke' }}>Reserver une place</span>
+                        </button>
+                      </Link>
+                      {/* <button onClick={toggle} type='button' className='btn mt-3 form-control btnVoirplus'>
                         <span className='fs-4 fw-bold text-end' style={{ color: 'whitesmoke' }}>Reserver une place</span>
-                      </button>
+                      </button> */}
                     </div>
                   </Col>
                 </CardBody>

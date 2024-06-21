@@ -80,6 +80,7 @@ class Cabinet(models.Model):
     numero = models.IntegerField()
     description = models.CharField(max_length=254)
     siteweb = models.URLField(max_length=254)
+    duree_experience = models.IntegerField()
     utilisateur = models.OneToOneField(Utilisateur, on_delete=models.CASCADE, related_name='cabinet')
     formateur = models.ForeignKey(Formateur, on_delete=models.CASCADE, related_name='cabinets', null=True, blank=True)
 
