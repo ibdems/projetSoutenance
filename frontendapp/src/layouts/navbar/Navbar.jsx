@@ -28,7 +28,6 @@ function Navbar({ sizeNav, onNavToggle, sizeNavWidth }) {
         </Row>
       </div>
     </nav>
-    <ProgressBar mode="indeterminate" style={{ height: '6px', backgroundColor: 'red' }}></ProgressBar>
     </>
   );
 }

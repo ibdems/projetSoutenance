@@ -22,14 +22,15 @@ urlpatterns = [
 
     # URLs pour la gestion CRUD des formateurs
     path('formateurs/', FormateurListView.as_view(), name='formateur_list'),
+    path('formateurs/domicile/', FormateurDomicileListView.as_view(), name='formateur_domicile'),
     path('formateurs/detail/<int:pk>/', FormateurDetailView.as_view(), name='formateur_detail'),
-    path('formateurs/active_formateur_domicile', ActivateFormateurDomicile.as_view(), name='active_formateur_domicile'),
+    path('formateurs/active_formateur_domicile/', ActivateFormateurDomicile.as_view(), name='active_formateur_domicile'),
     path('formateurs/detail_formateur_domicile/<int:pk>/', ruFormateurDomicile.as_view(), name='formateur_detail_domicile'),
-    path('formateurs/domaine', DomaineListView.as_view(), name='domaine_list'),
+    path('formateurs/domaine/', DomaineListView.as_view(), name='domaine_list'),
     path('formateurs/domaine/<int:pk>/', DomaineDetailView.as_view(), name='domaine_detail'),
-    path('formateurs/niveau', NiveauListView.as_view(), name='niveau_list'),
+    path('formateurs/niveau/', NiveauListView.as_view(), name='niveau_list'),
     path('formateurs/niveau/<int:pk>/', NiveauDetailView.as_view(), name='niveau_detail'),
-    path('formateurs/temps', TempsListView.as_view(), name='temps_list'),
+    path('formateurs/temps/', TempsListView.as_view(), name='temps_list'),
     path('formateurs/temps/<int:pk>/', TempsDetailView.as_view(), name='temps_detail'),
 
 

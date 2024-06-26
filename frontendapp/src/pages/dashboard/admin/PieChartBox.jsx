@@ -3,9 +3,9 @@ import { Col, Row } from 'reactstrap';
 import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from 'recharts';
 
 const data = [
-    { id: 1, name: 'Formateurs', value: 400, color: '#0088FE' },
-    { id: 2, name: 'Organisme', value: 300, color: '#00C49F' },
-    { id: 3, name: 'Désirants', value: 300, color: '#FFBB28' },
+    { id: 1, name: 'Formateurs', value: 10, color: '#0088FE' },
+    { id: 2, name: 'Organisme', value: 4, color: '#00C49F' },
+    { id: 3, name: 'Désirants', value: 3, color: '#FFBB28' },
 ];
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
 const RADIAN = Math.PI / 180;

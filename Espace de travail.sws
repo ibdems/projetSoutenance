@@ -8,6 +8,7 @@
 		<Model Expanded="Yes" ID="{3C1E1CAB-F33E-4B80-BCC5-51F2D271E062}" Loaded="No" Name="ModeleOrienteObjet_3" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="file/adminCasUtilisation.moo"/>
 		<Model Expanded="Yes" ID="{C3334182-C47A-4148-9833-C1442E503DDD}" Loaded="No" Name="ModeleOrienteObjet_2" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="file/desirantCasUtilisation.moo"/>
 		<Model Expanded="Yes" ID="{7D232466-3028-46BE-92D2-69BB81F39962}" Loaded="No" Name="Diagramme de classes_1" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="../../OneDrive/ForSoutenane/Diagramme de classes_1.moo"/>
+		<Model Expanded="Yes" ID="{7D232466-3028-46BE-92D2-69BB81F39962}" Loaded="No" Name="Diagramme de classes_1" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="../../OneDrive/ForSoutenane/Diagramme de classes_1.moo"/>
 		<Model Expanded="Yes" ID="{7D232466-3028-46BE-92D2-69BB81F39962}" Name="Diagramme de classes_1" Selected="Yes" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="../../OneDrive/ForSoutenane/Diagramme de classes_1.moo"/>
 	</Local>
 	<BrowserModule Name="Référentiel"/>

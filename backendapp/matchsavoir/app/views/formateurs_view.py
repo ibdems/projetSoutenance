@@ -1,5 +1,5 @@
-from ..models import Certifications, Competence, Domaine, Formateur, FormateurDomicile, Niveau, TempsDisponibilite
-from ..serializers import CertificationSerializer, CompetenceSerializer, DomaineSerializer, FormateurDomicileSerializer, FormateurSerializer, NiveauSerializer, TempsDisponibiliteSerializer
+from ..models import Certifications, Competence, Domaine, Formateur, FormateurDomicile, Niveau, TempsDisponibilite, Utilisateur
+from ..serializers import CertificationSerializer, CompetenceSerializer, DomaineSerializer, FormateurDomicileListSerializer, FormateurDomicileSerializer, FormateurSerializer, NiveauSerializer, TempsDisponibiliteSerializer
 from rest_framework import status, generics
 from rest_framework.permissions import IsAuthenticated
 
@@ -9,6 +9,14 @@ class FormateurListView(generics.ListCreateAPIView):
     serializer_class = FormateurSerializer
     # permission_classes = [IsAuthenticated]
 
+class FormateurDomicileListView(generics.ListCreateAPIView):
+    serializer_class = FormateurDomicileListSerializer
+
+    def get_queryset(self):
+        return Utilisateur.objects.filter(
+            type='formateur',
+            formateur__formateurDomicile__statut=True
+        )
 class FormateurDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Formateur.objects.all()
     serializer_class = FormateurSerializer

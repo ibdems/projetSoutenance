@@ -31,7 +31,7 @@ function Dashboard() {
                 <ChartBox
                   icone={'bi bi-person'}
                   title={'Utilisateurs total'}
-                  total={6487}
+                  total={17}
                   lien={'/admin/utilisateurs'}
                 />
               </Col>
@@ -41,7 +41,7 @@ function Dashboard() {
                 <ChartBox
                   icone={'bi bi-coin'}
                   title={'Payements Total'}
-                  total={`${640}`}
+                  total={`${5}`}
                   lien={'/admin/payement'}
                 />
               </Col>
@@ -55,7 +55,7 @@ function Dashboard() {
                 <ChartBox
                   icone={'bi bi-mortarboard-fill'}
                   title={'Formations Total'}
-                  total={`${640}`}
+                  total={`${25}`}
                   lien={'/admin/formation/list'}
                 />
               </Col>
@@ -66,7 +66,7 @@ function Dashboard() {
                 <ChartBox
                   icone={'bi bi-charts'}
                   title={'Ratio Formation/Formateur'}
-                  total={`${640}`}
+                  total={`${15} %`}
                   lien={'/admin/formation/list'}
                 />
               </Col>

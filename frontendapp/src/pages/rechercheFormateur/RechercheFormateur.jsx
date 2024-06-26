@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import hero from '../../image/hero-bg.png'
 import '../accueil/css/style.css'
 import { Col, Row, FormGroup, Input, InputGroup, InputGroupText } from 'reactstrap'
@@ -9,13 +9,13 @@ import '../rechercheFormation/recherche.scss'
 import ContactezNous from '../accueil/ContactezNous'
 import Footer from '../accueil/Footer'
 import InfoSection from '../accueil/InfoSection'
-import { domaine } from '../../data/domaine'
 import { formateurDomicile } from '../../data/formateurDomicile'
 import { Button, Modal, ModalBody, ModalFooter } from 'reactstrap';
 import Select from 'react-select';
 import logoF from "../../image/logo.jpg";
 import Titre from '../../components/titre/Titre'
-
+import Axios from '../../components/Axios'
+import profil from '../../image/profil.svg'
 
 
 
@@ -51,22 +51,93 @@ export default function Recherche() {
 
 
 
-    const [elements, setElements] = useState({
-        textRecherche: '',
-        textLieu: '',
-        domaine: '',
-        niveau: '',
+    const [lieu, setLieu] = useState('')
+    const [domaine, setDomaine] = useState([])
+    const [niveau, setNiveau] = useState([])
+    const [domaineValue, setDomaineValue] = useState('')
+    const [niveauValue, setNiveauValue] = useState('')
+    const [formateur, setFormateur] = useState([])
+    const [loading, setLoading] = useState(true)
+    const toast = useRef(null);
 
-    })
+    const handleInputChange = (e) => {
+        setLieu(e.target.value);
+    }
 
-    const handleInputChange = (name, value) => {
-        setElements(prevState => ({
-            ...prevState, [name]: value
-        }));
+    const handleDomaineChange = (selectedOption) => {
+        setDomaineValue(selectedOption);  // Met à jour l'état 'domaine'
+    }
+
+    const handleNiveauChange = (selectedOption) => {
+        setNiveauValue(selectedOption);  // Met à jour l'état 'niveau'
     }
     const rechercher = () => {
         console.log('rechercher')
     }
+    useEffect(() => {
+        // Effect to fetch sessions only once
+        Axios.get('formateurs/niveau/')
+            .then(response => {
+                const options = response.data.map(item => ({
+                    value: item.id,
+                    label: item.libelle
+                }));
+                setNiveau(options);
+                setLoading(false);
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.error("There was an error fetching the sessions!", error);
+                if (toast.current) {
+                    toast.current.show({
+                        severity: "error",
+                        summary: "Erreur",
+                        detail: "Echec de chargement des niveau! Verifier votre connexion et reactialisez la page",
+                        life: 7000
+                    });
+                }
+            });
+
+        Axios.get('formateurs/domaine/')
+            .then(response => {
+                const options = response.data.map(item => ({
+                    value: item.id,
+                    label: item.libelle
+                }));
+                setDomaine(options);
+                setLoading(false);
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.error("There was an error fetching the sessions!", error);
+                if (toast.current) {
+                    toast.current.show({
+                        severity: "error",
+                        summary: "Erreur",
+                        detail: "Echec de chargement des domaines! Verifier votre connexion et reactialisez la page",
+                        life: 7000
+                    });
+                }
+            });
+        Axios.get('formateurs/domicile/')
+            .then(response => {
+
+                setFormateur(response.data);
+                setLoading(false);
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.error("There was an error fetching the sessions!", error);
+                if (toast.current) {
+                    toast.current.show({
+                        severity: "error",
+                        summary: "Erreur",
+                        detail: "Echec de chargement des domaines! Verifier votre connexion et reactialisez la page",
+                        life: 7000
+                    });
+                }
+            });
+    }, []);
     return (
         <>
             <div  >
@@ -113,29 +184,28 @@ export default function Recherche() {
                                         </Link>
                                     </li>
 
-                                    <li className="nav-item">
-                                        <a className="nav-link text-white fs-5" href='#contacteznous'>
-                                            Contactez-nous
-                                        </a>
-                                    </li>
-                                    {showTextRecherche && (
+
+                                    {showTextLieu === false && (
                                         <li className="nav-item">
-                                            <Input type={'text'} className='form-control p-2 border-black text-black' name={'textRecherche'} value={elements.textRecherche} onChange={(value) => handleInputChange('textRecherche', value.target.value)}></Input>
+                                            <a className="nav-link text-white fs-5" href='#contacteznous'>
+                                                Contactez-nous
+                                            </a>
+                                        </li>
+                                    )}
+
+                                    {showTextLieu && (
+                                        <li className="nav-item">
+                                            <FormGroup className="mx-2 mx-md-0">
+                                                <InputGroup>
+                                                    <InputGroupText className="border-black"><i className="bi bi-geo-alt fw-bold fs-5"></i></InputGroupText>
+                                                    <Input type="text" placeholder="Lieu" name="lieu" value={lieu} className="form-control p-1 fs-5 border-black text-black" onChange={handleInputChange} style={{ backgroundColor: "white", height: "55px" }} />
+                                                </InputGroup>
+                                            </FormGroup>
 
                                         </li>
                                     )}
-                                    {showTextLieu && (
-                                        <li className="nav-item">
-                                            <Input type={'text'} className='form-control p-2 border-black text-black' placeholder={'lieu'} name={'textLieu'} value={elements.textLieu} onChange={(value) => handleInputChange('textlieu', value.target.value)}></Input>
 
-                                        </li>
-                                    )}
-                                    {showTextLieu && (
-                                        <li className="nav-item ms-2">
-                                            <i className="bi bi-search iconeButton " onClick={rechercher}></i>
-                                        </li>
-                                    )
-                                    }
+
                                 </ul>
                                 <ul className="ml-auto navbar-nav mt-2">
                                     <li className="nav-item me-3  mb-2">
@@ -162,109 +232,99 @@ export default function Recherche() {
 
 
                 <section className="service_section layout_padding" style={{ backgroundColor: "#03031efc", height: "200px", position: "" }}>
-                    <div className="text-warning fs-1 fw-bold mb-4 text-center" style={{ marginTop: "-10px" }}>
+                    <div className="text-warning fs-3 fw-bold mb-4 text-center" style={{ marginTop: "-10px" }}>
                         Trouvez le formateur qu'il vous faut ou pour vos enfants
                     </div>
-                    <Row style={{ position: "", top: "-40px" }}>
+                    <Row className='mb-5' style={{ position: "", top: "-40px" }}>
                         <Col></Col>
-                        <Col md={5}>
-                            <FormGroup className="mx-2 mx-md-0">
-                                <InputGroup>
-                                    <InputGroupText className="border-black"><i className="bi bi-search fw-bold fs-5"></i></InputGroupText>
-                                    <Input type="text" placeholder="Saisissez un nom , un mot clé, un domaine ..." name="textRecherche" value={elements.textRecherche} className="form-control p-2 fs-5 text-black border-black" onChange={(e) => handleInputChange("textRecherche", e.target.value)} style={{ backgroundColor: "white", height: "55px" }} />
-                                </InputGroup>
-                            </FormGroup>
-                        </Col>
-                        <Col md={3}>
-                            <FormGroup className="mx-2 mx-md-0">
+
+                        <Col xs={10} md={5}>
+                            <FormGroup className="mx-2">
                                 <InputGroup>
                                     <InputGroupText className="border-black"><i className="bi bi-geo-alt fw-bold fs-5"></i></InputGroupText>
-                                    <Input type="text" placeholder="Lieu" name="textLieu" value={elements.textLieu} className="form-control p-2 fs-5 border-black text-black" onChange={(e) => handleInputChange("textLieu", e.target.value)} style={{ backgroundColor: "white", height: "55px" }} />
+                                    <Input type="text" placeholder="Lieu" name="lieu" value={lieu} className="form-control p-2 fs-5 border-black text-black" onChange={handleInputChange} style={{ backgroundColor: "white", height: "55px" }} />
                                 </InputGroup>
                             </FormGroup>
                         </Col>
                         <Col></Col>
                     </Row>
-                    <Row className='m-3'>
-                        <Col xs={12} md={5}>
-                            <FormGroup>
-                                <Row>
-                                    <MyLabel forMyLabel='format' text={'Trier par domaine'} className='text-white'></MyLabel>
-                                </Row>
-                                <Select
-                                    styles={{
-                                        control: (provided) => ({
-                                            ...provided,
-                                            height: 'auto',
-                                            minHeight: '40px',
-                                            border: '1px solid black',
-                                            color: 'black'
-                                        }),
-                                    }}
-                                    options={domaine.map(item => ({ value: item.id, label: item.libelle }))}
-                                    value={elements.domaine}
-                                    onChange={(selectedOption) => handleInputChange('domaine', selectedOption)}
 
-                                />
-                            </FormGroup>
-                        </Col>
-                        <Col xs={12} md={5}>
-                            <FormGroup>
-                                <Row>
-                                    <MyLabel forMyLabel='niveau' text={'Trier par niveau'} className='text-white'></MyLabel>
-                                </Row>
-                                <Select id={'niveau'} name={'niveau'} value={elements.niveau} onChange={(value) => handleInputChange('niveau', value)} options={[
-                                    { label: 'Primaire', value: 'primaire' },
-                                    { label: 'Collège', value: 'college' },
-                                    { label: 'Lycée', value: 'lycee' },
-                                    { label: 'Universitaire', value: 'universitaire' },
-                                    { label: 'Professionnel', value: 'professionnel' },
-                                ]}
-                                    styles={{
-                                        control: (provided) => ({
-                                            ...provided,
-                                            height: 'auto',
-                                            minHeight: '40px',
-                                            border: '1px solid black',
-                                            color: 'black'
-                                        }),
-                                    }} />
-                            </FormGroup>
-                        </Col>
-                        <Col></Col>
-
-                    </Row>
                 </section>
 
 
             </div>
+            <div className='container mt-5 mt-md-3'>
+                <Row style={{ position: '' }}>
+                    <Col></Col>
+                    <Col xs={12} md={5} lg={4}>
+                        <FormGroup>
+                            <Row>
+                                <MyLabel forMyLabel='format' text={'Trier par domaine'} className='text-black'></MyLabel>
+                            </Row>
+                            <Select
+                                styles={{
+                                    control: (provided) => ({
+                                        ...provided,
+                                        height: 'auto',
+                                        minHeight: '40px',
+                                        border: '1px solid black',
+                                        color: 'black'
+                                    }),
+                                }}
+                                options={domaine}
+                                onChange={handleDomaineChange}
+                                value={domaineValue}
+                            />
+                        </FormGroup>
+                    </Col>
+                    <Col xs={12} md={5} lg={4}>
+                        <FormGroup>
+                            <Row>
+                                <MyLabel forMyLabel='niveau' text={'Trier par niveau'} className='text-black'></MyLabel>
+                            </Row>
+                            <Select id={'niveau'} name={'niveau'}
+                                options={niveau}
+                                onChange={handleNiveauChange}
+                                value={niveauValue}
+                                styles={{
+                                    control: (provided) => ({
+                                        ...provided,
+                                        height: 'auto',
+                                        minHeight: '40px',
+                                        border: '1px solid black',
+                                        color: 'black'
+                                    }),
+                                }} />
+                        </FormGroup>
+                    </Col>
+                    <Col></Col>
 
+                </Row>
+            </div>
             {/* Section des sessions */}
-            <section className="service_section layout_padding">
+            <section className="">
                 <div className="ms-md-5 me-md-5">
                     <Row className='gx-3 gy-4 align-items-stretch'>
-                        {formateurDomicile.map(formateur => (
+                        {formateur.map(formateur => (
                             <Col key={formateur.id} xs={12} sm={6} xl={3} lg={6} md={6} className='d-flex flex-column justify-content-between'>
                                 <Col className='p-2 d-flex flex-column justify-content-between colFormFormateur border-black m-1'>
                                     <Row>
                                         <Col>
-                                            <img src={image} alt="photo" style={{ borderRadius: '10px' }} />
+                                            {formateur.photo === null ?
+                                            
+                                                <i className='bi bi-person-square' style={{fontSize: '100px', top: '0px'}}></i> :
+                                                <img src={formateur.photo} alt="photo" height={200} width={200} style={{ borderRadius: '10px' }} />}
+
                                         </Col>
                                     </Row>
                                     <Col>
-                                        <div className='text-justify fs-4 fw-bold'>{formateur.nomComplet}</div>
-                                        <div className='fs-5'> <i className="bi bi-geo-alt fs-5"></i><span>{formateur.adresse}</span></div>
-                                        <div className='fs-5'> <i className="bi bi-person-badge"></i>{formateur.profession}</div>
-                                        <div className='fw-3'><span className='fs-5'>Domaines dispensés :</span>{formateur.domaineExpertise.map(domaine => (<li key={domaine.id} className='ms-4'>{domaine.libelle}</li>))}</div>
-                                        <div className='fw-3'><span className='fs-5'>Niveau concernés :</span>{formateur.niveau.map(niveau => (<li key={niveau.id} className='ms-4'>{niveau.libelle}</li>))}</div>
+                                        <div className='text-justify fs-4 fw-bold'>{formateur.nom_complet}</div>
+                                        <div className=''> <i className="bi bi-geo-alt"></i><span>{" " + formateur.adresse}</span></div>
+                                        <div className='fw-bold'>{formateur.formateur.formateurDomicile.domaine.map(domaine => (<span key={domaine.id}>{domaine.libelle + " "}</span>))}</div>
+                                        <div className='fw-bold'>{formateur.formateur.formateurDomicile.niveau.map(niveau => (<span key={niveau.id}>{'-' + niveau.libelle + " "}</span>))}</div>
+
                                     </Col>
-                                    <Row className='mt-1'>
-                                        <Col><h5 className='mt-2'>Notes</h5></Col>
-                                        <Col></Col>
-                                        <Col>
-                                            <div className='bg-warning text-center px-4 py-2 fw-bold' style={{ borderRadius: '100px' }}>5</div>
-                                        </Col>
-                                    </Row>
+
                                     <Row>
                                         <Col></Col>
                                         <Col xs={8}>

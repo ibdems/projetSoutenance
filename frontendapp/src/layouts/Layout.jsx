@@ -38,7 +38,6 @@
           <div className="container" style={{overflowY:"auto",maxHeight:'calc(100vh - 90px)'}}>
             <Outlet />
           </div>
-          {loading && <ProgressBar mode="indeterminate" style={{ height: '6px', backgroundColor: 'red' }} />} {/* Afficher la barre de progression si loading est true */}
         </div>
       </div>
     );

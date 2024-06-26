@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Accordion, AccordionBody, AccordionHeader, AccordionItem } from 'reactstrap';
 import './sidebar.css';
+import logoF from "../../image/logo.jpg";
+
 
 function Sidebar({ size }) {
   const [open, setOpen] = useState('');
@@ -19,7 +21,7 @@ function Sidebar({ size }) {
     <div className={`styleSidebar ${sidebarClass} ${size <= 1200 ? 'd-md-none' : ''}`} style={{ width: size }}>
       <div className="sidebar-header">
         <div className="sidebar-title">
-          {change && <h3>MatchSavoir</h3>}
+          {change ? <img src={logoF} alt="" height={100} width={150} style={{marginLeft: '30px', marginBottom: '-20px'}}/> : <img src={logoF} alt="" height={50} width={50} style={{marginLeft: '-5px', marginBottom: '-20px'}}/>}
         </div>
       </div>
       <div className="sidebar-menu">

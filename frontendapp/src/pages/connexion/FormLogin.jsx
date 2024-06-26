@@ -5,6 +5,7 @@ import { MyInput, MyLabel } from '../../components/Forms/Forms';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
+import logoF from "../../image/logo.jpg";
 
 const validationSchema = yup.object().shape({
     email: yup.string().email('Email invalide').required('Email est requis'),
@@ -16,10 +17,10 @@ export default function FormLogin({ lienConnexion }) {
 
     return (
         <div>
-            <Row className='mt-2 mt-lg-5'>
+            <Row className='mt-5 mt-lg-5'>
                 <Col></Col>
-                <Col xs={3} xl={3} md={2} lg={3} className='mt-md-5 mt-lg-3'>
-                    <img src="" alt="" height={100} width={100} />
+                <Col xs={5} xl={3} md={2} lg={3} className='mt-md-5 mt-lg-3'>
+                    <img src={logoF} alt="" height={150} width={150} />
                 </Col>
                 <Col></Col>
             </Row>

@@ -113,21 +113,21 @@ class Certifications(models.Model):
 
 class FormateurDomicile(models.Model):
     statut = models.BooleanField(default=False)
-    formateur = models.OneToOneField(Formateur, on_delete=models.CASCADE)
+    formateur = models.OneToOneField(Formateur, on_delete=models.CASCADE, related_name = 'formateurDomicile')
 
     def __str__(self):
         return self.formateur.utilisateur.nom_complet
 
 class Domaine(models.Model):
     libelle = models.CharField(max_length=254)
-    FormateurDomicile = models.ForeignKey(FormateurDomicile, on_delete=models.CASCADE)
+    FormateurDomicile = models.ForeignKey(FormateurDomicile, on_delete=models.CASCADE, related_name = 'domaine')
 
     def __str__(self):
         return self.libelle
 
 class Niveau(models.Model):
     libelle = models.CharField(max_length=254)
-    FormateurDomicile = models.ForeignKey(FormateurDomicile, on_delete=models.CASCADE)
+    FormateurDomicile = models.ForeignKey(FormateurDomicile, on_delete=models.CASCADE,  related_name = 'niveau')
 
     def __str__(self):
         return self.libelle
@@ -138,7 +138,7 @@ class TempsDisponibilite(models.Model):
     heure_debut = models.TimeField()
     heure_fin = models.TimeField()
     utilisateur = models.ForeignKey(Utilisateur, on_delete=models.CASCADE)
-    formateurDomicile = models.ForeignKey(FormateurDomicile, on_delete=models.CASCADE)
+    formateurDomicile = models.ForeignKey(FormateurDomicile, on_delete=models.CASCADE, related_name = 'temps')
 
     def __str__(self):
         return self.jours

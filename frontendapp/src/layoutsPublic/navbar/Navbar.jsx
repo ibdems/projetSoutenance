@@ -1,14 +1,20 @@
 import React from 'react'
 import './navbar.scss'
 import { Link } from 'react-router-dom'
+import Titre from '../../components/titre/Titre'
+import logoF from "../../image/logo.jpg";
 
 
-export default function Navbar({contacteznous }) {
+
+export default function Navbar({ contacteznous }) {
     return (
         <nav className="navbar navbar-expand-lg fixed-top" aria-label="Offcanvas navbar" style={{ backgroundColor: '#03031efc' }}>
             <div className="container-fluid">
-                <Link className="navbar-brand text-white" href="#">
-                    MatchSavoir
+                <Link className="navbar-brand text-white">
+                    <img src={logoF} alt="" height={40} className="d-lg-none" />
+                    <span className="d-none d-lg-block">
+                        <Titre />
+                    </span>
                 </Link>
                 <button
                     className="navbar-toggler text-white"
@@ -50,20 +56,20 @@ export default function Navbar({contacteznous }) {
                         </ul>
                         <ul className="ml-auto navbar-nav">
                             <li className="nav-item me-2 mb-2">
-                                <Link to={'/inscription'} style={{textDecoration: 'none'}}>
+                                <Link to={'/inscription'} style={{ textDecoration: 'none' }}>
                                     <button className='form-control fw-bold bg-warning fs-5 border-none' style={{ color: '#03031efc' }}>
                                         <i className="bi bi-person-fill-add fs-5 me-2" aria-hidden="true" /> S'inscrire
                                     </button>
                                 </Link>
-                                
+
                             </li>
                             <li className="nav-item me-2">
-                                <Link to={'/connexion'} style={{textDecoration: 'none'}}>
+                                <Link to={'/connexion'} style={{ textDecoration: 'none' }}>
                                     <button className='form-control fw-bold bg-warning fs-5 border-none' style={{ color: '#03031efc' }}>
                                         <i className="bi bi-box-arrow-in-right fs-5 me-2" aria-hidden="true" />Se Connecter
                                     </button>
                                 </Link>
-                                
+
                             </li>
                         </ul>
                     </div>

@@ -21,19 +21,53 @@ class DomaineExpertiseSerializer(serializers.ModelSerializer):
         model = DomaineExpertise
         fields = '__all__'
 
+class DomaineSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Domaine
+        fields = '__all__'
+
+class NiveauSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Niveau
+        fields = '__all__'
+
+class TempsDisponibiliteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TempsDisponibilite
+        fields = '__all__'
+
+
+class FormateurDomicileSerializer(serializers.ModelSerializer):
+    niveau = NiveauSerializer(many=True, read_only = True)
+    temps = TempsDisponibiliteSerializer(many=True, read_only = True)
+    domaine = DomaineSerializer(many=True, read_only = True)
+    class Meta:
+        model = FormateurDomicile
+        fields = '__all__'
+
 class FormateurSerializer(serializers.ModelSerializer):
     competances = CompetenceSerializer(many=True, read_only=True)
     certifications = CertificationSerializer(many=True, read_only=True)
     domaineExpertises = DomaineExpertiseSerializer(many=True, read_only = True)
+    formateurDomicile = FormateurDomicileSerializer(read_only = True)
     class Meta:
         model = Formateur
-        fields = ['linkedin', 'competances', 'certifications', 'domaineExpertises', 'profession', 'niveau_etude', 'duree_experience', 'utilisateur']
+        fields = ['linkedin', 'competances', 'certifications', 'domaineExpertises', 'formateurDomicile', 'profession', 'niveau_etude', 'duree_experience', 'utilisateur']
 
 class CabinetSerializer(serializers.ModelSerializer):
     domaineExpertises = DomaineExpertiseSerializer(many=True, read_only = True)
     class Meta:
         model = Cabinet
         fields = '__all__'
+
+class FormateurDomicileListSerializer(serializers.ModelSerializer):
+    formateur = FormateurSerializer(read_only=True)
+
+    class Meta:
+        model = Utilisateur
+        fields = ['id','email', 'cabinet', 'formateur', 'nom_complet', 'telephone', 'adresse',  'photo']
+        read_only_fields = ['id']
+
 
 class UtilisateurSerializer(serializers.ModelSerializer):
     formateur = FormateurSerializer(read_only=True)
@@ -80,25 +114,8 @@ class CabinetInscriptionSerializer(serializers.ModelSerializer):
         cabinet = Cabinet.objects.create(utilisateur=utilisateur, **validated_data)
         return cabinet
 
-class FormateurDomicileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = FormateurDomicile
-        fields = '__all__'
 
-class DomaineSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Domaine
-        fields = '__all__'
 
-class NiveauSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Niveau
-        fields = '__all__'
-
-class TempsDisponibiliteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TempsDisponibilite
-        fields = '__all__'
 
 class ObjectifsSerializer(serializers.ModelSerializer):
     class Meta:
